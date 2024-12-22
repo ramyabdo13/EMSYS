@@ -1,0 +1,200 @@
+﻿@model EMSYS.Models.StudentExamResultList
+@using EMSYS.CustomHelper
+@{
+    if (User.IsInRole("Student"))
+    {
+        ViewBag.Title = $"{Model.ResultView.ExamName} {Resource.Result}";
+    }
+    else
+    {
+        ViewBag.Title = $"{Model.ResultView.StudentName} {Resource.Answer}";
+    }
+    Layout = "~/Views/Shared/_LayoutAfterLogin.cshtml";
+    bool canSeeQuestionAndAnswer = (User.IsInRole("Student") && Model.ResultView.ReleaseAnswer == true) || User.IsInRole("System Admin") || User.IsInRole("Teacher");
+}
+
+<div class="row">
+    <div class="col-12">
+        <div style="--bs-breadcrumb-divider: '>';">
+            <ol class="breadcrumb m-0">
+                @if (User.IsInRole("Student"))
+                {
+                    <li class="breadcrumb-item fw-normal"><a class="color-primarycolor opacity-50" href="@Url.Action("pastexam","studentexam")">@Resource.PastExams</a></li>
+                }
+                else
+                {
+                    <li class="breadcrumb-item fw-normal"><a class="color-primarycolor opacity-50" href="@Url.Action("index")">@Resource.ExamResult</a></li>
+                    <li class="breadcrumb-item fw-normal"><a class="color-primarycolor opacity-50" href="@Url.Action("studentresult",new{Id=Model.ResultView.ExamId})">@Model.ResultView.ExamName</a></li>
+                }
+                <li class="breadcrumb-item fw-normal active">@ViewBag.Title</li>
+            </ol>
+        </div>
+        <div class="page-title-box d-sm-flex align-items-center justify-content-between pt-2">
+            <h4 class="pagetitle mb-sm-0 fw600">@ViewBag.Title</h4>
+        </div>
+    </div>
+</div>
+
+<section class="section mt-3">
+    <div class="bg-white rounded p-3 p-lg-4 p-xl-5 shadow">
+        <div class="row">
+            <div class="col-md-6">
+                <div class="mb-3 text-break">
+                    <div>@Html.LabelFor(model => model.ResultView.ExamName, htmlAttributes: new { @class = "fw600" })</div>
+                    <div>@Html.DisplayFor(model => model.ResultView.ExamName, new { htmlAttributes = new { @class = "form-control d-block" } })</div>
+                </div>
+            </div>
+            <div class="col-md-6">
+                <div class="mb-3 text-break">
+                    <div>@Html.LabelFor(model => model.ResultView.StudentName, htmlAttributes: new { @class = "fw600" })</div>
+                    <div>@Html.DisplayFor(model => model.ResultView.StudentName, new { htmlAttributes = new { @class = "form-control" } })</div>
+                </div>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-md-6">
+                <div class="mb-3 text-break">
+                    <div>@Html.LabelFor(model => model.ResultView.Passed, htmlAttributes: new { @class = "fw600" })</div>
+                    <div>
+                        @if (Model.ResultView.Passed == true)
+                        {
+                            <span class="badge bg-success text-black fw500 fs-13">@Resource.Passed</span>
+                        }
+                        else
+                        {
+                            <span class="badge bg-danger fw500 fs-13">@Resource.Failed</span>
+                        }
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-6">
+                <div class="mb-3 text-break">
+                    <div>@Html.LabelFor(model => model.ResultView.ScoreToPass, htmlAttributes: new { @class = "fw600" })</div>
+                    <div>@Model.ResultView.ScoreToPass</div>
+                </div>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-md-6">
+                <div class="mb-3 text-break">
+                    <div>@Html.LabelFor(model => model.ResultView.YourScore, htmlAttributes: new { @class = "fw600" })</div>
+                    <div>@Model.ResultView.YourScore / @Model.ResultView.TotalScore</div>
+                </div>
+            </div>
+            <div class="col-md-6">
+                <div class="mb-3 text-break">
+                    <div>@Html.LabelFor(model => model.ResultView.AnsweredCorrect, htmlAttributes: new { @class = "fw600" })</div>
+                    <div>@Model.ResultView.AnsweredCorrect / @Model.ResultView.TotalQuestions</div>
+                </div>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-md-6">
+                <div class="mb-3 text-break">
+                    <div>@Html.LabelFor(model => model.ResultView.StartDateTime, htmlAttributes: new { @class = "fw600" })</div>
+                    <div class="datetimetext">@Model.ResultView.StartDateTime</div>
+                </div>
+            </div>
+            <div class="col-md-6">
+                <div class="mb-3 text-break">
+                    <div>@Html.LabelFor(model => model.ResultView.EndDateTime, htmlAttributes: new { @class = "fw600" })</div>
+                    <div class="datetimetext">@Model.ResultView.EndDateTime</div>
+                </div>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-md-6">
+                <div class="mb-3 text-break">
+                    <div>@Html.LabelFor(model => model.ResultView.TimeTaken, htmlAttributes: new { @class = "fw600" })</div>
+                    <div>@Model.ResultView.TimeTaken @Resource.Minutes</div>
+                </div>
+            </div>
+        </div>
+    </div>
+    @if (canSeeQuestionAndAnswer)
+    {
+        <div class="print-page-break"></div>
+        foreach (var item in Model.Listing)
+        {
+            <div class="bg-white rounded p-3 p-lg-4 p-xl-5 shadow mt-4">
+                <div class="fs-14 pb-2 mb-3 d-flex justify-content-between border-bottom">
+                    <div class="text-start">
+                        Question @item.QuestionNumber: @item.Mark Marks
+                    </div>
+                    <div class="text-end">
+                        @Resource.YourScore: @item.MarksObtained
+                    </div>
+                </div>
+                <div class="form-group mb-1">
+                    <p id="question" class="form-control-plaintext fs-18 fw600">
+                        @item.QuestionText
+                    </p>
+                </div>
+                @if (item.QuestionType == "MCQ")
+                {
+                    foreach (var ans in item.AnswerList)
+                    {
+                        <div>
+                            <span>@CustomHelper.CustomRadioButton(item.QuestionId.ToString().Substring(0, 8),$"{item.QuestionId.ToString().Substring(0, 8)}_"+ ans.Text, ans.Id, ans.Text, item.SelectedAnswerId, "")</span>
+                            @if (ans.IsCorrect == true)
+                            {
+                                <i class="fa-solid fa-check fw600 fs-20 text-edit align-middle"></i>
+                            }
+                            else
+                            {
+                                <i class="fa-solid fa-xmark fw600 fs-20 text-delete align-middle"></i>
+                            }
+                        </div>
+                    }
+                }
+                else if (item.QuestionType == "SA")
+                {
+                    <div class="row">
+                        <div class="col-md-6">
+                            <div class="color-primarycolor">@Resource.StudentAnswer</div>
+                            <div><textarea class="form-control" rows="3" readonly>@item.AnswerText</textarea></div>
+                        </div>
+                        <div class="col-md-6">
+                            <div class="color-primarycolor">
+                                @Resource.AcceptedAnswers
+                                @if (User.IsInRole("System Admin") || User.IsInRole("Teacher"))
+                                {
+                                    <a class="color-secondarycolor fs-12 hover-color-primarycolor" href="@Url.Action("edit","answer",new { Id = item.QuestionId } )" target="_blank">Add</a>
+                                }
+                            </div>
+                            <div>
+                                @foreach (var correctOption in item.CorrectAnswerText)
+                                {
+                                    <textarea class="form-control" rows="1" readonly>@correctOption</textarea>
+                                }
+                            </div>
+                        </div>
+                    </div>
+                }
+            </div>
+        }
+    }
+    <div class="row mt-4">
+        <div class="col-12">
+            @if (User.IsInRole("Student"))
+            {
+                <a class="btn form-btn btn-secondary hover-boxshadow me-1" href="@Url.Action("pastexam","studentexam")">@Resource.BackToList</a>
+            }
+            <span class="btn form-btn btn-primary hover-boxshadow cursor-pointer me-1" onclick="window.print()">@Resource.PrintResult</span>
+        </div>
+    </div>
+</section>
+
+@section scripts{
+    <script>
+        document.addEventListener("DOMContentLoaded", function () {
+            const radioButtons = document.querySelectorAll('input[type="radio"]');
+            radioButtons.forEach(radioButton => {
+                radioButton.addEventListener("click", function (event) {
+                    event.preventDefault();
+                    return false;
+                });
+            });
+        });
+    </script>
+}

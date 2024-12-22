@@ -1,0 +1,173 @@
+﻿@model EMSYS.Models.ExamViewModel
+@using EMSYS.CustomHelper
+@{
+    ViewBag.Title = $"{Resource.Add} {Resource.Question}";
+    Layout = "~/Views/Shared/_LayoutAfterLogin.cshtml";
+    ViewBag.TableIdPrefix = "question";
+    ViewBag.PartialViewWrapper = "question-partialview";
+}
+
+<div class="row">
+    <div class="col-12">
+        <div style="--bs-breadcrumb-divider: '>';">
+            <ol class="breadcrumb m-0">
+                <li class="breadcrumb-item fw-normal"><a class="color-primarycolor opacity-50" href="@Url.Action("index")">@Resource.ExamManagement</a></li>
+                @if (!string.IsNullOrEmpty(Model.Id))
+                {
+                    <li class="breadcrumb-item fw-normal"><a class="color-primarycolor opacity-50" href="@Url.Action("viewrecord", new { id = Model.Id})">@Resource.View @Resource.Exam</a></li>
+                }
+                <li class="breadcrumb-item fw-normal active">@ViewBag.Title</li>
+            </ol>
+        </div>
+        <div class="page-title-box d-sm-flex align-items-center justify-content-between pt-2">
+            <h4 class="pagetitle mb-sm-0 fw600">@ViewBag.Title (@Model.Name)</h4>
+        </div>
+    </div>
+</div>
+
+@await Html.PartialAsync("~/Views/Exam/_Tabs.cshtml", new ViewDataDictionary(ViewData) {{ "active", "addquestion" }, { "id",Model.Id}, { "random",Model.RandomizeQuestions}  })
+
+@using (Html.BeginForm("AddQuestion", "Exam", new { ReturnUrl = ViewBag.ReturnUrl }, FormMethod.Post, null, new { @class = "form-horizontal", role = "form", enctype = "multipart/form-data" }))
+{
+    @Html.HiddenFor(m => m.Id)
+    @Html.HiddenFor(m => m.Name)
+    @Html.HiddenFor(m => m.RandomizeQuestions)
+    <section class="section">
+        <div class="bg-white rounded p-3 p-lg-4 p-xl-5 shadow">
+            <h2 class="fs-20 fw600">@Resource.AddQuestionForExam</h2>
+            <div class="mb-4">@Resource.EditQuestionDescription @Resource.EditQuestionDescription2</div>
+            @if (TempData["ErrorMessage"] != null)
+            {
+                <div class="row">
+                    <div class="alert alert-danger">
+                        @TempData["ErrorMessage"]
+                    </div>
+                </div>
+            }
+            <div class="row gx-1">
+                <div class="alert alert-info">
+                    Total Questions: <span id="totalquestion"></span>
+                </div>
+            </div>
+            <div class="row g-0 position-relative w-100 h-100">
+                <div class="spinner-container d-none">
+                    <div class="spinner d-flex justify-content-center align-items-center text-center color-primarycolor py-5">
+                        <div class="py-3">
+                            <div class="spinner-border ml-auto" role="status" aria-hidden="true"></div><strong> &nbsp; @Resource.Loading </strong>
+                        </div>
+                    </div>
+                </div>
+                <div id="@ViewBag.PartialViewWrapper">
+                    <!-- display a dummy empty table while loading the data -->
+                    <div class="table-responsive mb-5">
+                        <table class="table table-hover align-middle mb-0">
+                            <thead class="table-light">
+                                <tr><th class="thead"></th></tr>
+                            </thead>
+                            <tbody></tbody>
+                        </table>
+                    </div>
+                    <div class="py-4"></div>
+                    <div class="dummyfooter row justify-content-between mt-5">
+                        <div class="col-md-6">@Resource.Showing0Entries</div>
+                        <div class="col-md-6 text-end">@Resource.Page0OfPage0</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="row mt-4">
+            <div class="col-12">
+                @if (Model.AlreadyStarted == false || (Model.ExamStatus != "On Going" && Model.ExamStatus != "Ended"))
+                {
+                    <button type="submit" class="btn form-btn btn-primary hover-boxshadow">@Resource.Save</button>
+                }
+                else
+                {
+                    <button type="button" class="btn form-btn btn-primary hover-boxshadow opacity-50" data-bs-toggle="tooltip" data-bs-placement="top" title="@Resource.CannotEditQuestion">@Resource.Save</button>
+                }
+            </div>
+        </div>
+    </section>
+}
+
+<div id="questionSelectedtoast-container" class="position-fixed top-0 mx-auto p-4 toast-container">
+    <div id="questionSelectedtoast" class="toast mx-auto bg-info text-white border-0" role="alert" aria-live="assertive" aria-atomic="true">
+        <div class="toast-header justify-content-between bg-info text-white border-bottom-0">
+            <div class="text-white">
+                <i class="fa-solid fa-circle-check pe-1"></i> <strong class="me-auto">@Resource.TotalQuestions:</strong>
+            </div>
+            <button type="button" class="text-end border-0 bg-transparent text-white fs-18 p-0 hover-opacity" data-bs-dismiss="toast" aria-label="Close">X</button>
+        </div>
+        <div class="toast-body bg-info text-white border-0">
+        </div>
+    </div>
+</div>
+
+@section scripts{
+    <script>
+        var tableIdPrefix = "@ViewBag.TableIdPrefix";
+        var fileName = "@Resource.Question"; //the file name for excel and pdf file (Export to excel, pdf feature)
+        var partialview = "@ViewBag.PartialViewWrapper";
+        var studentTakenExam = "@Model.AlreadyStarted";
+        var examStatus = "@Model.ExamStatus";
+        var loadTableUrl = "@Url.Action("ExamAddQuestionListing", "Question", new { id = Model.Id })";
+        resetTable();
+
+        var selectedQuestions = '@Json.Serialize(Model.SelectedQuestions)'; // serialize List<string> to JSON string
+        var questionsArray = JSON.parse(selectedQuestions); // parse JSON string to JavaScript array
+
+        function refreshTable(sort, search, pg, size) {
+            if (sort == "undefined" || sort == undefined || sort == null) {
+                sort = "";
+            }
+            if (pg == "undefined" || pg == undefined || pg == null) {
+                pg = 1;
+            }
+            if (size == "undefined" || size == undefined || size == null) {
+                size = "";
+            }
+            if (search == "undefined" || search == undefined || search == null) {
+                let searchinput = document.querySelector('input[name="search"]');
+                if (searchinput != null) {
+                    if (searchinput.value == null || searchinput.value == "") {
+                        search = "";
+                    } else {
+                        search = searchinput.value;
+                    }
+                } else {
+                    search = "";
+                }
+            }
+            $(".spinner-container").removeClass("d-none");
+            var url = `${loadTableUrl}?sort=${sort}&search=${search}&pg=${pg}&size=${size}`;
+            loadData(url);
+        }
+
+        function resetTable() {
+            $(".spinner-container").removeClass("d-none");
+            var url = loadTableUrl;
+            loadData(url);
+        }
+
+        function loadData(url) {
+            fetch(url)
+                .then(response => {
+                    if (!response.ok) {
+                        throw new Error('Network response was not ok');
+                    }
+                    return response.text();
+                })
+                .then(data => {
+                    $(`#${partialview}`).html(data);
+                    formatDateTimeText();
+                })
+                .catch(error => {
+                    console.error('There was a problem with the fetch operation:', error);
+                })
+                .finally(() => {
+                    $(".spinner-container").addClass("d-none");
+                });
+        }
+
+    </script>
+}

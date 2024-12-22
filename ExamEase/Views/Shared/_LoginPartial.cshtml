@@ -1,0 +1,44 @@
+﻿@if (User.Identity.IsAuthenticated)
+{
+    using (Html.BeginForm("LogOff", "Account", FormMethod.Post, new { id = "logoutForm", @class = "navbar-right" }))
+    {
+        @Html.AntiForgeryToken()
+
+        <div class="btn-group">
+            <button type="button" class="btn bg-transparent color-primarycolor border-0 dropdown-toggle px-1 px-sm-2" data-bs-toggle="dropdown" aria-expanded="false">
+                <img id="profilePicture" src="~/assets/defaultProfilePicture.jpg" alt="Profile" class="rounded-circle img-fluid" style="width:30px;height:30px;">
+                <span class="ps-1">@User.Identity.Name</span>
+            </button>
+            <ul class="dropdown-menu" style="">
+                <li class="dropdown-header"><h6>@User.Identity.Name</h6></li>
+                <li>
+                    <a id="myprofile" class="dropdown-item d-flex align-items-center fs-14" href="@Url.Action("myprofile","account")">
+                        <i class="fa-solid fa-circle-user"></i>&nbsp;&nbsp;<span class="ps-1">@Resource.MyProfile</span>
+                    </a>
+                </li>
+                <li>
+                    <a id="changepassword" class="dropdown-item d-flex align-items-center fs-14" href="@Url.Action("changepassword","account")">
+                        <i class="fa-solid fa-key"></i>&nbsp;&nbsp;<span class="ps-1">@Resource.ChangePassword</span>
+                    </a>
+                </li>
+                <li>
+                    <a class="dropdown-item d-flex align-items-center fs-14" href="javascript:localStorage.removeItem('totalSecondsLeft');document.getElementById('logoutForm').submit();">
+                        <i class="fa-solid fa-arrow-right-from-bracket"></i>&nbsp;&nbsp;<span class="ps-1">@Resource.SignOut</span>
+                    </a>
+                </li>
+            </ul>
+        </div>
+
+        <div class="btn-group">
+            <button type="button" class="btn bg-transparent color-primarycolor border-0 dropdown-toggle px-1 px-sm-2" data-bs-toggle="dropdown" aria-expanded="false">@System.Threading.Thread.CurrentThread.CurrentCulture.ToString().ToUpper()</button>
+            <ul class="dropdown-menu">
+                @await Html.PartialAsync("~/Views/Shared/_LanguageChoices.cshtml")
+            </ul>
+        </div>
+    }
+}
+else
+{
+    <span class="pe-3"><a id="registerLink" href="@Url.Action("register","account")" class="hover-bg-primarycolor">@Resource.Register</a></span>
+    <span> <a id="loginLink" href="@Url.Action("login","account")" class="hover-bg-primarycolor">@Resource.Login</a></span>
+}

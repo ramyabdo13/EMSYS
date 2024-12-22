@@ -1,0 +1,56 @@
+﻿@if (TempData["NotifySuccess"] != null)
+{
+    <div id="successtoast-container" class="position-fixed top-0 mx-auto p-4 toast-container">
+        <div id="successtoast" class="toast show mx-auto bg-success border-0" role="alert" aria-live="assertive" aria-atomic="true">
+            <div class="toast-header justify-content-between bg-success border-bottom-0">
+                <div class="text-black">
+                    <i class="fa-solid fa-circle-check pe-1"></i> <strong class="me-auto">@Resource.Success</strong>
+                </div>
+                <button type="button" class="text-end border-0 bg-transparent fs-18 p-0 hover-opacity" data-bs-dismiss="toast" aria-label="Close">X</button>
+            </div>
+            <div class="toast-body bg-success text-black border-0">
+                @TempData["NotifySuccess"]
+            </div>
+        </div>
+    </div>
+}
+
+@if (TempData["NotifyFailed"] != null)
+{
+    <div id="failedtoast-container" class="position-fixed top-0 mx-auto p-4 toast-container">
+        <div id="failedtoast" class="toast show mx-auto bg-danger border-0" role="alert" aria-live="assertive" aria-atomic="true">
+            <div class="toast-header justify-content-between bg-danger border-bottom-0">
+                <div class="text-white">
+                    <i class="fa-solid fa-circle-check pe-1"></i> <strong class="me-auto">@Resource.OopsSomethingwrong</strong>
+                </div>
+                <button type="button" class="text-end border-0 bg-transparent fs-18 p-0 hover-opacity" data-bs-dismiss="toast" aria-label="Close">X</button>
+            </div>
+            <div class="toast-body bg-danger border-0">
+                @Html.Raw(TempData["NotifyFailed"])
+            </div>
+        </div>
+    </div>
+}
+
+<div id="notifytoast-container" class="position-fixed top-0 mx-auto p-4 toast-container">
+    <div id="notifytoast" class="toast mx-auto bg-info text-white border-0" role="alert" aria-live="assertive" aria-atomic="true">
+        <div class="toast-header justify-content-between bg-info text-white border-bottom-0">
+            <div class="text-white">
+                <i class="fa-solid fa-circle-check pe-1"></i> <strong class="me-auto">@Resource.NoteColon</strong>
+            </div>
+            <button type="button" class="text-end border-0 bg-transparent text-white fs-18 p-0 hover-opacity" data-bs-dismiss="toast" aria-label="Close">X</button>
+        </div>
+        <div class="toast-body bg-info text-white border-0">
+        </div>
+    </div>
+</div>
+
+<div id="selectedtoast-container" class="position-fixed top-0 start-0 end-0 mx-auto p-4 toast-container">
+    <div id="selectedtoast" class="toast mx-auto bg-info text-white border-0" role="alert" aria-live="assertive" aria-atomic="true">
+        <div class="d-flex bg-info">
+            <div class="toast-body bg-info text-white border-0">
+            </div>
+            <button type="button" class="me-2 m-auto border-0 text-white bg-transparent fs-18 p-0 hover-opacity" data-bs-dismiss="toast" aria-label="Close">X</button>
+        </div>
+    </div>
+</div>

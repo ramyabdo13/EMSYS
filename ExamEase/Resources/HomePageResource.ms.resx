@@ -1,0 +1,372 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<root>
+  <!-- 
+    Microsoft ResX Schema 
+    
+    Version 2.0
+    
+    The primary goals of this format is to allow a simple XML format 
+    that is mostly human readable. The generation and parsing of the 
+    various data types are done through the TypeConverter classes 
+    associated with the data types.
+    
+    Example:
+    
+    ... ado.net/XML headers & schema ...
+    <resheader name="resmimetype">text/microsoft-resx</resheader>
+    <resheader name="version">2.0</resheader>
+    <resheader name="reader">System.Resources.ResXResourceReader, System.Windows.Forms, ...</resheader>
+    <resheader name="writer">System.Resources.ResXResourceWriter, System.Windows.Forms, ...</resheader>
+    <data name="Name1"><value>this is my long string</value><comment>this is a comment</comment></data>
+    <data name="Color1" type="System.Drawing.Color, System.Drawing">Blue</data>
+    <data name="Bitmap1" mimetype="application/x-microsoft.net.object.binary.base64">
+        <value>[base64 mime encoded serialized .NET Framework object]</value>
+    </data>
+    <data name="Icon1" type="System.Drawing.Icon, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
+        <value>[base64 mime encoded string representing a byte array form of the .NET Framework object]</value>
+        <comment>This is a comment</comment>
+    </data>
+                
+    There are any number of "resheader" rows that contain simple 
+    name/value pairs.
+    
+    Each data row contains a name, and value. The row also contains a 
+    type or mimetype. Type corresponds to a .NET class that support 
+    text/value conversion through the TypeConverter architecture. 
+    Classes that don't support this are serialized and stored with the 
+    mimetype set.
+    
+    The mimetype is used for serialized objects, and tells the 
+    ResXResourceReader how to depersist the object. This is currently not 
+    extensible. For a given mimetype the value must be set accordingly:
+    
+    Note - application/x-microsoft.net.object.binary.base64 is the format 
+    that the ResXResourceWriter will generate, however the reader can 
+    read any of the formats listed below.
+    
+    mimetype: application/x-microsoft.net.object.binary.base64
+    value   : The object must be serialized with 
+            : System.Runtime.Serialization.Formatters.Binary.BinaryFormatter
+            : and then encoded with base64 encoding.
+    
+    mimetype: application/x-microsoft.net.object.soap.base64
+    value   : The object must be serialized with 
+            : System.Runtime.Serialization.Formatters.Soap.SoapFormatter
+            : and then encoded with base64 encoding.
+
+    mimetype: application/x-microsoft.net.object.bytearray.base64
+    value   : The object must be serialized into a byte array 
+            : using a System.ComponentModel.TypeConverter
+            : and then encoded with base64 encoding.
+    -->
+  <xsd:schema id="root" xmlns="" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:msdata="urn:schemas-microsoft-com:xml-msdata">
+    <xsd:import namespace="http://www.w3.org/XML/1998/namespace" />
+    <xsd:element name="root" msdata:IsDataSet="true">
+      <xsd:complexType>
+        <xsd:choice maxOccurs="unbounded">
+          <xsd:element name="metadata">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" />
+              </xsd:sequence>
+              <xsd:attribute name="name" use="required" type="xsd:string" />
+              <xsd:attribute name="type" type="xsd:string" />
+              <xsd:attribute name="mimetype" type="xsd:string" />
+              <xsd:attribute ref="xml:space" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="assembly">
+            <xsd:complexType>
+              <xsd:attribute name="alias" type="xsd:string" />
+              <xsd:attribute name="name" type="xsd:string" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="data">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" msdata:Ordinal="1" />
+                <xsd:element name="comment" type="xsd:string" minOccurs="0" msdata:Ordinal="2" />
+              </xsd:sequence>
+              <xsd:attribute name="name" type="xsd:string" use="required" msdata:Ordinal="1" />
+              <xsd:attribute name="type" type="xsd:string" msdata:Ordinal="3" />
+              <xsd:attribute name="mimetype" type="xsd:string" msdata:Ordinal="4" />
+              <xsd:attribute ref="xml:space" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="resheader">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" msdata:Ordinal="1" />
+              </xsd:sequence>
+              <xsd:attribute name="name" type="xsd:string" use="required" />
+            </xsd:complexType>
+          </xsd:element>
+        </xsd:choice>
+      </xsd:complexType>
+    </xsd:element>
+  </xsd:schema>
+  <resheader name="resmimetype">
+    <value>text/microsoft-resx</value>
+  </resheader>
+  <resheader name="version">
+    <value>2.0</value>
+  </resheader>
+  <resheader name="reader">
+    <value>System.Resources.ResXResourceReader, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </resheader>
+  <resheader name="writer">
+    <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </resheader>
+  <data name="AnAccount" xml:space="preserve">
+    <value>Akaun</value>
+  </data>
+  <data name="ASPNETMVCWebApplication" xml:space="preserve">
+    <value>Aplikasi Web .NET</value>
+  </data>
+  <data name="Benefits" xml:space="preserve">
+    <value>Faedah</value>
+  </data>
+  <data name="BootstrapHTMLWebsiteTemplates" xml:space="preserve">
+    <value>Templat Laman Web HTML Bootstrap</value>
+  </data>
+  <data name="Confirmpassword" xml:space="preserve">
+    <value>Sahkan kata laluan</value>
+  </data>
+  <data name="DetailedDocumentation" xml:space="preserve">
+    <value>Dokumentasi Terperinci</value>
+  </data>
+  <data name="Email" xml:space="preserve">
+    <value>E-mel</value>
+  </data>
+  <data name="EmailAddress" xml:space="preserve">
+    <value>Alamat emel</value>
+  </data>
+  <data name="EnvatoPortfolio" xml:space="preserve">
+    <value>Portfolio Envato</value>
+  </data>
+  <data name="FAQ" xml:space="preserve">
+    <value>Soalan Lazim</value>
+  </data>
+  <data name="FAQFourAnswer" xml:space="preserve">
+    <value>Ya, ia ada dalam rancangan kami, tetapi buat masa ini, kami tidak dapat menjamin masa keluaran.</value>
+  </data>
+  <data name="FAQFourQuestion" xml:space="preserve">
+    <value>Bolehkah anda mencipta versi .NET Core MVC?</value>
+  </data>
+  <data name="FAQOneAnswer" xml:space="preserve">
+    <value>Kami hanya menyediakan sokongan untuk membetulkan pepijat sedia ada dalam templat dan menjawab soalan mengenai ciri sedia ada. Panduan langkah demi langkah tentang cara melakukan pengubahsuaian tersuai anda, cara menyelesaikan pepijat selepas pengubahsuaian anda sendiri dan pemasangan terus bukan sebahagian daripada sokongan kami. Terima kasih banyak atas pemahaman anda. Kami akan menghabiskan masa kami untuk mencipta templat yang lebih hebat untuk anda.</value>
+  </data>
+  <data name="FAQOneQuestion" xml:space="preserve">
+    <value>Bagaimanakah dasar sokongan?</value>
+  </data>
+  <data name="FAQThreeAnswer" xml:space="preserve">
+    <value>Ya awak boleh. Pergi ke "/Views/Shared/_FooterBeforeLogin.cshtml" dan cari bahagian pengaki untuk mengedit atau mengalih keluar teks hak cipta.</value>
+  </data>
+  <data name="FAQThreeQuestion" xml:space="preserve">
+    <value>Bolehkah saya mengedit atau mengalih keluar teks Hak Cipta di pengaki?</value>
+  </data>
+  <data name="FAQTwoAnswerPartOne" xml:space="preserve">
+    <value>Jawapannya ialah: Sejurus selepas pembelian.</value>
+  </data>
+  <data name="FAQTwoAnswerPartTwo" xml:space="preserve">
+    <value>untuk mendapatkan maklumat lanjut, terdapat bahagian "Memuat turun item anda" di penghujung artikel ini.</value>
+  </data>
+  <data name="FAQTwoQuestion" xml:space="preserve">
+    <value>Bilakah saya boleh memuat turun fail selepas membeli item tersebut?</value>
+  </data>
+  <data name="Feature1" xml:space="preserve">
+    <value>Pengurusan pengguna</value>
+  </data>
+  <data name="Feature10" xml:space="preserve">
+    <value>Penggredan semula automatik</value>
+  </data>
+  <data name="Feature10Description" xml:space="preserve">
+    <value>Jika guru memilih jawapan yang salah sebagai yang betul dan mendapati ini selepas pelajar mengambil peperiksaan, keputusan mereka akan dinilai semula secara automatik jika mereka ingin menukar jawapan.</value>
+  </data>
+  <data name="Feature11" xml:space="preserve">
+    <value>Analisis Carta</value>
+  </data>
+  <data name="Feature11Description" xml:space="preserve">
+    <value>Carta untuk menganalisis keputusan, soalan yang kebanyakan pelajar menjawab salah dan banyak lagi.</value>
+  </data>
+  <data name="Feature12" xml:space="preserve">
+    <value>Peraturan yang ketat</value>
+  </data>
+  <data name="Feature12Description" xml:space="preserve">
+    <value>Tidak boleh melangkau soalan. Tidak boleh menyalin teks soalan semasa mengambil peperiksaan.</value>
+  </data>
+  <data name="Feature1Description" xml:space="preserve">
+    <value>Pentadbir sistem boleh membuat, mengemas kini dan memadam pengguna. Pelajar dan guru juga boleh mendaftar akaun sendiri.</value>
+  </data>
+  <data name="Feature2" xml:space="preserve">
+    <value>Simpan bank soalan</value>
+  </data>
+  <data name="Feature2Description" xml:space="preserve">
+    <value>Simpan bank soalan anda dan gunakan semula dalam peperiksaan yang berbeza dengan pengagihan markah yang berbeza.</value>
+  </data>
+  <data name="Feature3" xml:space="preserve">
+    <value>Jadual peperiksaan</value>
+  </data>
+  <data name="Feature3Description" xml:space="preserve">
+    <value>Anda boleh menyimpan peperiksaan sekarang dan menjadualkannya untuk bermula kemudian. Kemudian, terbitkan peperiksaan apabila ia sedia untuk diumumkan kepada pelajar.</value>
+  </data>
+  <data name="Feature4" xml:space="preserve">
+    <value>Keputusan pelajar</value>
+  </data>
+  <data name="Feature4Description" xml:space="preserve">
+    <value>Keputusan pelajar boleh dieksport ke Excel atau PDF. Anda juga boleh mengisih senarai keputusan mengikut markah pelajar untuk melihat pelajar terbaik dalam peperiksaan.</value>
+  </data>
+  <data name="Feature5" xml:space="preserve">
+    <value>Import soalan</value>
+  </data>
+  <data name="Feature5Description" xml:space="preserve">
+    <value>Anda boleh membuat soalan dalam kelompok dengan mengimportnya daripada Excel.</value>
+  </data>
+  <data name="Feature6" xml:space="preserve">
+    <value>Import pengguna</value>
+  </data>
+  <data name="Feature6Description" xml:space="preserve">
+    <value>Anda boleh membuat akaun pengguna dalam kelompok dengan mengimportnya daripada Excel.</value>
+  </data>
+  <data name="Feature7" xml:space="preserve">
+    <value>Randomkan soalan</value>
+  </data>
+  <data name="Feature7Description" xml:space="preserve">
+    <value>Anda boleh memilih untuk mengacak atau menyahrawak susunan soalan peperiksaan. Soalan rawak boleh mengelakkan penipuan kerana pelajar tidak boleh membincangkan jawapan kerana mereka mendapat soalan yang berbeza pada satu masa.</value>
+  </data>
+  <data name="Feature8" xml:space="preserve">
+    <value>Lepaskan jawapan</value>
+  </data>
+  <data name="Feature8Description" xml:space="preserve">
+    <value>Anda boleh memilih untuk melepaskan atau melepaskan jawapan kepada soalan. Sebelum jawapan dikeluarkan, pelajar akan mendapat keputusan mereka tetapi tidak akan dapat melihat jawapan yang betul. Kami mengesyorkan anda melepaskan jawapan hanya selepas semua pelajar telah mengambil peperiksaan.</value>
+  </data>
+  <data name="Feature9" xml:space="preserve">
+    <value>Hasil eksport</value>
+  </data>
+  <data name="Feature9Description" xml:space="preserve">
+    <value>Keputusan pelajar boleh dieksport ke excel atau pdf.</value>
+  </data>
+  <data name="Features" xml:space="preserve">
+    <value>ciri-ciri</value>
+  </data>
+  <data name="Features1" xml:space="preserve">
+    <value>ciri-ciri</value>
+  </data>
+  <data name="FeaturesDescription" xml:space="preserve">
+    <value>EMSYS Mengandungi Ciri-ciri Penting Penuh Untuk Menjalankan Peperiksaan.</value>
+  </data>
+  <data name="Fillyourdetailstoregister" xml:space="preserve">
+    <value>Isikan butiran anda untuk mendaftar.</value>
+  </data>
+  <data name="Fillyourusernameandpasswordtosignin" xml:space="preserve">
+    <value>Isikan nama pengguna dan kata laluan anda untuk log masuk.</value>
+  </data>
+  <data name="FollowUs" xml:space="preserve">
+    <value>Ikut kami</value>
+  </data>
+  <data name="FollowUsDescription" xml:space="preserve">
+    <value>Ikuti media sosial kami untuk mendapatkan kemas kini atau berita tentang projek.</value>
+  </data>
+  <data name="Forgotyourpassword" xml:space="preserve">
+    <value>Terlupa kata laluan anda?</value>
+  </data>
+  <data name="FrequentlyAskedQuestions" xml:space="preserve">
+    <value>Soalan Lazim</value>
+  </data>
+  <data name="Home" xml:space="preserve">
+    <value>Halaman Utama</value>
+  </data>
+  <data name="HomeDescription" xml:space="preserve">
+    <value>EMSYS ialah sistem peperiksaan dalam talian yang menyampaikan pengurusan peperiksaan, pengurusan bank soalan, penggredan automatik, papan pemuka analisis dan banyak lagi.</value>
+  </data>
+  <data name="HomeTitleOne" xml:space="preserve">
+    <value>Revolusikan cara anda menilai pelajar anda</value>
+  </data>
+  <data name="HomeTitleTwo" xml:space="preserve">
+    <value />
+  </data>
+  <data name="ImportAndExport" xml:space="preserve">
+    <value>Eksport import</value>
+  </data>
+  <data name="Login" xml:space="preserve">
+    <value>Log masuk</value>
+  </data>
+  <data name="NetStarterFAQArticles" xml:space="preserve">
+    <value>Artikel Soalan Lazim EMSYS</value>
+  </data>
+  <data name="OurProducts" xml:space="preserve">
+    <value>Produk kami</value>
+  </data>
+  <data name="Password" xml:space="preserve">
+    <value>Kata laluan</value>
+  </data>
+  <data name="RegisterAndLogin" xml:space="preserve">
+    <value>Daftar &amp; Log Masuk</value>
+  </data>
+  <data name="Rememberme" xml:space="preserve">
+    <value>Ingat saya?</value>
+  </data>
+  <data name="RolePermission" xml:space="preserve">
+    <value>Kebenaran Peranan</value>
+  </data>
+  <data name="SendingEmail" xml:space="preserve">
+    <value>Menghantar E-mel</value>
+  </data>
+  <data name="SignUp" xml:space="preserve">
+    <value>Daftar</value>
+  </data>
+  <data name="Specifications" xml:space="preserve">
+    <value>Spesifikasi</value>
+  </data>
+  <data name="Submit" xml:space="preserve">
+    <value>Hantar</value>
+  </data>
+  <data name="TheFollowingArticle" xml:space="preserve">
+    <value>artikel berikut</value>
+  </data>
+  <data name="ToNetStarter" xml:space="preserve">
+    <value>Untuk EMSYS</value>
+  </data>
+  <data name="UploadFile" xml:space="preserve">
+    <value>Muat Naik Fail</value>
+  </data>
+  <data name="UsefulLinks" xml:space="preserve">
+    <value>Pautan Berguna</value>
+  </data>
+  <data name="Username" xml:space="preserve">
+    <value>Nama pengguna</value>
+  </data>
+  <data name="ViewMore" xml:space="preserve">
+    <value>Lihat Lagi</value>
+  </data>
+  <data name="WebAppTitle" xml:space="preserve">
+    <value>EMSYS</value>
+  </data>
+  <data name="WhatyougetDescription" xml:space="preserve">
+    <value>Selepas Membeli, Anda Akan Mendapat Fail Zip Yang Mengandungi Perkara Berikut</value>
+  </data>
+  <data name="WhyUs1Description" xml:space="preserve">
+    <value>Simpan bank soalan anda dan gunakan semula dalam peperiksaan yang berbeza dengan pengagihan markah yang berbeza.</value>
+  </data>
+  <data name="WhyUs1Title" xml:space="preserve">
+    <value>Soalan Boleh Digunakan Semula</value>
+  </data>
+  <data name="WhyUs2Description" xml:space="preserve">
+    <value>Ucapkan selamat tinggal kepada kerumitan peperiksaan berasaskan kertas dan sistem penggredan manual yang memakan masa.</value>
+  </data>
+  <data name="WhyUs2Title" xml:space="preserve">
+    <value>Jimat Masa Anda</value>
+  </data>
+  <data name="WhyUs3Description" xml:space="preserve">
+    <value>Memperkemaskan proses peperiksaan anda. Buat peperiksaan, pilih soalan dari bank soalan, peruntukkan markah, selesai!</value>
+  </data>
+  <data name="WhyUs3Title" xml:space="preserve">
+    <value>Proses Mudah</value>
+  </data>
+  <data name="WhyUsDescription" xml:space="preserve">
+    <value>Merawak Susunan Soalan, Menjadualkan Tarikh &amp; Masa Mula Peperiksaan, Menyimpan Bank Soalan Anda, Dan Banyak Lagi.</value>
+  </data>
+  <data name="WhyUsTitle" xml:space="preserve">
+    <value>Mengapa EMSYS</value>
+  </data>
+</root>

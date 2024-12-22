@@ -1,0 +1,145 @@
+﻿@model EMSYS.Models.UserProfileViewModel
+@Html.HiddenFor(m => m.Id)
+@Html.HiddenFor(m => m.AspNetUserId)
+
+<div class="bg-white rounded p-3 p-lg-4 p-xl-5 shadow">
+    <h2 class="fs-20 fw600 mb-4">@Resource.SystemInformation</h2>
+    <div class="row">
+        <div class="col-md-6">
+            <div class="mb-3 text-break">
+                <div>@Html.LabelFor(model => model.Username, htmlAttributes: new { @class = "fw600" })</div>
+                <div>@Html.DisplayFor(model => model.Username, new { htmlAttributes = new { @class = "form-control d-block" } })</div>
+            </div>
+        </div>
+        <div class="col-md-6">
+            <div class="mb-3 text-break">
+                <div>@Html.LabelFor(model => model.EmailAddress, htmlAttributes: new { @class = "fw600" })</div>
+                <div>@Html.DisplayFor(model => model.EmailAddress, new { htmlAttributes = new { @class = "form-control" } })</div>
+            </div>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-md-6">
+            <div class="mb-3 text-break">
+                <div>@Html.LabelFor(model => model.UserStatusName, htmlAttributes: new { @class = "fw600" })</div>
+                <div>@Html.DisplayFor(model => model.UserStatusName, new { htmlAttributes = new { @class = "form-control" } })</div>
+            </div>
+        </div>
+        <div class="col-md-6">
+            <div class="mb-3 text-break">
+                <div>@Html.LabelFor(model => model.UserRoleName, htmlAttributes: new { @class = "fw600" })</div>
+                <div>@Html.DisplayFor(model => model.UserRoleName, new { htmlAttributes = new { @class = "form-control" } })</div>
+            </div>
+        </div>
+    </div>
+</div>
+<div class="bg-white rounded p-3 p-lg-4 p-xl-5 shadow mt-4">
+    <h2 class="fs-20 fw600 mb-4">@Resource.PersonalInformation</h2>
+    <div class="row">
+        <div class="col-md-6">
+            <div class="mb-3 text-break">
+                <div>@Html.LabelFor(model => model.FullName, htmlAttributes: new { @class = "fw600" })</div>
+                <div>@Html.DisplayFor(model => model.FullName, new { htmlAttributes = new { @class = "form-control" } })</div>
+            </div>
+        </div>
+        <div class="col-md-6">
+            <div class="mb-3 text-break">
+                <div>@Html.LabelFor(model => model.IsoUtcDateOfBirth, htmlAttributes: new { @class = "fw600" })</div>
+                <div class="datetext">@Html.DisplayFor(model => model.IsoUtcDateOfBirth, new { htmlAttributes = new { @class = "form-control" } })</div>
+            </div>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-md-6">
+            <div class="mb-3 text-break">
+                <div>@Html.LabelFor(model => model.FirstName, htmlAttributes: new { @class = "fw600" })</div>
+                <div>@Html.DisplayFor(model => model.FirstName, new { htmlAttributes = new { @class = "form-control" } })</div>
+            </div>
+        </div>
+        <div class="col-md-6">
+            <div class="mb-3 text-break">
+                <div>@Html.LabelFor(model => model.LastName, htmlAttributes: new { @class = "fw600" })</div>
+                <div>@Html.DisplayFor(model => model.LastName, new { htmlAttributes = new { @class = "form-control" } })</div>
+            </div>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-md-6">
+            <div class="mb-3 text-break">
+                <div>@Html.LabelFor(model => model.PhoneNumber, htmlAttributes: new { @class = "fw600" })</div>
+                <div>@Html.DisplayFor(model => model.PhoneNumber, new { htmlAttributes = new { @class = "form-control" } })</div>
+            </div>
+        </div>
+        <div class="col-md-6">
+            <div class="mb-3 text-break">
+                <div>@Html.LabelFor(model => model.IDCardNumber, htmlAttributes: new { @class = "fw600" })</div>
+                <div>@Html.DisplayFor(model => model.IDCardNumber, new { htmlAttributes = new { @class = "form-control" } })</div>
+            </div>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-md-6">
+            <div class="mb-3 text-break">
+                <div>@Html.LabelFor(model => model.GenderName, htmlAttributes: new { @class = "fw600" })</div>
+                <div>@Html.DisplayFor(model => model.GenderName, new { htmlAttributes = new { @class = "form-control" } })</div>
+            </div>
+        </div>
+    </div>
+</div>
+<div class="bg-white rounded p-3 p-lg-4 p-xl-5 shadow mt-4">
+    <h2 class="fs-20 fw600 mb-4">@Resource.AddressInformation</h2>
+    <div class="row">
+        <div class="col-md-6">
+            <div class="mb-3 text-break">
+                <div>@Html.LabelFor(model => model.CountryName, htmlAttributes: new { @class = "fw600" })</div>
+                <div>@Html.DisplayFor(model => model.CountryName, new { htmlAttributes = new { @class = "form-control" } })</div>
+            </div>
+        </div>
+        <div class="col-md-6">
+            <div class="mb-3 text-break">
+                <div>@Html.LabelFor(model => model.PostalCode, htmlAttributes: new { @class = "fw600" })</div>
+                <div>@Html.DisplayFor(model => model.PostalCode, new { htmlAttributes = new { @class = "form-control" } })</div>
+            </div>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-md-6">
+            <div class="mb-3 text-break">
+                <div>@Html.LabelFor(model => model.Address, htmlAttributes: new { @class = "fw600" })</div>
+                <div>@Html.DisplayFor(model => model.Address, new { htmlAttributes = new { @class = "form-control" } })</div>
+            </div>
+        </div>
+    </div>
+</div>
+<div class="bg-white rounded p-3 p-lg-4 p-xl-5 shadow mt-4">
+    <h2 class="fs-20 fw600 mb-4">@Resource.OtherInformation</h2>
+    <div class="row">
+        <div class="col-md-6">
+            <div class="mb-3 text-break">
+                <div>@Html.LabelFor(model => model.CreatedAndModified.CreatedByName, htmlAttributes: new { @class = "fw600" })</div>
+                <div>@Html.DisplayFor(model => model.CreatedAndModified.CreatedByName, new { htmlAttributes = new { @class = "form-control" } })</div>
+            </div>
+        </div>
+        <div class="col-md-6">
+            <div class="mb-3 text-break">
+                <div>@Html.LabelFor(model => model.CreatedAndModified.FormattedCreatedOn, htmlAttributes: new { @class = "fw600" })</div>
+                <div class="datetimetext">@Html.DisplayFor(model => model.CreatedAndModified.FormattedCreatedOn, new { htmlAttributes = new { @class = "form-control" } })</div>
+            </div>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-md-6">
+            <div class="mb-3 text-break">
+                <div>@Html.LabelFor(model => model.CreatedAndModified.ModifiedByName, htmlAttributes: new { @class = "fw600" })</div>
+                <div>@Html.DisplayFor(model => model.CreatedAndModified.ModifiedByName, new { htmlAttributes = new { @class = "form-control" } })</div>
+            </div>
+        </div>
+        <div class="col-md-6">
+            <div class="mb-3 text-break">
+                <div>@Html.LabelFor(model => model.CreatedAndModified.FormattedModifiedOn, htmlAttributes: new { @class = "fw600" })</div>
+                <div class="datetimetext">@Html.DisplayFor(model => model.CreatedAndModified.FormattedModifiedOn, new { htmlAttributes = new { @class = "form-control" } })</div>
+            </div>
+        </div>
+    </div>
+</div>
+

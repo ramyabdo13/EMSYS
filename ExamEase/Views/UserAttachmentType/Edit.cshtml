@@ -1,0 +1,66 @@
+﻿@model EMSYS.Models.GlobalOptionSetViewModel
+@{
+    ViewBag.Module = Resource.UserAttachmentType;
+    if (string.IsNullOrEmpty(Model.Id))
+    {
+        ViewBag.Title = Resource.Add + " " + ViewBag.Module;
+    }
+    else
+    {
+        ViewBag.Title = Resource.Edit + " " + ViewBag.Module;
+    }
+    Layout = "~/Views/Shared/_LayoutAfterLogin.cshtml";
+}
+
+<div class="row">
+    <div class="col-12">
+        <div style="--bs-breadcrumb-divider: '>';">
+            <ol class="breadcrumb m-0">
+                <li class="breadcrumb-item fw-normal"><a class="color-primarycolor opacity-50" href="@Url.Action("index")">@ViewBag.Module</a></li>
+                @if (!string.IsNullOrEmpty(Model.Id))
+                {
+                    <li class="breadcrumb-item fw-normal"><a class="color-primarycolor opacity-50" href="@Url.Action("viewrecord", new { Id = Model.Id})">@Resource.View @Resource.UserAttachmentType</a></li>
+                }
+                <li class="breadcrumb-item fw-normal active">@ViewBag.Title</li>
+            </ol>
+        </div>
+        <div class="page-title-box d-sm-flex align-items-center justify-content-between pt-2">
+            <h4 class="pagetitle mb-sm-0 fw600">@ViewBag.Title</h4>
+        </div>
+    </div>
+</div>
+
+@using (Html.BeginForm("Edit", "UserAttachmentType", new { ReturnUrl = ViewBag.ReturnUrl }, FormMethod.Post, null, new { @class = "form-horizontal", role = "form" }))
+{
+    <section class="section mt-3">
+        <div class="bg-white rounded p-3 p-lg-4 p-xl-5 shadow">
+            <div class="row">
+                <div class="col-md-6">
+                    <div class="mb-3 text-break">
+                        <div class="form-group">
+                            @Html.LabelFor(model => model.DisplayName, htmlAttributes: new { @class = "form-label required fw600" })
+                            @Html.EditorFor(model => model.DisplayName, new { htmlAttributes = new { @class = "form-control" } })
+                            @Html.ValidationMessageFor(model => model.DisplayName, "", new { @class = "invalid-message" })
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-6">
+                    <div class="mb-3 text-break">
+                        <div class="form-group">
+                            @Html.LabelFor(model => model.OptionOrder, htmlAttributes: new { @class = "form-label required fw600" })
+                            @Html.EditorFor(model => model.OptionOrder, new { htmlAttributes = new { @class = "form-control" } })
+                            @Html.ValidationMessageFor(model => model.OptionOrder, "", new { @class = "invalid-message" })
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="row mt-4">
+            <div class="col-12">
+                <a type="button" class="btn form-btn btn-secondary hover-boxshadow me-1" href="@Url.Action("index")">@Resource.BackToList</a>
+                <button type="submit" class="btn form-btn btn-primary hover-boxshadow">@Resource.Save</button>
+            </div>
+        </div>
+    </section>
+}
+

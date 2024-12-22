@@ -1,0 +1,234 @@
+﻿@model EMSYS.Models.ExamViewModel
+@using EMSYS.CustomHelper
+@{
+    if (string.IsNullOrEmpty(Model.Id))
+    {
+        ViewBag.Title = $"{Resource.Add} {Resource.Exam}";
+    }
+    else
+    {
+        ViewBag.Title = $"{Resource.Edit} {Resource.Exam}";
+    }
+    Layout = "~/Views/Shared/_LayoutAfterLogin.cshtml";
+}
+
+<div class="row">
+    <div class="col-12">
+        <div style="--bs-breadcrumb-divider: '>';">
+            <ol class="breadcrumb m-0">
+                <li class="breadcrumb-item fw-normal"><a class="color-primarycolor opacity-50" href="@Url.Action("index")">@Resource.ExamManagement</a></li>
+                @if (!string.IsNullOrEmpty(Model.Id))
+                {
+                    <li class="breadcrumb-item fw-normal"><a class="color-primarycolor opacity-50" href="@Url.Action("viewrecord", new { id = Model.Id})">@Resource.View @Resource.Exam</a></li>
+                }
+                <li class="breadcrumb-item fw-normal active">@ViewBag.Title</li>
+            </ol>
+        </div>
+        <div class="page-title-box d-sm-flex align-items-center justify-content-between pt-2">
+            <h4 class="pagetitle mb-sm-0 fw600">
+                @ViewBag.Title
+                @if (!string.IsNullOrEmpty(Model.Name))
+                {
+                    <span>(@Model.Name)</span>
+                }
+            </h4>
+        </div>
+    </div>
+</div>
+
+@await Html.PartialAsync("_Tabs", new ViewDataDictionary(ViewData) { { "active", "edit" }, { "id", Model.Id }, { "random", Model.RandomizeQuestions } })
+
+<section class="section">
+    @using (Html.BeginForm("Edit", "Exam", new { ReturnUrl = ViewBag.ReturnUrl }, FormMethod.Post, null, new { @class = "form-horizontal", role = "form", enctype = "multipart/form-data" }))
+    {
+        @Html.HiddenFor(m => m.Id)
+        <div class="bg-white rounded p-3 p-lg-4 p-xl-5 shadow">
+            <h2 class="fs-20 fw600">@Resource.Exam @Resource.Information</h2>
+            <div class="mb-4">@Resource.EditExamDesciption</div>
+            <div class="row">
+                <div class="col-md-6">
+                    <div class="mb-3 text-break">
+                        <div class="form-group">
+                            @Html.LabelFor(model => model.Name, htmlAttributes: new { @class = "form-label required fw600" })
+                            @Html.EditorFor(model => model.Name, new { htmlAttributes = new { @class = "form-control" } })
+                            @Html.ValidationMessageFor(model => model.Name, "", new { @class = "invalid-message" })
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-6">
+                    <div class="mb-3 text-break">
+                        <div class="form-group">
+                            @Html.LabelFor(model => model.Description, htmlAttributes: new { @class = "form-label required fw600" })
+                            @Html.TextAreaFor(model => model.Description, htmlAttributes: new { @class = "form-control", @rows = "3" })
+                            @Html.ValidationMessageFor(model => model.Description, "", new { @class = "invalid-message" })
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-md-6">
+                    <div class="mb-3 text-break">
+                        <div class="form-group">
+                            @Html.LabelFor(model => model.StartDate, htmlAttributes: new { @class = "form-label required fw600" }) <i class="fa-solid fa-circle-info text-info" data-bs-toggle="tooltip" data-bs-placement="right" title="@Resource.ExamStartDateTimeInfo"></i>
+                            <div><input id="startdate" type="datetime-local" asp-for="StartDateIsoString" class="w-100 form-control" /></div>
+                            @Html.ValidationMessageFor(model => model.StartDate, "", new { @class = "invalid-message" })
+                            <input type="text" class="invisible" id="startdate-utc" asp-for="StartDateIsoUtc" />
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-6">
+                    <div class="mb-3 text-break">
+                        <div class="form-group">
+                            @Html.LabelFor(model => model.EndDate, htmlAttributes: new { @class = "form-label required fw600" }) <i class="fa-solid fa-circle-info text-info" data-bs-toggle="tooltip" data-bs-placement="right" title="@Resource.ExamEndDateTimeInfo"></i>
+                            <div><input id="enddate" type="datetime-local" asp-for="EndDateIsoString" class="w-100 form-control" /></div>
+                            @Html.ValidationMessageFor(model => model.EndDate, "", new { @class = "invalid-message" })
+                            <input type="text" class="invisible" id="enddate-utc" asp-for="EndDateIsoUtc" />
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-md-6">
+                    <div class="mb-3 text-break">
+                        <div class="form-group">
+                            @Html.LabelFor(model => model.Duration, htmlAttributes: new { @class = "form-label required fw600" }) <i class="fa-solid fa-circle-info text-info" data-bs-toggle="tooltip" data-bs-placement="right" title="@Resource.ExamDurationInfo"></i>
+                            @Html.EditorFor(model => model.Duration, new { htmlAttributes = new { @class = "form-control" } })
+                            @Html.ValidationMessageFor(model => model.Duration, "", new { @class = "invalid-message" })
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-6">
+                    <div class="mb-3 text-break">
+                        <div class="form-group">
+                            @Html.LabelFor(model => model.MarksToPass, htmlAttributes: new { @class = "form-label required fw600" })
+                            @Html.EditorFor(model => model.MarksToPass, new { htmlAttributes = new { @class = "form-control", @type = "number", @step = ".01", @max = "100", @min = "0.01" } })
+                            @Html.ValidationMessageFor(model => model.MarksToPass, "", new { @class = "invalid-message" })
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-md-6">
+                    <div class="mb-3 text-break">
+                        @Html.LabelFor(model => model.ClassIdList, htmlAttributes: new { @class = "form-label required fw600" }) <a class="color-secondarycolor fs-12 hover-color-primarycolor" href="@Url.Action("edit","class")" target="_blank">Create New</a>
+                        @CustomHelper.CustomMultiSelect("ClassIdList", Model.ClassIdSelectList)
+                        @Html.ValidationMessageFor(model => model.ClassIdList, "", new { @class = "invalid-message" })
+                    </div>
+                </div>
+                <div class="col-md-6">
+                    <div class="mb-3 text-break">
+                        @Html.LabelFor(model => model.SubjectIdList, htmlAttributes: new { @class = "form-label required fw600" }) <a class="color-secondarycolor fs-12 hover-color-primarycolor" href="@Url.Action("edit","subject")" target="_blank">Create New</a>
+                        @CustomHelper.CustomMultiSelect("SubjectIdList", Model.SubjectIdSelectList)
+                        @Html.ValidationMessageFor(model => model.SubjectIdList, "", new { @class = "invalid-message" })
+                    </div>
+                </div>
+            </div>
+            <hr class="my-5 text-muted">
+            <h2 class="fs-20 fw600 mt-2 mb-4">Exam Settings</h2>
+            <div class="row">
+                <div class="col-md-6">
+                    <div class="mb-3 text-break">
+                        <div class="form-group">
+                            @Html.LabelFor(model => model.RandomizeQuestions, htmlAttributes: new { @class = "form-label required fw600" })
+                            <div>
+                                @CustomHelper.CustomRadioButton("RandomizeQuestions", "RandomizeQuestions-Yes", "true", "Yes", Model.RandomizeQuestions.ToString().ToLower(), "true")
+                                @CustomHelper.CustomRadioButton("RandomizeQuestions", "RandomizeQuestions-No", "false", "No", Model.RandomizeQuestions.ToString().ToLower(), "true")
+                            </div>
+                            @Html.ValidationMessageFor(model => model.RandomizeQuestions, "", new { @class = "invalid-message" })
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-6">
+                    <div class="mb-3 text-break">
+                        <div class="form-group">
+                            @Html.LabelFor(model => model.IsActive, htmlAttributes: new { @class = "form-label required fw600" })
+                            @CustomHelper.CustomDropDownList("IsActive",Model.ActiveInactiveSelectlist)
+                            @Html.HiddenFor(m=>m.ActiveInactiveSelectlist)
+                            @Html.ValidationMessageFor(model => model.IsActive, "", new { @class = "invalid-message" })
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-6">
+                    <div class="mb-3 text-break">
+                        <div class="form-group">
+                            @Html.LabelFor(model => model.ReleaseAnswer, htmlAttributes: new { @class = "form-label required fw600" }) <i class="fa-solid fa-circle-info text-info" data-bs-toggle="tooltip" data-bs-placement="right" title="@Resource.ReleaseAnswerInfo"></i>
+                            <div>
+                                @CustomHelper.CustomRadioButton("ReleaseAnswer", "ReleaseAnswer-Yes", "true", "Yes", Model.ReleaseAnswer.ToString().ToLower(), "false")
+                                @CustomHelper.CustomRadioButton("ReleaseAnswer", "ReleaseAnswer-No", "false", "No", Model.ReleaseAnswer.ToString().ToLower(), "false")
+                            </div>
+                            @Html.ValidationMessageFor(model => model.ReleaseAnswer, "", new { @class = "invalid-message" })
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="row mt-4">
+            <div class="col-12">
+                @await Html.PartialAsync("_Buttons",Model)
+            </div>
+        </div>
+    }
+</section>
+
+
+@section scripts{
+    <script>
+        const startdateInput = document.getElementById("startdate");
+        const enddateInput = document.getElementById("enddate");
+
+        const startDateUtcInput = document.getElementById("startdate-utc");
+        const endDateUtcInput = document.getElementById("enddate-utc");
+
+        document.addEventListener("DOMContentLoaded", function () {
+            startdateInput.value = convertToLocalDatetimeIsoString(startDateUtcInput.value);
+            enddateInput.value = convertToLocalDatetimeIsoString(endDateUtcInput.value);
+        });
+
+        startdateInput.addEventListener("change", function () {
+            setStartDateValue();
+        });
+
+        enddateInput.addEventListener("change", function () {
+            setEndDateValue();
+        });
+
+        const saveBtn = document.getElementById("saveBtn");
+
+        saveBtn.addEventListener("click", function () {
+            setStartDateValue();
+            setEndDateValue();
+            const submitBtn = document.getElementById("submitBtn");
+            submitBtn.click();
+        });
+
+        function setStartDateValue() {
+            const dateTimeString = startdateInput.value;
+            if (dateTimeString != "" && dateTimeString != null) {
+                const date = new Date(dateTimeString);
+                const utcIsoString = date.toISOString().substring(0, 16);
+                startDateUtcInput.value = utcIsoString;
+            }
+        }
+
+        function setEndDateValue() {
+            const dateTimeString = enddateInput.value;
+            if (dateTimeString != "" && dateTimeString != null) {
+                const date = new Date(dateTimeString);
+                const utcIsoString = date.toISOString().substring(0, 16);
+                endDateUtcInput.value = utcIsoString;
+            }
+        }
+
+        $('#publishbutton').on('click', function () {
+            $('#confirmPublishModal').modal('show');
+        });
+        $('#unpublishbutton').on('click', function () {
+            $('#confirmUnPublishModal').modal('show');
+        });
+
+        //change default jquery validation message of "Please enter a multiple of {0}." to "Maximum decimal places allowed is 2"
+        $.extend($.validator.messages, {
+            step: $.validator.format("Maximum decimal places allowed is 2.")
+        });
+    </script>
+}

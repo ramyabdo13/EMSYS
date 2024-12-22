@@ -1,0 +1,23 @@
+﻿@{
+    ViewBag.Title = Resource.ExamEndedTitle;
+    Layout = "~/Views/Shared/_LayoutAfterLogin.cshtml";
+}
+
+<div class="row">
+    <div class="col-12">
+        <div class="page-title-box d-sm-flex align-items-center justify-content-between pt-2">
+            <h4 class="pagetitle mb-sm-0 fw600">@Resource.ExamEndedTitle</h4>
+        </div>
+    </div>
+</div>
+<section class="section mt-3">
+    <div class="bg-white rounded p-3 p-lg-4 p-xl-5 shadow">
+        <h2 class="fs-20 fw600 mb-4">@Resource.ExamEndedTitle</h2>
+        <p class="mb-4">@Resource.ExamEndedDescription</p>
+    </div>
+    <div class="row mt-4">
+        <div class="col-12">
+            <a class="btn form-btn btn-primary hover-boxshadow me-1" href="@Url.Action("currentexam","studentexam")">@Resource.BackToList</a>
+        </div>
+    </div>
+</section>

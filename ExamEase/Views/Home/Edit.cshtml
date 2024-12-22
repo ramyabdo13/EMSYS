@@ -1,0 +1,100 @@
+﻿@model EMSYS.Models.FormControlDemo
+@using EMSYS.CustomHelper
+@{
+    ViewBag.Title = "Form Control Demo";
+    Layout = "~/Views/Shared/_LayoutAfterLogin.cshtml";
+}
+
+<div class="row">
+    <div class="col-12">
+        <div style="--bs-breadcrumb-divider: '>';">
+            <ol class="breadcrumb m-0">
+                <li class="breadcrumb-item fw-normal active">@ViewBag.Title</li>
+            </ol>
+        </div>
+        <div class="page-title-box d-sm-flex align-items-center justify-content-between pt-2">
+            <h4 class="pagetitle mb-sm-0 fw600">@ViewBag.Title</h4>
+        </div>
+    </div>
+</div>
+
+@using (Html.BeginForm("Edit", "Home", new { ReturnUrl = ViewBag.ReturnUrl }, FormMethod.Post, null, new { @class = "form-horizontal", role = "form" }))
+{
+    <section class="section mt-3">
+        <div class="mb-4">The input values here will not be saved in the database. They are for demo purposes only.</div>
+        <!-- cascading drop down demo -->
+        <div class="bg-white rounded p-3 p-lg-4 p-xl-5 shadow">
+            <h2 class="fs-20 fw600 mb-4">Cascading Drop Down List</h2>
+            <div class="row">
+                <div class="col-md-6">
+                    <div class="mb-3 text-break">
+                        <div class="form-group">
+                            <label class="form-label fw600">Category</label>
+                            @CustomHelper.CustomDropDownList("Category", Model.CategoryList, null, "onChangeSubject")
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-6">
+                    <div class="mb-3 text-break">
+                        <label class="form-label fw600">Sub-Category</label>
+                        <div id="subcategory-ddl">@CustomHelper.CustomDropDownList("SubCategory", null)</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!-- html editor demo -->
+        <div class="bg-white rounded p-3 p-lg-4 p-xl-5 shadow mt-4">
+            <h2 class="fs-20 fw600 mb-4">HTML Editor</h2>
+            <div class="row">
+                <label class="form-label fw600">Biography</label>
+                <textarea id="tiny" asp-for="Biography"></textarea>
+            </div>
+        </div>
+        <div class="row mt-4">
+            <div class="col-12">
+                <!-- You can put breakpoint in Home > HttpPost Edit function to see the result -->
+                <button type="submit" class="btn form-btn btn-primary hover-boxshadow">@Resource.Save</button>
+            </div>
+        </div>
+    </section>
+}
+
+@section Scripts{
+    <script>
+        tinymce.init({
+            selector: 'textarea#tiny',
+            branding: false,
+            promotion: false
+        });
+        // Prevent Bootstrap dialog from blocking focusin
+        document.addEventListener('focusin', (e) => {
+            if (e.target.closest(".tox-tinymce, .tox-tinymce-aux, .moxman-window, .tam-assetmanager-root") !== null) {
+                e.stopImmediatePropagation();
+            }
+        });
+        var selectedJustNow = "";
+        var childDropDownElementId = "subcategory-ddl";
+        function onChangeSubject(element) {
+            let datavalue = $(element).attr('data-value');
+            if (selectedJustNow != datavalue) {
+                $.ajax({
+                    url: '/home/getsubcategories',
+                    type: 'GET',
+                    data: { category: datavalue },
+                    success: function (subCategories) {
+                        $(`#${childDropDownElementId} .custom-options`).empty();
+                        $(`#${childDropDownElementId} .custom-options`).append(`<span class='custom-option selected' data-text='all' data-value='null' value='null'>Please Select...</span>`);
+                        $.each(subCategories, function (index, subCategory) {
+                            setNewOptionsForDdl(childDropDownElementId, subCategory.Text, subCategory.Value);
+                        });
+                    },
+                    error: function (error) {
+                        console.log(error);
+                    }
+                });
+                resetDropDownList(childDropDownElementId);
+            }
+            selectedJustNow = datavalue;
+        }
+    </script>
+}

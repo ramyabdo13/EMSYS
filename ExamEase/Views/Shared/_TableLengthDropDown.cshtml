@@ -1,0 +1,46 @@
+﻿@{
+    string dropdownId = "";
+    string pageSize = "";
+    string totalItems = "";
+    if (ViewData["DropDownId"] != null)
+    {
+        dropdownId = ViewData["DropDownId"].ToString();
+    }
+    if (ViewData["PageSize"] != null)
+    {
+        pageSize = ViewData["PageSize"].ToString();
+    }
+    if (ViewData["TotalItems"] != null)
+    {
+        totalItems = ViewData["TotalItems"].ToString();
+    }
+}
+<div class="select-wrapper filter-table" id="@dropdownId">
+    <div class="select">
+        <div class="select__trigger">
+            @if (pageSize == "10")
+            {
+                <span>@Resource.Show10Records</span>
+            }
+            else if (pageSize == "25")
+            {
+                <span>@Resource.Show25Records</span>
+            }
+            else if (pageSize == "50")
+            {
+                <span>@Resource.Show50Records</span>
+            }
+            else if (pageSize == totalItems)
+            {
+                <span>@Resource.ShowAll</span>
+            }
+            <div class="arrow"><i class="fa-solid fa-caret-down"></i></div>
+        </div>
+        <div class="custom-options">
+            <span class="custom-option @(pageSize == "10" ? "selected" : "")" data-value="10">@Resource.Show10Records</span>
+            <span class="custom-option @(pageSize == "25" ? "selected" : "")" data-value="25">@Resource.Show25Records</span>
+            <span class="custom-option @(pageSize == "50" ? "selected" : "")" data-value="50">@Resource.Show50Records</span>
+            <span class="custom-option @(pageSize == totalItems ? "selected" : "")" data-value="-1">@Resource.ShowAll</span>
+        </div>
+    </div>
+</div>

@@ -1,0 +1,91 @@
+﻿@model EMSYS.Models.UserAttachmentViewModel
+@{
+    ViewBag.Title = Resource.UploadUserAttachment;
+    Layout = "~/Views/Shared/_LayoutAfterLogin.cshtml";
+}
+
+<div class="row">
+    <div class="col-12">
+        <div style="--bs-breadcrumb-divider: '>';">
+            <ol class="breadcrumb m-0">
+                <li class="breadcrumb-item fw-normal"><a class="color-primarycolor opacity-50" href="@Url.Action("index","user")">@Resource.UserManagement</a></li>
+                <li class="breadcrumb-item fw-normal"><a class="color-primarycolor opacity-50" href="@Url.Action("viewrecord","user", new { Id = Model.UserProfileId })">@Resource.ViewUser</a></li>
+                <li class="breadcrumb-item fw-normal"><a class="color-primarycolor opacity-50" href="@Url.Action("index", new {Id = Model.UserProfileId })">@Resource.ManageUserAttachment</a></li>
+                <li class="breadcrumb-item fw-normal active">@Resource.UploadUserAttachment</li>
+            </ol>
+        </div>
+        <div class="page-title-box d-sm-flex align-items-center justify-content-between pt-2">
+            <h4 class="pagetitle mb-sm-0 fw600">@Resource.UploadUserAttachment</h4>
+        </div>
+    </div>
+</div>
+
+<section class="section mt-3">
+    <div class="bg-white rounded p-3 p-lg-4 px-lg-5 shadow">
+        <h2 class="fs-20 fw600 mb-4">@Resource.ManageAttachmentsFor</h2>
+        <div class="row">
+            <div class="col-md-6">
+                <div class="mb-3 text-break">
+                    <div>@Html.LabelFor(model => model.Username, htmlAttributes: new { @class = "fw600" })</div>
+                    <div>@Html.DisplayFor(model => model.Username)</div>
+                </div>
+            </div>
+            <div class="col-md-6">
+                <div class="mb-3 text-break">
+                    <div>@Html.LabelFor(model => model.FullName, htmlAttributes: new { @class = "fw600" })</div>
+                    <div>@Html.DisplayFor(model => model.FullName)</div>
+                </div>
+            </div>
+        </div>
+    </div>
+    @using (Html.BeginForm("Upload", "UserAttachment", new { ReturnUrl = ViewBag.ReturnUrl }, FormMethod.Post, null, new { @class = "form-horizontal", role = "form", enctype = "multipart/form-data" }))
+    {
+        @Html.HiddenFor(m => m.UserProfileId)
+        @Html.HiddenFor(m => m.Id)
+        @Html.HiddenFor(m => m.Username)
+        @Html.HiddenFor(m => m.FullName)
+        <div class="bg-white rounded p-3 p-lg-4 p-xl-5 shadow mt-4">
+            <div class="alert alert-danger alert-dismissible pb-2" style="display:none;" id="validation-msg"></div>
+            <div class="row">
+                <label class="form-label fw600">@Resource.Pleaseselectallthefilesthatyouwanttoupload</label>
+            </div>
+            <div class="row">
+                <div class="col-md-6">
+                    <div class="mb-3 text-break">
+                        @Html.TextBoxFor(model => model.Files, "", new { @type = "file", @multiple = "multiple", @class = "form-control" })
+                        <div class="pt-2 small"><a id="remove-file-link" class="cursor-pointer color-primarycolor hover-color-secondarycolor small">@Resource.Removeselectedfile</a></div>
+                        @Html.ValidationMessageFor(model => model.Files, "", new { @class = "invalid-message" })
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="row mt-4">
+            <div class="col-12">
+                <a type="button" class="btn form-btn btn-secondary hover-boxshadow me-1" href="@Url.Action("index")">@Resource.BackToList</a>
+                <button id="upload-btn" type="submit" class="btn form-btn btn-primary hover-boxshadow" disabled>@Resource.Upload</button>
+            </div>
+        </div>
+    }
+</section>
+
+@section Scripts{
+    <script>
+        var uploadBtn = document.getElementById("upload-btn");
+        $("input[type=file]").change(function () {
+            var result = validateFile('Files', false);
+            if (result != "") {
+                document.querySelector("input[type=file]").value = "";
+                $("#validation-msg").show();
+                $("#validation-msg").html(result);
+                uploadBtn.setAttribute("disabled", "disabled");
+            } else {
+                $("#validation-msg").hide();
+                uploadBtn.removeAttribute("disabled");
+            }
+        });
+        $("#remove-file-link").click(function () {
+            document.querySelector("input[type=file]").value = "";
+            uploadBtn.setAttribute("disabled", "disabled");
+        });
+    </script>
+}

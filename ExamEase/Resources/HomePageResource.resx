@@ -1,0 +1,372 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<root>
+  <!-- 
+    Microsoft ResX Schema 
+    
+    Version 2.0
+    
+    The primary goals of this format is to allow a simple XML format 
+    that is mostly human readable. The generation and parsing of the 
+    various data types are done through the TypeConverter classes 
+    associated with the data types.
+    
+    Example:
+    
+    ... ado.net/XML headers & schema ...
+    <resheader name="resmimetype">text/microsoft-resx</resheader>
+    <resheader name="version">2.0</resheader>
+    <resheader name="reader">System.Resources.ResXResourceReader, System.Windows.Forms, ...</resheader>
+    <resheader name="writer">System.Resources.ResXResourceWriter, System.Windows.Forms, ...</resheader>
+    <data name="Name1"><value>this is my long string</value><comment>this is a comment</comment></data>
+    <data name="Color1" type="System.Drawing.Color, System.Drawing">Blue</data>
+    <data name="Bitmap1" mimetype="application/x-microsoft.net.object.binary.base64">
+        <value>[base64 mime encoded serialized .NET Framework object]</value>
+    </data>
+    <data name="Icon1" type="System.Drawing.Icon, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
+        <value>[base64 mime encoded string representing a byte array form of the .NET Framework object]</value>
+        <comment>This is a comment</comment>
+    </data>
+                
+    There are any number of "resheader" rows that contain simple 
+    name/value pairs.
+    
+    Each data row contains a name, and value. The row also contains a 
+    type or mimetype. Type corresponds to a .NET class that support 
+    text/value conversion through the TypeConverter architecture. 
+    Classes that don't support this are serialized and stored with the 
+    mimetype set.
+    
+    The mimetype is used for serialized objects, and tells the 
+    ResXResourceReader how to depersist the object. This is currently not 
+    extensible. For a given mimetype the value must be set accordingly:
+    
+    Note - application/x-microsoft.net.object.binary.base64 is the format 
+    that the ResXResourceWriter will generate, however the reader can 
+    read any of the formats listed below.
+    
+    mimetype: application/x-microsoft.net.object.binary.base64
+    value   : The object must be serialized with 
+            : System.Runtime.Serialization.Formatters.Binary.BinaryFormatter
+            : and then encoded with base64 encoding.
+    
+    mimetype: application/x-microsoft.net.object.soap.base64
+    value   : The object must be serialized with 
+            : System.Runtime.Serialization.Formatters.Soap.SoapFormatter
+            : and then encoded with base64 encoding.
+
+    mimetype: application/x-microsoft.net.object.bytearray.base64
+    value   : The object must be serialized into a byte array 
+            : using a System.ComponentModel.TypeConverter
+            : and then encoded with base64 encoding.
+    -->
+  <xsd:schema id="root" xmlns="" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:msdata="urn:schemas-microsoft-com:xml-msdata">
+    <xsd:import namespace="http://www.w3.org/XML/1998/namespace" />
+    <xsd:element name="root" msdata:IsDataSet="true">
+      <xsd:complexType>
+        <xsd:choice maxOccurs="unbounded">
+          <xsd:element name="metadata">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" />
+              </xsd:sequence>
+              <xsd:attribute name="name" use="required" type="xsd:string" />
+              <xsd:attribute name="type" type="xsd:string" />
+              <xsd:attribute name="mimetype" type="xsd:string" />
+              <xsd:attribute ref="xml:space" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="assembly">
+            <xsd:complexType>
+              <xsd:attribute name="alias" type="xsd:string" />
+              <xsd:attribute name="name" type="xsd:string" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="data">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" msdata:Ordinal="1" />
+                <xsd:element name="comment" type="xsd:string" minOccurs="0" msdata:Ordinal="2" />
+              </xsd:sequence>
+              <xsd:attribute name="name" type="xsd:string" use="required" msdata:Ordinal="1" />
+              <xsd:attribute name="type" type="xsd:string" msdata:Ordinal="3" />
+              <xsd:attribute name="mimetype" type="xsd:string" msdata:Ordinal="4" />
+              <xsd:attribute ref="xml:space" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="resheader">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" msdata:Ordinal="1" />
+              </xsd:sequence>
+              <xsd:attribute name="name" type="xsd:string" use="required" />
+            </xsd:complexType>
+          </xsd:element>
+        </xsd:choice>
+      </xsd:complexType>
+    </xsd:element>
+  </xsd:schema>
+  <resheader name="resmimetype">
+    <value>text/microsoft-resx</value>
+  </resheader>
+  <resheader name="version">
+    <value>2.0</value>
+  </resheader>
+  <resheader name="reader">
+    <value>System.Resources.ResXResourceReader, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </resheader>
+  <resheader name="writer">
+    <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </resheader>
+  <data name="AnAccount" xml:space="preserve">
+    <value>An Account</value>
+  </data>
+  <data name="ASPNETMVCWebApplication" xml:space="preserve">
+    <value>.NET Web Application</value>
+  </data>
+  <data name="Benefits" xml:space="preserve">
+    <value>Benefits</value>
+  </data>
+  <data name="BootstrapHTMLWebsiteTemplates" xml:space="preserve">
+    <value>Bootstrap HTML Website Templates</value>
+  </data>
+  <data name="Confirmpassword" xml:space="preserve">
+    <value>Confirm password</value>
+  </data>
+  <data name="DetailedDocumentation" xml:space="preserve">
+    <value>Detailed Documentation</value>
+  </data>
+  <data name="Email" xml:space="preserve">
+    <value>Email</value>
+  </data>
+  <data name="EmailAddress" xml:space="preserve">
+    <value>Email Address</value>
+  </data>
+  <data name="EnvatoPortfolio" xml:space="preserve">
+    <value>Envato Portfolio</value>
+  </data>
+  <data name="FAQ" xml:space="preserve">
+    <value>FAQ</value>
+  </data>
+  <data name="FAQFourAnswer" xml:space="preserve">
+    <value>Yes, it's in our plan, but for now, we couldn't guarantee the release time.</value>
+  </data>
+  <data name="FAQFourQuestion" xml:space="preserve">
+    <value>Can you create a .NET Core MVC version?</value>
+  </data>
+  <data name="FAQOneAnswer" xml:space="preserve">
+    <value>We only provide support for fixing existing bugs in the templates and answering questions regarding the existing features. Step-by-step guidance on how to do your custom modifications, how to solve bugs after your own modifications and direct installation are not part of our support. Thank you so much for your understanding. We will spend our time to create more amazing templates for you.</value>
+  </data>
+  <data name="FAQOneQuestion" xml:space="preserve">
+    <value>How is the support policy?</value>
+  </data>
+  <data name="FAQThreeAnswer" xml:space="preserve">
+    <value>Yes, you can. Go to "/Views/Shared/_FooterBeforeLogin.cshtml" and find the footer section to edit or remove the copyright text.</value>
+  </data>
+  <data name="FAQThreeQuestion" xml:space="preserve">
+    <value>Can I edit or remove the Copyright text at the footer?</value>
+  </data>
+  <data name="FAQTwoAnswerPartOne" xml:space="preserve">
+    <value>Answer is: Immediately after purchase.</value>
+  </data>
+  <data name="FAQTwoAnswerPartTwo" xml:space="preserve">
+    <value>for more information, there is “Downloading your items” section at the end of this article.</value>
+  </data>
+  <data name="FAQTwoQuestion" xml:space="preserve">
+    <value>When can I download the file after purchase the item?</value>
+  </data>
+  <data name="Feature1" xml:space="preserve">
+    <value>User management</value>
+  </data>
+  <data name="Feature10" xml:space="preserve">
+    <value>Automatic regrading</value>
+  </data>
+  <data name="Feature10Description" xml:space="preserve">
+    <value>If a teacher selects the wrong answer as the correct one and discovers this after the students have taken the exam, their results will be re-graded automatically if they want to change the answer.</value>
+  </data>
+  <data name="Feature11" xml:space="preserve">
+    <value>Analyze Chart</value>
+  </data>
+  <data name="Feature11Description" xml:space="preserve">
+    <value>Charts to analyze results, questions that most students answered incorrectly, and more.</value>
+  </data>
+  <data name="Feature12" xml:space="preserve">
+    <value>Strict rules</value>
+  </data>
+  <data name="Feature12Description" xml:space="preserve">
+    <value>Cannot skip questions. Cannot copy the question text while taking the exam.</value>
+  </data>
+  <data name="Feature1Description" xml:space="preserve">
+    <value>System admin can create, update and delete users. Students and teachers can register an account by themselves too.</value>
+  </data>
+  <data name="Feature2" xml:space="preserve">
+    <value>Store question bank</value>
+  </data>
+  <data name="Feature2Description" xml:space="preserve">
+    <value>Save your question bank and re-use it in different exams with different mark distributions.</value>
+  </data>
+  <data name="Feature3" xml:space="preserve">
+    <value>Schedule exam</value>
+  </data>
+  <data name="Feature3Description" xml:space="preserve">
+    <value>You can save an exam now and schedule it to start later. Then, publish an exam when it is ready to be announced to the students.</value>
+  </data>
+  <data name="Feature4" xml:space="preserve">
+    <value>Students' result</value>
+  </data>
+  <data name="Feature4Description" xml:space="preserve">
+    <value>Students' results can be exported to Excel or PDF. You can also sort the result list by student score to see the top students in the exam.</value>
+  </data>
+  <data name="Feature5" xml:space="preserve">
+    <value>Import questions</value>
+  </data>
+  <data name="Feature5Description" xml:space="preserve">
+    <value>You can create questions in batches by importing them from Excel.</value>
+  </data>
+  <data name="Feature6" xml:space="preserve">
+    <value>Import users</value>
+  </data>
+  <data name="Feature6Description" xml:space="preserve">
+    <value>You can create user accounts in batches by importing them from Excel.</value>
+  </data>
+  <data name="Feature7" xml:space="preserve">
+    <value>Randomize question</value>
+  </data>
+  <data name="Feature7Description" xml:space="preserve">
+    <value>You can choose to randomise or un-randomize the question order of an exam. Randomizing questions can prevent cheating because students cannot discuss the answers as they are getting different questions at one time.</value>
+  </data>
+  <data name="Feature8" xml:space="preserve">
+    <value>Release answer</value>
+  </data>
+  <data name="Feature8Description" xml:space="preserve">
+    <value>You can choose to release or unrelease the answers to the questions. Before the answers are released, students will get their results but will not be able to see the correct answers. We recommend releasing the answer only after all the students have taken the exam.</value>
+  </data>
+  <data name="Feature9" xml:space="preserve">
+    <value>Export result</value>
+  </data>
+  <data name="Feature9Description" xml:space="preserve">
+    <value>Students' result can be exported to excel or pdf.</value>
+  </data>
+  <data name="Features" xml:space="preserve">
+    <value>Features</value>
+  </data>
+  <data name="Features1" xml:space="preserve">
+    <value>Features</value>
+  </data>
+  <data name="FeaturesDescription" xml:space="preserve">
+    <value>EMSYS Contains Full Essential Features To Conduct An Exam.</value>
+  </data>
+  <data name="Fillyourdetailstoregister" xml:space="preserve">
+    <value>Fill your details to register.</value>
+  </data>
+  <data name="Fillyourusernameandpasswordtosignin" xml:space="preserve">
+    <value>Fill your username and password to sign in.</value>
+  </data>
+  <data name="FollowUs" xml:space="preserve">
+    <value>Follow Us</value>
+  </data>
+  <data name="FollowUsDescription" xml:space="preserve">
+    <value>Follow our social media to get updates or news about the projects.</value>
+  </data>
+  <data name="Forgotyourpassword" xml:space="preserve">
+    <value>Forgot your password?</value>
+  </data>
+  <data name="FrequentlyAskedQuestions" xml:space="preserve">
+    <value>Frequently Asked Questions</value>
+  </data>
+  <data name="Home" xml:space="preserve">
+    <value>Home</value>
+  </data>
+  <data name="HomeDescription" xml:space="preserve">
+    <value>EMSYS is an online exam system that delivers exam management, question bank management, automated grading, an analytical dashboard, and more.</value>
+  </data>
+  <data name="HomeTitleOne" xml:space="preserve">
+    <value>Revolutionize how you evaluate your students</value>
+  </data>
+  <data name="HomeTitleTwo" xml:space="preserve">
+    <value />
+  </data>
+  <data name="ImportAndExport" xml:space="preserve">
+    <value>Import &amp; Export</value>
+  </data>
+  <data name="Login" xml:space="preserve">
+    <value>Login</value>
+  </data>
+  <data name="NetStarterFAQArticles" xml:space="preserve">
+    <value>EMSYS FAQ Articles</value>
+  </data>
+  <data name="OurProducts" xml:space="preserve">
+    <value>Our Products</value>
+  </data>
+  <data name="Password" xml:space="preserve">
+    <value>Password</value>
+  </data>
+  <data name="RegisterAndLogin" xml:space="preserve">
+    <value>Register &amp; Login</value>
+  </data>
+  <data name="Rememberme" xml:space="preserve">
+    <value>Remember me?</value>
+  </data>
+  <data name="RolePermission" xml:space="preserve">
+    <value>Role Permission</value>
+  </data>
+  <data name="SendingEmail" xml:space="preserve">
+    <value>Sending Email</value>
+  </data>
+  <data name="SignUp" xml:space="preserve">
+    <value>Sign Up</value>
+  </data>
+  <data name="Specifications" xml:space="preserve">
+    <value>Specifications</value>
+  </data>
+  <data name="Submit" xml:space="preserve">
+    <value>Submit</value>
+  </data>
+  <data name="TheFollowingArticle" xml:space="preserve">
+    <value>the following article</value>
+  </data>
+  <data name="ToNetStarter" xml:space="preserve">
+    <value>To EMSYS</value>
+  </data>
+  <data name="UploadFile" xml:space="preserve">
+    <value>Upload File</value>
+  </data>
+  <data name="UsefulLinks" xml:space="preserve">
+    <value>Useful Links</value>
+  </data>
+  <data name="Username" xml:space="preserve">
+    <value>Username</value>
+  </data>
+  <data name="ViewMore" xml:space="preserve">
+    <value>View More</value>
+  </data>
+  <data name="WebAppTitle" xml:space="preserve">
+    <value>EMSYS</value>
+  </data>
+  <data name="WhatyougetDescription" xml:space="preserve">
+    <value>After Purchasing, You Will Get A Zip File Which Contains The Following</value>
+  </data>
+  <data name="WhyUs1Description" xml:space="preserve">
+    <value>Save your question bank and re-use it in different exams with different mark distributions.</value>
+  </data>
+  <data name="WhyUs1Title" xml:space="preserve">
+    <value>Reusable Questions</value>
+  </data>
+  <data name="WhyUs2Description" xml:space="preserve">
+    <value>Say goodbye to the hassle of paper-based exams and the time-consuming manual grading system.</value>
+  </data>
+  <data name="WhyUs2Title" xml:space="preserve">
+    <value>Save Your Time</value>
+  </data>
+  <data name="WhyUs3Description" xml:space="preserve">
+    <value>Streamline your examination process. Create exam, select questions from question bank, allocate marks, done!</value>
+  </data>
+  <data name="WhyUs3Title" xml:space="preserve">
+    <value>Simple Process</value>
+  </data>
+  <data name="WhyUsDescription" xml:space="preserve">
+    <value>Randomizing Question Order, Scheduling Exam Start Date &amp; Time, Storing Your Question Bank, And More.</value>
+  </data>
+  <data name="WhyUsTitle" xml:space="preserve">
+    <value>Why EMSYS</value>
+  </data>
+</root>

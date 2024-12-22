@@ -1,0 +1,180 @@
+﻿@model EMSYS.Models.StudentExamViewModel
+@using EMSYS.CustomHelper
+@{
+    ViewBag.Title = "Exam";
+    Layout = "~/Views/Shared/_LayoutAfterLogin.cshtml";
+    var count = 0;
+}
+
+@using (Html.BeginForm("TakeExam", "StudentExam", new { ReturnUrl = ViewBag.ReturnUrl }, FormMethod.Post, null, new { @class = "form-horizontal", role = "form", enctype = "multipart/form-data" }))
+{
+    @Html.HiddenFor(a=>a.Id)
+    @Html.HiddenFor(a=>a.ExamId)
+    @Html.HiddenFor(a=>a.QuestionId)
+    @Html.HiddenFor(a=>a.StudentId)
+    @Html.HiddenFor(a=>a.ExamName)
+    @Html.HiddenFor(a=>a.QuestionText)
+    @Html.HiddenFor(a=>a.QuestionType)
+    @Html.HiddenFor(a=>a.Mark)
+    @Html.HiddenFor(a=>a.SelectedAnswerId)
+    @Html.HiddenFor(a=>a.AnswerList)
+    @Html.HiddenFor(a=>a.Duration)
+    @Html.HiddenFor(a=>a.QuestionNumber)
+    @Html.HiddenFor(a=>a.TotalQuestion)
+    @Html.HiddenFor(a=>a.ReleaseAnswer)
+    <div class="container bg-white rounded p-3 p-lg-4 p-xl-5 shadow">
+        <div class="row justify-content-center align-items-center">
+            <div class="col-xl-11">
+                <div class="fs-20 mb-4">@Model.ExamName</div>
+                <div class="d-flex justify-content-between">
+                    <div>Question <span class="fw600 color-primarycolor">@Model.QuestionNumber</span> of @Model.TotalQuestion (@Model.Mark Marks)</div>
+                    <div class="d-flex align-items-end">
+                        <div class="text-center me-2">
+                            <div id="timer" class="color-secondarycolor fw600"></div>
+                        </div>
+                    </div>
+                </div>
+                <div class="my-2">
+                    <div class="color-primarycolor fw500"> @Model.AnsweredUntil Questions Completed</div>
+                    <div class="progress" style="height:8px;">
+                        <div id="progressPercent" class="progress-bar fs-11 bg-primarycolor" role="progressbar" aria-valuemin="0" aria-valuemax="100">
+                        </div>
+                    </div>
+                </div>
+                <div class="form-group mb-1 mt-4">
+                    <p id="question" class="form-control-plaintext fs-24 fw600">
+                        @Model.QuestionText
+                    </p>
+                    @if (!string.IsNullOrEmpty(Model.ImageFileName))
+                    {
+                        <div>
+                            <img src="~/UploadedFiles/@Model.ImageFileName" class="img-fluid rounded">
+                        </div>
+                    }
+                </div>
+                @if (Model.QuestionType == "MCQ")
+                {
+                    foreach (var item in Model.AnswerList)
+                    {
+                        <div>
+                            @CustomHelper.CustomRadioButton("AnswerId","AnswerId_"+ count, item.Id, item.Text, Model.SelectedAnswerId, "")
+                        </div>
+                        count++;
+                    }
+                }
+                else if (Model.QuestionType == "SA")
+                {
+                    @Html.TextAreaFor(model => model.AnswerText, htmlAttributes: new { @class = "form-control", @rows = "4" })
+                }
+                else
+                {
+                    @Html.TextAreaFor(model => model.AnswerText, htmlAttributes: new { @class = "form-control", @rows = "8" })
+                }
+                <div class="row mt-4">
+                    <div class="col-12">
+                        <button id="save-btn" type="submit" class="btn form-btn btn-primary hover-boxshadow me-2"><span class="px-2">@Resource.Save @Resource.Answer</span></button>
+                        @if (Model.QuestionNumber == Model.TotalQuestion)
+                        {
+                            if (Model.AnsweredUntil == Model.TotalQuestion)
+                            {
+                                <a id="exitbutton" class="btn form-btn btn-secondary hover-boxshadow me-1">@Resource.Exit</a>
+                            }
+                            else
+                            {
+                                <a class="btn form-btn btn-secondary hover-boxshadow me-1 disabled">@Resource.Exit</a>
+                            }
+                        }
+                        else
+                        {
+                            <a id="nextButton" class="btn form-btn btn-secondary hover-boxshadow me-1" href="@Url.Action("takeexam","studentexam",new{eId = Model.ExamId, sId=Model.StudentId, num = (Model.QuestionNumber+1) })" data-toggle="tooltip" data-placement="right" title="@Resource.CannotReturnToPreviousQuestion">@Resource.Next</a>
+                        }
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+}
+
+<div class="modal fade" id="confirmExitModal" tabindex="-1" aria-labelledby="confirmExitModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered">
+        <div class="modal-content">
+            <div class="modal-header border-0 pt-4">
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body border-0 pb-4">
+                <div class="mt-2 text-center">
+                    <i class="fa-solid fa-triangle-exclamation color-secondarycolor fs-64"></i>
+                    <div class="mt-3 pt-2 fs-15 mx-4 mx-sm-5">
+                        <h4 class="fs-22 fw600">Are you sure to exit this exam?</h4>
+                    </div>
+                </div>
+                <div class="d-flex gap-2 justify-content-center mt-4 mb-3">
+                    <button type="button" class="btn form-btn btn-secondary hover-boxshadow" data-bs-dismiss="modal">No, Cancel</button>
+                    <button type="button" class="btn form-btn btn-primary hover-boxshadow" onclick="exitNow()">Yes, Exit Now</button>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+@section scripts{
+    <script>
+        $('#exitbutton').on('click', function () {
+            $('#confirmExitModal').modal('show');
+        });
+        let interval;
+        $(document).ready(function () {
+            startTimer('@Model.Duration');
+            $('#nextButton').tooltip({
+                placement: 'right'
+            });
+            let currentNum = "@Model.AnsweredUntil";
+            let totalNum = "@Model.TotalQuestion";
+            currentNum = parseInt(currentNum, 10);
+            totalNum = parseInt(totalNum, 10);
+            let result = (currentNum / totalNum) * 100;
+            $("#percent").text(result);
+            let progressbar = document.getElementById("progressPercent");
+            if (progressbar) {
+                progressbar.style.width = result + "%";
+                progressbar.setAttribute("aria-valuenow", result);
+            }
+        });
+        $('#skipButton').on('click', function () {
+            $('#confirmSkipModal').modal('show');
+        });
+
+        // accept parameter of duration in minutes
+        function startTimer(duration) {
+            var timerid = "totalSecondsLeft" + "@Model.StudentId" + "@Model.ExamId";
+            let durationInSecond = duration * 60;
+            if (localStorage.getItem(timerid) == null) {
+                localStorage.setItem(timerid, durationInSecond);
+            }
+            let totalSecondsLeft = localStorage.getItem(timerid) || durationInSecond;
+            interval = setInterval(() => {
+                let totalSecondsLeft = localStorage.getItem(timerid);
+                totalSecondsLeft--;
+                localStorage.setItem(timerid, totalSecondsLeft);
+                const hours = Math.floor(totalSecondsLeft / 3600);
+                const minutes = Math.floor((totalSecondsLeft % 3600) / 60);
+                const seconds = totalSecondsLeft % 60;
+                let timer = document.getElementById("timer");
+                timer.innerHTML = hours + ':' + minutes.toString().padStart(2, '0') + ':' + seconds.toString().padStart(2, '0');
+                if (totalSecondsLeft === 0) {
+                    clearInterval(interval);
+                    localStorage.removeItem(timerid);
+                    timer.innerHTML = "Time is up!";
+                    window.location.href = "@Url.Action("timesup", "studentexam")" + "?eId=" + "@Model.ExamId" + "&sId=" + "@Model.StudentId";
+                    return;
+                }
+            }, 1000);
+        }
+
+        function exitNow() {
+            clearInterval(interval);
+            localStorage.removeItem("totalSecondsLeft");
+            window.location.href = "@Url.Action("exit","studentexam")" + "?eId=" + "@Model.ExamId" + "&sId=" + "@Model.StudentId";
+        }
+    </script>
+}

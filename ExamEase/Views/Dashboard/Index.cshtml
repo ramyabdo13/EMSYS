@@ -1,0 +1,574 @@
+﻿@model EMSYS.Models.DashboardViewModel
+@using EMSYS.Models
+@using EMSYS.CustomHelper
+@{
+    ViewBag.Title = Resource.Dashboard;
+    Layout = "~/Views/Shared/_LayoutAfterLogin.cshtml";
+    bool isAdmin = User.IsInRole("System Admin");
+    bool isTeacher = User.IsInRole("Teacher");
+    bool isStudent = User.IsInRole("Student");
+}
+
+<div class="row">
+    <div class="col-12">
+        <div class="page-title-box d-sm-flex align-items-center justify-content-between">
+            <h4 class="pagetitle mb-sm-0 fw600">@Resource.Dashboard</h4>
+        </div>
+    </div>
+</div>
+
+<section class="section dashboard mt-3">
+    <div class="row justify-content-start align-items-start">
+        @if (isAdmin)
+        {
+            <div class="col-md-6 col-lg-3">
+                <div class="card card-animate border-0 shadow">
+                    <div class="card-body p-4">
+                        <div class="d-flex align-items-center">
+                            <div class="flex-grow-1 overflow-hidden">
+                                <p class="text-capitalize fw-medium text-muted text-truncate mb-0 fs-14">@Resource.TotalTeacher</p>
+                            </div>
+                            <div class="flex-shrink-0">
+                                <div class="fs-14 mb-0 text-muted"><i class="fa-solid fa-circle-info align-middle" data-bs-toggle="tooltip" data-bs-placement="top" title="@Resource.TotalTeacherTooltip"></i></div>
+                            </div>
+                        </div>
+                        <div class="d-flex align-items-end justify-content-between mt-4">
+                            <div>
+                                <h4 class="fs-27 fw-bold ff-secondary mb-4">@Model.TotalTeacher</h4>
+                                <a href="@Url.Action("index","user")" class="text-decoration-underline fw-light text-muted fs-13 hover-color-secondarycolor">@Resource.View @Resource.User</a>
+                            </div>
+                            <div class="avatar-sm flex-shrink-0">
+                                <span class="avatar-title rounded fs-4 bg-light"><i class="fa-solid fa-person-chalkboard"></i></span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        }
+        @if (isAdmin)
+        {
+            <div class="col-md-6 col-lg-3">
+                <div class="card card-animate border-0 shadow">
+                    <div class="card-body p-4">
+                        <div class="d-flex align-items-center">
+                            <div class="flex-grow-1 overflow-hidden">
+                                <p class="text-capitalize fw-medium text-muted text-truncate mb-0 fs-14">@Resource.TotalStudent</p>
+                            </div>
+                            <div class="flex-shrink-0">
+                                <div class="fs-14 mb-0 text-muted"><i class="fa-solid fa-circle-info align-middle" data-bs-toggle="tooltip" data-bs-placement="top" title="@Resource.TotalStudentTooltip"></i></div>
+                            </div>
+                        </div>
+                        <div class="d-flex align-items-end justify-content-between mt-4">
+                            <div>
+                                <h4 class="fs-27 fw-bold ff-secondary mb-4">@Model.TotalStudent</h4>
+                                <a href="@Url.Action("index","user")" class="text-decoration-underline fw-light text-muted fs-13 hover-color-secondarycolor">@Resource.View @Resource.User</a>
+                            </div>
+                            <div class="avatar-sm flex-shrink-0">
+                                <span class="avatar-title rounded fs-4 bg-light"><i class="fa-solid fa-graduation-cap"></i></span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        }
+        <div class="col-md-6 col-lg-3">
+            <div class="card card-animate border-0 shadow">
+                <div class="card-body p-4">
+                    <div class="d-flex align-items-center">
+                        <div class="flex-grow-1 overflow-hidden">
+                            <p class="text-capitalize fw-medium text-muted text-truncate mb-0 fs-14">@Resource.ExamInProgress</p>
+                        </div>
+                        <div class="flex-shrink-0">
+                            <div class="fs-14 mb-0 text-muted"><i class="fa-solid fa-circle-info align-middle" data-bs-toggle="tooltip" data-bs-placement="top" title="@Resource.ExamInProgressTooltip"></i></div>
+                        </div>
+                    </div>
+                    <div class="d-flex align-items-end justify-content-between mt-4">
+                        <div>
+                            <h4 class="fs-27 fw-bold ff-secondary mb-4">@Model.ExamInProgress</h4>
+                            @if (isStudent)
+                            {
+                                <a href="@Url.Action("currentexam","studentexam")" class="text-decoration-underline fw-light text-muted fs-13 hover-color-secondarycolor">@Resource.View @Resource.Exam</a>
+                            }
+                            else
+                            {
+                                <a href="@Url.Action("index","exam")" class="text-decoration-underline fw-light text-muted fs-13 hover-color-secondarycolor">@Resource.View @Resource.Exam</a>
+                            }
+                        </div>
+                        <div class="avatar-sm flex-shrink-0">
+                            <span class="avatar-title rounded fs-4 bg-light"><i class="fa-solid fa-circle-play"></i></span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="col-md-6 col-lg-3">
+            <div class="card card-animate border-0 shadow">
+                <div class="card-body p-4">
+                    <div class="d-flex align-items-center">
+                        <div class="flex-grow-1 overflow-hidden">
+                            <p class="text-capitalize fw-medium text-muted text-truncate mb-0 fs-14">@Resource.ExamCompleted</p>
+                        </div>
+                        <div class="flex-shrink-0">
+                            <div class="fs-14 mb-0 text-muted"><i class="fa-solid fa-circle-info align-middle" data-bs-toggle="tooltip" data-bs-placement="top" title="@Resource.ExamCompletedTooltip"></i></div>
+                        </div>
+                    </div>
+                    <div class="d-flex align-items-end justify-content-between mt-4">
+                        <div>
+                            <h4 class="fs-27 fw-bold ff-secondary mb-4">@Model.ExamCompleted</h4>
+                            @if (isStudent)
+                            {
+                                <a href="@Url.Action("pastexam","studentexam")" class="text-decoration-underline fw-light text-muted fs-13 hover-color-secondarycolor">@Resource.View @Resource.Exam</a>
+                            }
+                            else
+                            {
+                                <a href="@Url.Action("index","exam")" class="text-decoration-underline fw-light text-muted fs-13 hover-color-secondarycolor">@Resource.View @Resource.Exam</a>
+                            }
+                        </div>
+                        <div class="avatar-sm flex-shrink-0">
+                            <span class="avatar-title rounded fs-4 bg-light"><i class="fa-solid fa-square-check"></i></span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        @if (isTeacher || isStudent)
+        {
+            <div class="col-md-6 col-lg-3">
+                <div class="card card-animate border-0 shadow">
+                    <div class="card-body p-4">
+                        <div class="d-flex align-items-center">
+                            <div class="flex-grow-1 overflow-hidden">
+                                <p class="text-capitalize fw-medium text-muted text-truncate mb-0 fs-14">@Resource.ExamPassed</p>
+                            </div>
+                            <div class="flex-shrink-0">
+                                <div class="fs-14 mb-0 text-muted"><i class="fa-solid fa-circle-info align-middle" data-bs-toggle="tooltip" data-bs-placement="top" title="@Resource.ExamPassedTooltip"></i></div>
+                            </div>
+                        </div>
+                        <div class="d-flex align-items-end justify-content-between mt-4">
+                            <div>
+                                <h4 class="fs-27 fw-bold ff-secondary mb-4">@Model.ExamPassed</h4>
+                                <a href="@Url.Action("pastexam","studentexam")" class="text-decoration-underline fw-light text-muted fs-13 hover-color-secondarycolor">@Resource.View @Resource.Exam</a>
+                            </div>
+                            <div class="avatar-sm flex-shrink-0">
+                                <span class="avatar-title rounded fs-4 bg-light"><i class="fa-solid fa-face-laugh-beam"></i></span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-6 col-lg-3">
+                <div class="card card-animate border-0 shadow">
+                    <div class="card-body p-4">
+                        <div class="d-flex align-items-center">
+                            <div class="flex-grow-1 overflow-hidden">
+                                <p class="text-capitalize fw-medium text-muted text-truncate mb-0 fs-14">@Resource.ExamFailed</p>
+                            </div>
+                            <div class="flex-shrink-0">
+                                <div class="fs-14 mb-0 text-muted"><i class="fa-solid fa-circle-info align-middle" data-bs-toggle="tooltip" data-bs-placement="top" title="@Resource.ExamFailedTooltip"></i></div>
+                            </div>
+                        </div>
+                        <div class="d-flex align-items-end justify-content-between mt-4">
+                            <div>
+                                <h4 class="fs-27 fw-bold ff-secondary mb-4">@Model.ExamFailed</h4>
+                                <a href="@Url.Action("pastexam","studentexam")" class="text-decoration-underline fw-light text-muted fs-13 hover-color-secondarycolor">@Resource.View @Resource.Exam</a>
+                            </div>
+                            <div class="avatar-sm flex-shrink-0">
+                                <span class="avatar-title rounded fs-4 bg-light"><i class="fa-solid fa-face-surprise"></i></span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        }
+        <div class="col-lg-6 mt-4">
+            <div class="card card-animate border-0 shadow">
+                <div class="card-body p-4">
+                    <div class="flex-grow-1 overflow-hidden">
+                        <p class="text-capitalize fw-medium text-muted text-truncate mb-3 fs-14">@Resource.MonthlyAveragePerformance</p>
+                    </div>
+                    <div class="p-0 p-sm-3">
+                        <div id="monthlyAveragePerformanceChart-spinner" class="spinner d-flex justify-content-center align-items-center text-center color-primarycolor py-5">
+                            <div class="spinner-border ml-auto" role="status" aria-hidden="true"></div><strong> &nbsp; @Resource.Loading </strong>
+                        </div>
+                        <div id="monthlyAveragePerformanceChart-nodata" class="text-center text-muted py-5 d-none"><div><i class="fa-regular fa-face-dizzy fs-40"></i></div><div>@Resource.NoDataAvailable</div></div>
+                        <canvas id="monthlyAveragePerformanceChart"></canvas>
+                    </div>
+                </div>
+            </div>
+        </div>
+        @if (isAdmin || isTeacher)
+        {
+            <div class="col-lg-6 mt-4">
+                <div class="card card-animate border-0 shadow">
+                    <div class="card-body p-4">
+                        <div class="flex-grow-1 overflow-hidden">
+                            <p class="text-capitalize fw-medium text-muted text-truncate mb-3 fs-14">@Resource.TopQuestionsAnsweredWrongly</p>
+                        </div>
+                        <div class="p-0 p-sm-3">
+                            <div id="questionsAnsweredWronglyChart-spinner" class="spinner d-flex justify-content-center align-items-center text-center color-primarycolor py-5">
+                                <div class="spinner-border ml-auto" role="status" aria-hidden="true"></div><strong> &nbsp; @Resource.Loading </strong>
+                            </div>
+                            <div id="questionsAnsweredWronglyChart-nodata" class="text-center text-muted py-5 d-none"><div><i class="fa-regular fa-face-dizzy fs-40"></i></div><div>@Resource.NoDataAvailable</div></div>
+                            <canvas id="questionsAnsweredWronglyChart"></canvas>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        }
+        <div class="col-lg-6 mt-4">
+            <div class="card card-animate border-0 shadow">
+                <div class="card-body p-4">
+                    <div class="flex-grow-1 overflow-hidden">
+                        <p class="text-capitalize fw-medium text-muted text-truncate mb-3 fs-14">@Resource.TopUpcomingExams</p>
+                    </div>
+                    <div class="p-0 p-sm-3">
+                        @if (Model.UpcomingExamCharts.Count > 0)
+                        {
+                            <div class="row fw600 text-muted mb-2 fs-13 d-none d-sm-flex">
+                                <div class="col-sm-4 gx-1">@Resource.StartsIn</div>
+                                <div class="col-sm-8">@Resource.Exam</div>
+                            </div>
+                            foreach (var item in Model.UpcomingExamCharts)
+                            {
+                                <div class="row">
+                                    <div class="col-sm-2 gx-1">
+                                        <div class="p-1 py-2 h-auto bg-light rounded-3">
+                                            <div class="text-center">
+                                                <h5 class="mb-0 fw600 fs-22">@item.CountdownHour</h5>
+                                                <div class="text-muted fs-12">hr(s)</div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="col-sm-2 gx-1">
+                                        <div class="p-1 py-2 h-auto bg-light rounded-3">
+                                            <div class="text-center">
+                                                <h5 class="mb-0 fw600 fs-22">@item.CountdownMinute</h5>
+                                                <div class="text-muted fs-12">min(s)</div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="col-sm-8">
+                                        <div class="datetimetext fs-14 text-muted">@item.IsoUtcStartDate</div>
+                                        <div>
+                                            @if (isAdmin || isTeacher)
+                                            {
+                                                <a class="fw600 color-primarycolor hover-color-secondarycolor" href="@Url.Action("edit","exam",new{Id=item.Id})" target="_blank">@item.Name</a>
+                                            }
+                                            else
+                                            {
+                                                <span class="fw600">@item.Name</span>
+                                            }
+                                        </div>
+                                    </div>
+                                </div>
+                            }
+                        }
+                        else
+                        {
+                            <div class="text-center text-muted py-5"><div><i class="fa-regular fa-face-dizzy fs-40"></i></div><div>@Resource.NoDataAvailable</div></div>
+                        }
+                    </div>
+                </div>
+            </div>
+        </div>
+        @if (isAdmin || isTeacher)
+        {
+            <div class="col-lg-6 mt-4">
+                <div class="card card-animate border-0 shadow">
+                    <div class="card-body p-4">
+                        <div class="d-flex flex-row justify-content-between align-items-center mb-3">
+                            <div class="col-6 text-capitalize fw-medium text-muted text-truncate fs-14">@Resource.TopStudentsByExam</div>
+                            <div class="col-6">@CustomHelper.CustomDropDownList("DefaultExamToDisplayTopTenStudent", Model.ExamSelectList, ($@"{Resource.Filter} {Resource.Exam}..."), "filterExam")</div>
+                        </div>
+                        <div class="p-0 p-sm-3">
+                            <div class="mt-1">
+                                <div id="topStudentsByExam-spinner" class="spinner d-flex justify-content-center align-items-center text-center color-primarycolor py-5">
+                                    <div class="spinner-border ml-auto" role="status" aria-hidden="true"></div><strong> &nbsp; @Resource.Loading </strong>
+                                </div>
+                                <div id="topStudentsByExam-nodata" class="text-center text-muted py-5 d-none"><div><i class="fa-regular fa-face-dizzy fs-40"></i></div><div>@Resource.NoDataAvailable</div></div>
+                                <canvas id="topStudentsByExam"></canvas>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        }
+        @if (isStudent)
+        {
+            <div class="col-lg-6 mt-4">
+                <div class="card card-animate border-0 shadow">
+                    <div class="card-body p-4">
+                        <div class="flex-grow-1 overflow-hidden">
+                            <p class="text-capitalize fw-medium text-muted text-truncate mb-3 fs-14">@Resource.YourTopBestPerformance</p>
+                        </div>
+                        <div class="p-0 p-sm-3">
+                            @if (Model.StudentBestPerformanceExams.Count > 0)
+                            {
+                                foreach (var item in Model.StudentBestPerformanceExams)
+                                {
+                                    <div class="row mb-2">
+                                        <div class="col-sm-4 text-muted fs-13">@item.ExamName</div>
+                                        <div class="col-sm-8">
+                                            <div class="progress">
+                                                <div class="progress-bar bg-primarycolor" role="progressbar" style="width: @item.YourScore%" aria-valuenow="@item.YourScore" aria-valuemin="0" aria-valuemax="100">@item.YourScore%</div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                }
+                            }
+                            else
+                            {
+                                <div class="text-center text-muted py-5"><div><i class="fa-regular fa-face-dizzy fs-40"></i></div><div>@Resource.NoDataAvailable</div></div>
+                            }
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="col-lg-6 mt-4">
+                <div class="card card-animate border-0 shadow">
+                    <div class="card-body p-4">
+                        <div class="flex-grow-1 overflow-hidden">
+                            <p class="text-capitalize fw-medium text-muted text-truncate mb-3 fs-14">@Resource.YourTopExamsThatNeedImprovement</p>
+                        </div>
+                        <div class="p-0 p-sm-3">
+                            @if (Model.StudentWeakPerformanceExams.Count > 0)
+                            {
+                                foreach (var item in Model.StudentWeakPerformanceExams)
+                                {
+                                    <div class="row mb-2">
+                                        <div class="col-sm-4 text-muted fs-13">@item.ExamName</div>
+                                        <div class="col-sm-8">
+                                            <div class="progress">
+                                                <div class="progress-bar bg-primarycolor" role="progressbar" style="width: @item.YourScore%" aria-valuenow="@item.YourScore" aria-valuemin="0" aria-valuemax="100">@item.YourScore%</div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                }
+                            }
+                            else
+                            {
+                                <div class="text-center text-muted py-5"><div><i class="fa-regular fa-face-dizzy fs-40"></i></div><div>@Resource.NoDataAvailable</div></div>
+                            }
+                        </div>
+                    </div>
+                </div>
+            </div>
+        }
+    </div>
+</section>
+
+<!-- only include this when render charts -->
+<script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+
+@section Scripts{
+    <script>
+        var setOfChartColors = [
+            '#52377a',
+            '#fd7e50',
+            '#86c3c9',
+            '#C7B26D',
+            '#D0B2E5'
+        ];
+
+        var lineColor = '#52377a';
+        var pointBgColor = 'rgba(82, 55, 122, 0.5)';
+
+        if ("@isAdmin" == "True" || "@isTeacher" == "True") {
+            window.addEventListener('DOMContentLoaded', (event) => {
+                readTopTenStudentsForExam('@Model.DefaultExamToDisplayTopTenStudent');
+            });
+        }
+
+        var dataLabelPerformanceChart = [];
+        var dataValuePerformanceChart = [];
+
+        $.ajax({
+            type: "POST",
+            url: '@Url.Action("GetAveragePerformanceByMonth", "Dashboard")',
+            success: function (chData) {
+                let loading = document.getElementById("monthlyAveragePerformanceChart-spinner");
+                loading.classList.remove("d-flex");
+                loading.classList.add("d-none");
+                if (chData.length == 0) {
+                    let nodata = document.getElementById("monthlyAveragePerformanceChart-nodata");
+                    nodata.classList.remove("d-none");
+                    nodata.classList.add("d-block");
+                    let canvas = document.getElementById("monthlyAveragePerformanceChart");
+                    canvas.classList.remove("d-block");
+                    canvas.classList.add("d-none");
+                } else {
+                    for (var i = 0; i < chData.length; i++) {
+                        dataLabelPerformanceChart.push(chData[i]['DataLabel']);
+                        dataValuePerformanceChart.push(chData[i]['DataValue']);
+                    }
+
+                    var monthNames = ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec'];
+                    var monthLabels = dataLabelPerformanceChart.map(function (num) { return monthNames[num - 1]; });
+
+                    const data = {
+                        labels: monthLabels,
+                        datasets: [{
+                            label: '@Resource.MonthlyAveragePerformance',
+                            data: dataValuePerformanceChart,
+                            fill: false,
+                            pointBackgroundColor: pointBgColor,
+                            pointBorderColor: lineColor,
+                            borderColor: lineColor,
+                            pointStyle: 'circle',
+                            pointRadius: 10,
+                            pointHoverRadius: 15,
+                            tension: 0.1
+                        }]
+                    };
+                    const ctx = document.getElementById('monthlyAveragePerformanceChart').getContext('2d');
+                    const myChart = new Chart(ctx, {
+                        type: 'line',
+                        data: data,
+                        options: {
+                            plugins: {
+                                legend:
+                                {
+                                    display: false
+                                }
+                            }
+                        }
+                    });
+                }
+            }
+        });
+
+        function firstTwentyChars(str) {
+            if (str.length > 20) {
+                return str.substring(0, 20) + "...";
+            } else {
+                return str;
+            }
+        }
+
+        if ("@isAdmin" == "True" || "@isTeacher" == "True") {
+            var dataLabelQuestionsAnsweredWronglyChart = [];
+            var dataValueQuestionsAnsweredWronglyChart = [];
+            $.ajax({
+                type: "POST",
+                url: '@Url.Action("OkResultForTopQuestionsAnsweredWrongly", "Dashboard")',
+                success: function (chData) {
+                    let loading = document.getElementById("questionsAnsweredWronglyChart-spinner");
+                    loading.classList.remove("d-flex");
+                    loading.classList.add("d-none");
+                    if (chData.length == 0) {
+                        let nodata = document.getElementById("questionsAnsweredWronglyChart-nodata");
+                        nodata.classList.remove("d-none");
+                        nodata.classList.add("d-block");
+                        let canvas = document.getElementById("questionsAnsweredWronglyChart");
+                        canvas.classList.remove("d-block");
+                        canvas.classList.add("d-none");
+                    } else {
+                        for (var i = 0; i < chData.length; i++) {
+                            dataLabelQuestionsAnsweredWronglyChart.push(firstTwentyChars(chData[i]['DataLabel']));
+                            dataValueQuestionsAnsweredWronglyChart.push(chData[i]['DataValue']);
+                        }
+                        const ctx = document.getElementById('questionsAnsweredWronglyChart').getContext('2d');
+                        const myChart = new Chart(ctx, {
+                            type: 'bar',
+                            data:
+                            {
+                                axis: 'y',
+                                labels: dataLabelQuestionsAnsweredWronglyChart,
+                                datasets:
+                                    [{
+                                        label: '@Resource.StudentFailed',
+                                        data: dataValueQuestionsAnsweredWronglyChart,
+                                        backgroundColor: setOfChartColors,
+                                        borderColor: [
+                                            'transparent'
+                                        ],
+                                        borderWidth: 1
+                                    }]
+                            },
+                            options: {
+                                indexAxis: 'y',
+                                plugins: {
+                                    legend:
+                                    {
+                                        display: false
+                                    }
+                                }
+                            }
+                        });
+                    }
+                }
+            });
+        }
+
+
+        function filterExam(element) {
+            let examId = $(element).attr('data-value');
+            readTopTenStudentsForExam(examId);
+        }
+
+        let myChart = null;
+
+        function readTopTenStudentsForExam(examid) {
+            var dataLabeltopStudentsByExam = [];
+            var dataValuetopStudentsByExam = [];
+            $.ajax({
+                type: "POST",
+                url: '@Url.Action("OkResultForTopStudentsByExam", "Dashboard")?id=' + examid,
+                success: function (chData) {
+                    let loading = document.getElementById("topStudentsByExam-spinner");
+                    loading.classList.remove("d-flex");
+                    loading.classList.add("d-none");
+                    if (chData.length == 0) {
+                        let nodata = document.getElementById("topStudentsByExam-nodata");
+                        nodata.classList.remove("d-none");
+                        nodata.classList.add("d-block");
+                        let canvas = document.getElementById("topStudentsByExam");
+                        canvas.classList.remove("d-block");
+                        canvas.classList.add("d-none");
+                    } else {
+                        for (var i = 0; i < chData.length; i++) {
+                            dataLabeltopStudentsByExam.push(firstTwentyChars(chData[i]['DataLabel']));
+                            dataValuetopStudentsByExam.push(chData[i]['DataValue']);
+                        }
+                        var ctx = document.getElementById("topStudentsByExam").getContext('2d');
+                        if (myChart != null) {
+                            myChart.destroy();
+                        }
+                        myChart = new Chart(ctx, {
+                            type: 'bar',
+                            data:
+                            {
+                                axis: 'y',
+                                labels: dataLabeltopStudentsByExam,
+                                datasets:
+                                    [{
+                                        label: 'Student',
+                                        data: dataValuetopStudentsByExam,
+                                        backgroundColor: setOfChartColors,
+                                        borderColor: [
+                                            'transparent'
+                                        ],
+                                        borderWidth: 1
+                                    }]
+                            },
+                            options: {
+                                indexAxis: 'y',
+                                plugins: {
+                                    legend:
+                                    {
+                                        display: false
+                                    }
+                                }
+                            }
+                        });
+                    }
+                }
+            });
+        }
+
+        function getRandomNumber() {
+            return Math.floor(Math.random() * 6);
+        }
+
+    </script>
+}

@@ -1,0 +1,135 @@
+﻿@model EMSYS.Models.QuestionViewModel
+@using EMSYS.CustomHelper
+@{
+    if (string.IsNullOrEmpty(Model.Id))
+    {
+        ViewBag.Title = $"{Resource.Add} {Resource.Question}";
+    }
+    else
+    {
+        ViewBag.Title = $"{Resource.Edit} {Resource.Question}";
+    }
+    Layout = "~/Views/Shared/_LayoutAfterLogin.cshtml";
+}
+
+<div class="row">
+    <div class="col-12">
+        <div style="--bs-breadcrumb-divider: '>';">
+            <ol class="breadcrumb m-0">
+                <li class="breadcrumb-item fw-normal"><a class="color-primarycolor opacity-50" href="@Url.Action("index")">@Resource.QuestionManagement</a></li>
+                @if (!string.IsNullOrEmpty(Model.Id))
+                {
+                    <li class="breadcrumb-item fw-normal"><a class="color-primarycolor opacity-50" href="@Url.Action("viewrecord", new { id = Model.Id})">@Resource.View @Resource.Question</a></li>
+                }
+                <li class="breadcrumb-item fw-normal active">@ViewBag.Title</li>
+            </ol>
+        </div>
+        <div class="page-title-box d-sm-flex align-items-center justify-content-between pt-2">
+            <h4 class="pagetitle mb-sm-0 fw600">@ViewBag.Title</h4>
+        </div>
+    </div>
+</div>
+
+<ul class="nav nav-tabs">
+    <li class="nav-item">
+        <a class="nav-link active">@ViewBag.Title</a>
+    </li>
+    @if (!string.IsNullOrEmpty(Model.Id))
+    {
+        <li class="nav-item">
+            <a class="nav-link hover-color-secondarycolor" href="@Url.Action("edit", "answer", new { Id = Model.Id})">@Resource.Add/@Resource.Edit @Resource.Answer</a>
+        </li>
+    }
+</ul>
+
+<section class="section">
+    @using (Html.BeginForm("Edit", "Question", new { ReturnUrl = ViewBag.ReturnUrl }, FormMethod.Post, null, new { @class = "form-horizontal", role = "form", enctype = "multipart/form-data" }))
+    {
+        <div class="bg-white rounded p-3 p-lg-4 p-xl-5 shadow">
+            <div class="row">
+                <div class="col-md-12">
+                    <div class="mb-3 text-break">
+                        <div class="form-group">
+                            @Html.LabelFor(model => model.QuestionTitle, htmlAttributes: new { @class = "form-label required fw600" })
+                            @Html.TextAreaFor(model => model.QuestionTitle, htmlAttributes: new { @class = "form-control", @rows = "3" })
+                            @Html.ValidationMessageFor(model => model.QuestionTitle, "", new { @class = "invalid-message" })
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-md-6">
+                    <div class="mb-3 text-break">
+                        <div class="form-group">
+                            @Html.LabelFor(model => model.SubjectId, htmlAttributes: new { @class = "form-label required fw600" }) <a class="color-secondarycolor fs-12 hover-color-primarycolor" href="@Url.Action("edit","subject")" target="_blank">Create New</a>
+                            @CustomHelper.CustomDropDownList("SubjectId", Model.SubjectIdSelectList)
+                            @Html.ValidationMessageFor(model => model.SubjectId, "", new { @class = "invalid-message" })
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-6">
+                    <div class="mb-3 text-break">
+                        <div class="form-group">
+                            @Html.LabelFor(model => model.QuestionTypeId, htmlAttributes: new { @class = "form-label required fw600" })
+                            @CustomHelper.CustomDropDownList("QuestionTypeId", Model.QuestionTypeIdSelectList)
+                            @Html.ValidationMessageFor(model => model.QuestionTypeId, "", new { @class = "invalid-message" })
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-md-6">
+                    <div class="mb-3 text-break">
+                        <div class="form-group">
+                            @Html.LabelFor(model => model.IsActive, htmlAttributes: new { @class = "form-label required fw600" })
+                            @CustomHelper.CustomDropDownList("IsActive",Model.ActiveInactiveSelectList)
+                            @Html.HiddenFor(m=>m.ActiveInactiveSelectList)
+                            @Html.ValidationMessageFor(model => model.IsActive, "", new { @class = "invalid-message" })
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-md-6">
+                    <div class="mb-3 text-break">
+                        <div class="form-group">
+                            @Html.LabelFor(model => model.ImageFile, htmlAttributes: new { @class = "form-label fw600" })
+                            @Html.TextBox("ImageFile", "", new { @type = "file", @class = "form-control", accept = "image/*" })
+                            @Html.ValidationMessageFor(model => model.ImageFile, "", new { @class = "invalid-message" })
+                        </div>
+                    </div>
+                </div>
+            </div>
+            @if (!string.IsNullOrEmpty(Model.ImageUniqueFileName))
+            {
+                <div class="row">
+                    <div class="col-md-4">
+                        <div class="small opacity-75 lh-sm mt-2 mb-1">@Resource.CurrentImage:</div>
+                        <figure class="figure mb-1">
+                            <a href="~/UploadedFiles/@Model.ImageUniqueFileName" target="_blank" data-bs-toggle="tooltip" data-bs-placement="right" title="Open Image in New Tab"><img src="~/UploadedFiles/@Model.ImageUniqueFileName" class="figure-img img-fluid rounded" alt="Profile picture image"></a>
+                        </figure>
+                        <div><span class="color-secondarycolor fw600 cursor-pointer" onclick="triggerDeleteConfirmationModal('@Url.Action("deleteimage", new { id = Model.Id })')"><i class="fa-solid fa-trash-can"></i> @Resource.Delete @Resource.CurrentImage</span></div>
+                    </div>
+                </div>
+            }
+        </div>
+
+        <div class="row mt-4">
+            <div class="col-12">
+                <a type="button" class="btn form-btn btn-secondary hover-boxshadow me-1" href="@Url.Action("index")">@Resource.BackToList</a>
+                <button type="submit" class="btn form-btn btn-primary hover-boxshadow">
+                    <span>@Resource.Save & @Resource.Next</span>
+                </button>
+            </div>
+        </div>
+    }
+</section>
+
+@section Scripts{
+    <script>
+        //change default jquery validation message of "Please enter a multiple of {0}." to "Maximum decimal places allowed is 2"
+        $.extend($.validator.messages, {
+            step: $.validator.format("Maximum decimal places allowed is 2.")
+        });
+    </script>
+}

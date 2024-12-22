@@ -1,0 +1,126 @@
+﻿@model EMSYS.Models.ExamViewModel
+@using EMSYS.CustomHelper
+@{
+    ViewBag.Title = $"{Resource.ArrangeQuestionOrder}";
+    Layout = "~/Views/Shared/_LayoutAfterLogin.cshtml";
+    ViewBag.TableIdPrefix = "question";
+}
+
+<div class="row">
+    <div class="col-12">
+        <div style="--bs-breadcrumb-divider: '>';">
+            <ol class="breadcrumb m-0">
+                <li class="breadcrumb-item fw-normal"><a class="color-primarycolor opacity-50" href="@Url.Action("index")">@Resource.ExamManagement</a></li>
+                @if (!string.IsNullOrEmpty(Model.Id))
+                {
+                    <li class="breadcrumb-item fw-normal"><a class="color-primarycolor opacity-50" href="@Url.Action("viewrecord", new { id = Model.Id})">@Resource.View @Resource.Exam</a></li>
+                }
+                <li class="breadcrumb-item fw-normal active">@ViewBag.Title</li>
+            </ol>
+        </div>
+        <div class="page-title-box d-sm-flex align-items-center justify-content-between pt-2">
+            <h4 class="pagetitle mb-sm-0 fw600">@ViewBag.Title (@Model.Name)</h4>
+        </div>
+    </div>
+</div>
+
+@await Html.PartialAsync("~/Views/Exam/_Tabs.cshtml", new ViewDataDictionary(ViewData) {{ "active", "sortquestion" }, { "id", Model.Id }, { "random", Model.RandomizeQuestions } })
+
+<section class="section">
+    <div class="bg-white rounded p-3 p-lg-4 p-xl-5 shadow">
+        <h2 class="fs-20 fw600 mb-4">@Resource.DragAndDropToArrangeTheQuestionOrder</h2>
+        <div>
+            <ol id="items-list" class="moveable">
+                @foreach (var item in Model.QuestionListing.Listing)
+                {
+                    <li class="listitem" data-id="@item.Id">&nbsp; @item.QuestionTitle <i class="fs-12 color-primarycolor">(@item.QuestionTypeCode)</i></li>
+                }
+            </ol>
+        </div>
+    </div>
+    <div class="row mt-4">
+        <div class="col-12">
+            @if (Model.AlreadyStarted == true && Model.ExamStatus != "Ended")
+            {
+                <button type="button" class="btn form-btn btn-primary hover-boxshadow opacity-50" data-bs-toggle="tooltip" data-bs-placement="top" title="@Resource.CannotSaveExamTooltip">@Resource.Save</button>
+            }
+            else
+            {
+                <button id="save-button" type="button" class="btn form-btn btn-primary hover-boxshadow">@Resource.Save</button>
+            }
+        </div>
+    </div>
+</section>
+
+@section Scripts{
+    <script>
+        let items = document.querySelectorAll('#items-list > li');
+
+        items.forEach(item => {
+            $(item).prop('draggable', true);
+            item.addEventListener('dragstart', dragStart);
+            item.addEventListener('drop', dropped);
+            item.addEventListener('dragenter', cancelDefault);
+            item.addEventListener('dragover', cancelDefault);
+        });
+
+        function dragStart(e) {
+            var index = $(e.target).index();
+            e.dataTransfer.setData('text/plain', index);
+        }
+
+        function dropped(e) {
+            cancelDefault(e);
+
+            // get new and old index
+            let oldIndex = e.dataTransfer.getData('text/plain');
+            let target = $(e.target);
+            let newIndex = target.index();
+
+            // remove dropped items at old place
+            let dropped = $(this).parent().children().eq(oldIndex).remove();
+
+            // insert the dropped items at new place
+            if (newIndex < oldIndex) {
+                target.before(dropped);
+            } else {
+                target.after(dropped);
+            }
+        }
+
+        function cancelDefault(e) {
+            e.preventDefault();
+            e.stopPropagation();
+            return false;
+        }
+
+        $(function () {
+            const $items = $('.listitem');
+            const $saveButton = $('#save-button');
+            let examid = "@Model.Id";
+            let itemIds = [];
+            if ($saveButton.length) {
+                $saveButton.click(function () {
+                    var listitem = document.querySelector('.listitem');
+                    if (void 0 !== listitem && null != listitem) {
+                        for (const item of document.querySelectorAll(".listitem")) {
+                            var id = item.getAttribute("data-id");
+                            itemIds.push(id);
+                        }
+                    }
+                    $.ajax({
+                        type: 'POST',
+                        url: '/Exam/ProcessSortQuestion',
+                        data: { itemIds: itemIds, examId: examid },
+                        success: function () {
+                            location.reload();
+                        },
+                        error: function () {
+                            alert("Error while inserting data");
+                        }
+                    });
+                });
+            }
+        });
+    </script>
+}

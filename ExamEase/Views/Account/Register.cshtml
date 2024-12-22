@@ -1,0 +1,71 @@
+﻿@model RegisterViewModel
+@using EMSYS.CustomHelper
+@{
+    ViewBag.Title = Resource.SignUp;
+}
+@await Html.PartialAsync("~/Views/Shared/_Notification.cshtml")
+
+<div class="my-5"></div>
+
+<section class="py-10 px-3 px-sm-5">
+    <div class="container">
+        <div class="row justify-content-start align-items-start gx-0 gx-sm-5">
+            <div class="col-lg-6 pt-5 pt-lg-0 order-1 order-lg-0">
+                <img src="~/assets/register.jpg" class="img-fluid w-100 rounded" alt="" />
+            </div>
+            <div class="col-lg-6 order-0 order-lg-1">
+                <h1 class="fw600 pb-2 text-capitalizetitle-lg"><span class="color-primarycolor">@Resource.SignUp</span> @Resource.AnAccount</h1>
+                <div class="pb-3">@Resource.FillYourDetailsToRegister</div>
+                @if (Model.NoUserYet)
+                {
+                    <div class="alert alert-info mb-3"><span class="fw600">Important Note: </span>We discovered that the system has no users as of now. Please take note that the first user to register now will automatically be assigned a System Admin role. We assume System Admin is the first user who has access to this system. Anyway, the user role can be changed after this.</div>
+                }
+                @using (Html.BeginForm("register", "account", new { ReturnUrl = ViewBag.ReturnUrl }, FormMethod.Post, null, new { @class = "form-horizontal", role = "form" }))
+                {
+                    @Html.AntiForgeryToken()
+                    @if (Model.NoUserYet == false)
+                    {
+                        <div class="mb-3 text-break">
+                            <div class="form-group">
+                                @Html.LabelFor(model => model.RoleName, htmlAttributes: new { @class = "form-label required fw600", @for = "RoleId" })
+                                @CustomHelper.CustomDropDownList("RoleName", Model.RoleNameSelectList)
+                                @Html.ValidationMessageFor(model => model.RoleName, "", new { @class = "invalid-message" })
+                            </div>
+                        </div>
+                    }
+                    <div class="mb-3 text-break">
+                        <div class="form-group">
+                            @Html.LabelFor(model => model.UserName, htmlAttributes: new { @class = "form-label required fw600" })
+                            @Html.EditorFor(model => model.UserName, new { htmlAttributes = new { @class = "form-control" } })
+                            @Html.ValidationMessageFor(model => model.UserName, "", new { @class = "invalid-message" })
+                        </div>
+                    </div>
+                    <div class="mb-3 text-break">
+                        <div class="form-group">
+                            @Html.LabelFor(model => model.Email, htmlAttributes: new { @class = "form-label required fw600" })
+                            @Html.EditorFor(model => model.Email, new { htmlAttributes = new { @class = "form-control" } })
+                            @Html.ValidationMessageFor(model => model.Email, "", new { @class = "invalid-message" })
+                        </div>
+                    </div>
+                    <div class="mb-3 text-break">
+                        <div class="form-group">
+                            @Html.LabelFor(model => model.Password, htmlAttributes: new { @class = "form-label required fw600" })
+                            <i class="fa-solid fa-circle-info text-info" data-bs-toggle="tooltip" data-bs-placement="right"
+                           title="@Resource.PasswordRequirementText"></i>
+                            @Html.EditorFor(model => model.Password, new { htmlAttributes = new { @class = "form-control", @type = "password" } })
+                            @Html.ValidationMessageFor(model => model.Password, "", new { @class = "invalid-message" })
+                        </div>
+                    </div>
+                    <div class="mb-3 text-break">
+                        <div class="form-group">
+                            @Html.LabelFor(model => model.ConfirmPassword, htmlAttributes: new { @class = "form-label required fw600", @for = "ConfirmPassword" })
+                            @Html.EditorFor(model => model.ConfirmPassword, new { htmlAttributes = new { @class = "form-control", @type = "password", @id = "ConfirmPassword" } })
+                            @Html.ValidationMessageFor(model => model.ConfirmPassword, "", new { @class = "invalid-message" })
+                        </div>
+                    </div>
+                    <button type="submit" class="btn form-btn btn-primary hover-boxshadow hover-moveup">@Resource.SignUp</button>
+                }
+            </div>
+        </div>
+    </div>
+</section>

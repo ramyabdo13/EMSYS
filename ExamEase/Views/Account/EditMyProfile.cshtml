@@ -1,0 +1,105 @@
+﻿@model EMSYS.Models.UserProfileViewModel
+@using EMSYS.CustomHelper
+@using EMSYS.Models;
+
+@{
+    ViewBag.Title = Resource.EditMyProfile;
+    Layout = "~/Views/Shared/_LayoutAfterLogin.cshtml";
+}
+
+<div class="row">
+    <div class="col-12">
+        <div style="--bs-breadcrumb-divider: '>';">
+            <ol class="breadcrumb m-0">
+                <li class="breadcrumb-item fw-normal"><a class="color-primarycolor opacity-50" href="@Url.Action("myprofile")">@Resource.MyProfile</a></li>
+                <li class="breadcrumb-item fw-normal active">@ViewBag.Title</li>
+            </ol>
+        </div>
+        <div class="page-title-box d-sm-flex align-items-center justify-content-between pt-2">
+            <h4 class="pagetitle mb-sm-0 fw600">@ViewBag.Title</h4>
+        </div>
+    </div>
+</div>
+
+@using (Html.BeginForm("EditMyProfile", "Account", new { ReturnUrl = ViewBag.ReturnUrl }, FormMethod.Post,null, new { @class = "form-horizontal", role = "form", enctype = "multipart/form-data" }))
+{
+    @Html.HiddenFor(m => m.Id)
+    @Html.HiddenFor(m => m.AspNetUserId)
+    @Html.HiddenFor(m => m.Username)
+    @Html.HiddenFor(m => m.EmailAddress)
+    <section class="section mt-3">
+        <div class="bg-white rounded p-3 p-lg-4 p-xl-5 shadow mb-4">
+            <h2 class="fs-20 fw600">@Resource.SystemInformation</h2>
+            <p class="mb-4">@Resource.NoteSystemInformation</p>
+            <div class="row">
+                <div class="col-md-6">
+                    <div class="mb-3 text-break">
+                        <div>@Html.LabelFor(model => model.Username, htmlAttributes: new { @class = "fw600" })</div>
+                        <div>@Html.DisplayFor(model => model.Username, new { htmlAttributes = new { @class = "form-control d-block" } })</div>
+                    </div>
+                </div>
+                <div class="col-md-6">
+                    <div class="mb-3 text-break">
+                        <div>@Html.LabelFor(model => model.EmailAddress, htmlAttributes: new { @class = "fw600" })</div>
+                        <div>@Html.DisplayFor(model => model.EmailAddress, new { htmlAttributes = new { @class = "form-control" } })</div>
+                    </div>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-md-6">
+                    <div class="mb-3 text-break">
+                        <div>@Html.LabelFor(model => model.UserStatusName, htmlAttributes: new { @class = "fw600" })</div>
+                        <div>@Html.DisplayFor(model => model.UserStatusName, new { htmlAttributes = new { @class = "form-control" } })</div>
+                    </div>
+                </div>
+                <div class="col-md-6">
+                    <div class="mb-3 text-break">
+                        <div>@Html.LabelFor(model => model.UserRoleName, htmlAttributes: new { @class = "fw600" })</div>
+                        <div>@Html.DisplayFor(model => model.UserRoleName, new { htmlAttributes = new { @class = "form-control" } })</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!-- This section is for normal user to upload their profile picture-->
+        @if (Model.ProfilePictureFileName != null)
+        {
+            <div class="bg-white rounded p-3 p-lg-4 p-xl-5 shadow my-4">
+                <h2 class="fs-20 fw600 mb-4 text-capitalize">@Resource.ProfilePicture</h2>
+                <div class="row">
+                    <div class="col-md-2">
+                        @if (Model.ProfilePictureFileName == null || Model.ProfilePictureFileName == "")
+                        {
+                            <figure class="figure">
+                                <a href="~/assets/defaultProfilePicture.jpg" target="_blank" data-bs-toggle="tooltip" data-bs-placement="top" title="Click to Open Image in New Tab"><img src="~/assets/defaultProfilePicture.jpg" class="figure-img img-fluid rounded" alt="Profile picture image"></a>
+                            </figure>
+                        }
+                        else
+                        {
+                            <figure class="figure">
+                                <a href="~/UploadedFiles/@Model.ProfilePictureFileName" target="_blank" data-bs-toggle="tooltip" data-bs-placement="top" title="Click to Open Image in New Tab"><img src="~/UploadedFiles/@Model.ProfilePictureFileName" class="figure-img img-fluid rounded" alt="Profile picture image"></a>
+                            </figure>
+                        }
+                    </div>
+                    <div class="col-md-6">
+                        <div class="mb-3 text-break">
+                            <div class="form-group">
+                                <label class="form-label fw600">@Resource.SelectAnImageFile</label>
+                                @Html.TextBox("ProfilePicture", "", new { @type = "file", @class = "form-control", @accept = "image/*" })
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-md-4">
+
+                    </div>
+                </div>
+            </div>
+        }
+        @await Html.PartialAsync("~/Views/User/_EditProfileInfo.cshtml")
+        <div class="row mt-4">
+            <div class="col-12">
+                <a type="button" class="btn form-btn btn-secondary hover-boxshadow me-1" href="@Url.Action("index")">@Resource.Back</a>
+                <button id="save-btn" type="submit" class="btn form-btn btn-primary hover-boxshadow">@Resource.Save</button>
+            </div>
+        </div>
+    </section>
+}

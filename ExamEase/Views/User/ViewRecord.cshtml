@@ -1,0 +1,62 @@
+﻿@model EMSYS.Models.UserProfileViewModel
+@using EMSYS.CustomHelper
+@using EMSYS.Models
+@{
+    ViewBag.Title = Resource.ViewUser;
+    Layout = "~/Views/Shared/_LayoutAfterLogin.cshtml";
+}
+
+<div class="row">
+    <div class="col-12">
+        <div style="--bs-breadcrumb-divider: '>';">
+            <ol class="breadcrumb m-0">
+                <li class="breadcrumb-item fw-normal"><a class="color-primarycolor opacity-50" href="@Url.Action("index")">@Resource.UserManagement</a></li>
+                <li class="breadcrumb-item fw-normal active">@ViewBag.Title</li>
+            </ol>
+        </div>
+        <div class="page-title-box d-sm-flex align-items-center justify-content-between pt-2">
+            <div class="pagetitle mb-sm-0 fw600">
+                @ViewBag.Title
+            </div>
+            <div class="d-flex">
+                <span class="fs-20"><a href="@Url.Action("edit", new { Id = Model.Id })"><i class="fa-solid fa-edit text-edit hover-color-secondarycolor" data-bs-toggle="tooltip" data-bs-placement="top" title="@Resource.Edit"></i></a></span>
+                <span class="fs-20">&nbsp; <a href="@Url.Action("index","userattachment", new { Id = Model.Id })"><i class="fa-solid fa-file text-attachment hover-color-secondarycolor" data-bs-toggle="tooltip" data-bs-placement="top" title="@Resource.ManageUserAttachment"></i></a></span>
+                <span class="fs-20">&nbsp; <a href="@Url.Action("adminchangepassword", new { Id = Model.Id })"><i class="fa-solid fa-key text-resetpassword hover-color-secondarycolor" data-bs-toggle="tooltip" data-bs-placement="top" title="@Resource.ResetPassword"></i></a></span>
+                <span class="fs-20">&nbsp; <i onclick="triggerDeleteConfirmationModal('@Url.Action("delete", new { id = Model.Id })')" class="fa-solid fa-trash-can text-delete cursor-pointer hover-color-secondarycolor" data-bs-toggle="tooltip" data-bs-placement="top" title="@Resource.Delete"></i></span>
+            </div>
+        </div>
+    </div>
+</div>
+
+<section class="section mt-3">
+    <div class="bg-white rounded p-3 p-lg-4 p-xl-5 shadow mb-4">
+        <h2 class="fs-20 fw600 mb-4 text-capitalize">@Resource.ProfilePicture</h2>
+        <div class="row">
+            <div class="col-md-2">
+                @if (Model.ProfilePictureFileName == null || Model.ProfilePictureFileName == "")
+                {
+                    <figure class="figure">
+                        <a href="~/assets/defaultProfilePicture.jpg" target="_blank" data-bs-toggle="tooltip" data-bs-placement="top" title="Click to Open Image in New Tab"><img src="~/assets/defaultProfilePicture.jpg" class="figure-img mb-0 img-fluid rounded" alt="Profile picture image"></a>
+                    </figure>
+                }
+                else
+                {
+                    <figure class="figure">
+                        <a href="~/UploadedFiles/@Model.ProfilePictureFileName" target="_blank" data-bs-toggle="tooltip" data-bs-placement="top" title="Click to Open Image in New Tab"><img src="~/UploadedFiles/@Model.ProfilePictureFileName" class="figure-img mb-0 img-fluid rounded" alt="Profile picture image"></a>
+                    </figure>
+                }
+            </div>
+            <div class="col-md-6">
+            </div>
+            <div class="col-md-4">
+            </div>
+        </div>
+    </div>
+    @await Html.PartialAsync("~/Views/User/_ProfileInfo.cshtml")
+    <div class="row mt-4">
+        <div class="col-12">
+            <a class="btn form-btn btn-secondary hover-boxshadow me-1" href="@Url.Action("index")">@Resource.BackToList</a>
+            <a class="btn form-btn btn-primary hover-boxshadow me-1" href="@Url.Action("edit", new { Id = Model.Id})">@Resource.EditUser</a>
+        </div>
+    </div>
+</section>

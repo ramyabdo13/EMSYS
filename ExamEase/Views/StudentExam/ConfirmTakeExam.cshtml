@@ -1,0 +1,44 @@
+﻿@model EMSYS.Models.ExamViewModel
+@{
+    ViewBag.Title = Resource.Exam;
+    ViewBag.ModuleName = Resource.Exam;
+    Layout = "~/Views/Shared/_LayoutAfterLogin.cshtml";
+}
+
+<div class="row">
+    <div class="col-12">
+        <div class="page-title-box d-sm-flex align-items-center justify-content-between pt-2">
+            <h4 class="pagetitle mb-sm-0 fw600">@Model.Name</h4>
+        </div>
+        <div>@Model.Description</div>
+    </div>
+</div>
+<section class="section mt-3">
+    <div class="bg-white rounded p-3 p-lg-4 p-xl-5 shadow">
+        <h2 class="fs-20 fw600 mb-4">@Resource.Readytostarttheexam</h2>
+        <p class="mb-4">@Resource.CannotReturnToPreviousQuestion</p>
+        <div class="mb-3 text-break">
+            <div>@Html.LabelFor(model => model.Name, htmlAttributes: new { @class = "fw600" }): @Model.Name</div>
+        </div>
+        <div class="mb-3 text-break">
+            <div>@Html.LabelFor(model => model.Duration, htmlAttributes: new { @class = "fw600" }): @Model.Duration (@Resource.Minutes)</div>
+        </div>
+        <div class="mb-3 text-break">
+            <div>@Html.LabelFor(model => model.TotalQuestions, htmlAttributes: new { @class = "fw600" }): @Model.TotalQuestions</div>
+        </div>
+    </div>
+    <div class="row mt-4">
+        <div class="col-12">
+            <a class="btn form-btn btn-primary hover-boxshadow me-1" href="@Url.Action("takeexam","studentexam",new{eid =Model.Id, sId = Model.StudentId, num = 1 })">
+                @if (Model.AlreadyStarted == true)
+                {
+                    @Resource.ContinueExam
+                }
+                else
+                {
+                    @Resource.StartNow
+                }
+            </a>
+        </div>
+    </div>
+</section>

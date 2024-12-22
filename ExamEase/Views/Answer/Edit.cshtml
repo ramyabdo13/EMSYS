@@ -1,0 +1,144 @@
+﻿@model  AnswerViewModel
+@using EMSYS.CustomHelper
+@{
+
+    ViewBag.Title = $"{Resource.Add}/{Resource.Edit} {Resource.Answer}";
+    Layout = "~/Views/Shared/_LayoutAfterLogin.cshtml";
+    var answerText = "";
+    if (Model.AnswerOptions != null && Model.AnswerOptions.Count > 0)
+    {
+        answerText = Model.AnswerOptions[0]?.Text;
+    }
+}
+
+<div class="row">
+    <div class="col-12">
+        <div style="--bs-breadcrumb-divider: '>';">
+            <ol class="breadcrumb m-0">
+                <li class="breadcrumb-item fw-normal"><a class="color-primarycolor opacity-50" href="@Url.Action("index","question")">@Resource.QuestionManagement</a></li>
+                @if (!string.IsNullOrEmpty(Model.QuestionId))
+                {
+                    <li class="breadcrumb-item fw-normal"><a class="color-primarycolor opacity-50" href="@Url.Action("viewrecord","question", new { id = Model.QuestionId})">@Resource.View @Resource.Question</a></li>
+                }
+                <li class="breadcrumb-item fw-normal active">@ViewBag.Title</li>
+            </ol>
+        </div>
+        <div class="page-title-box d-sm-flex align-items-center justify-content-between pt-2">
+            <h4 class="pagetitle mb-sm-0 fw600">@ViewBag.Title</h4>
+        </div>
+    </div>
+</div>
+
+<ul class="nav nav-tabs">
+    @if (!string.IsNullOrEmpty(Model.QuestionId))
+    {
+        <li class="nav-item">
+            <a class="nav-link hover-color-secondarycolor" href="@Url.Action("edit", "question", new { Id = Model.QuestionId})">@Resource.Edit @Resource.Question</a>
+        </li>
+    }
+    <li class="nav-item">
+        <a class="nav-link active">@ViewBag.Title</a>
+    </li>
+</ul>
+
+<section class="section">
+    @using (Html.BeginForm("Edit", "Answer", new { ReturnUrl = ViewBag.ReturnUrl }, FormMethod.Post, null, new { @class = "form-horizontal", role = "form", enctype = "multipart/form-data" }))
+    {
+        @Html.HiddenFor(m => m.Id)
+        @Html.HiddenFor(m => m.QuestionId)
+        @Html.HiddenFor(m => m.QuestionTypeCode)
+        @Html.HiddenFor(m => m.QuestionTitle)
+        @Html.HiddenFor(m => m.QuestionTypeName)
+        <div class="bg-white rounded p-3 p-lg-4 p-xl-5 shadow">
+            <h2 class="fs-20 fw600 mb-4">@Resource.Question @Resource.Information</h2>
+            <div class="row">
+                <div class="mb-3 text-break">
+                    <div class="form-group">
+                        <div>@Html.LabelFor(model => model.QuestionTitle, htmlAttributes: new { @class = "form-label fw600" })</div>
+                        <div>  @Html.DisplayFor(m => m.QuestionTitle)</div>
+                    </div>
+                </div>
+            </div>
+            <div class="row">
+                <div class="mb-3 text-break">
+                    <div class="form-group">
+                        <div>@Html.LabelFor(model => model.QuestionTypeName, htmlAttributes: new { @class = "form-label fw600" })</div>
+                        <div>  @Html.DisplayFor(m => m.QuestionTypeName)</div>
+                    </div>
+                </div>
+            </div>
+            <hr>
+            <h2 class="fs-20 fw600 pt-2 mb-4">@Resource.Answer @Resource.Information</h2>
+            <div class="row mb-2">
+                <div class="form-group">
+                    <div class="fw600">@Resource.NoteColon</div>
+                    <ul class="text-info mb-0">
+                        <li>@Resource.EmptyAnswerWillBeIgnored</li>
+                        @if (Model.QuestionTypeCode == "MCQ")
+                        {
+                            <li>@Resource.CheckTheRadioButtonForCorrectAnswer</li>
+                        }
+                        else if (Model.QuestionTypeCode == "SA")
+                        {
+                            <li>@Resource.AnswerCasesInfo</li>
+                            <li>@Resource.ShortAnswerOptionsDescription</li>
+                        }
+                        <li>@Resource.ChangeAnswerNote</li>
+                    </ul>
+                </div>
+            </div>
+            <div class="row text-danger">
+                @Html.ValidationSummary()
+            </div>
+            @for (int i = 0; i < Model.AnswerOptions.Count; i++)
+            {
+                @Html.HiddenFor(a=>a.AnswerOptions[i].Id)
+                if (Model.QuestionTypeCode == "SA")
+                {
+                    <div class="row align-items-center mb-2 gx-0">
+                        <textarea class="form-control text-box single-line answerinput" type="text" placeholder="@Resource.Fillinansweroption" asp-for="AnswerOptions[i].Text" name="AnswerOptions[@i].Text" value="@Model.AnswerOptions[i].Text" rows="1"></textarea>
+                    </div>
+                }
+                else if (Model.QuestionTypeCode == "MCQ")
+                {
+                    <div class="d-flex align-items-center mb-1">
+                        @if (Model.AnswerOptions[i].IsCorrect == true)
+                        {
+                            <input class="form-check-input mt-0 me-2" type="radio" id="AnswerOptions[@i].IsCorrect" name="CorrectAnswer" value="@i" style="width:1.2em;height:1.2em;vertical-align:middle;" checked>
+                        }
+                        else
+                        {
+                            <input class="form-check-input mt-0 me-2" type="radio" id="AnswerOptions[@i].IsCorrect" name="CorrectAnswer" value="@i" style="width:1.2em;height:1.2em;vertical-align:middle;">
+                        }
+                        <textarea class="form-control text-box single-line answerinput" type="text" placeholder="@Resource.Fillinansweroption" asp-for="AnswerOptions[i].Text" name="AnswerOptions[@i].Text" value="@Model.AnswerOptions[i].Text" rows="1"></textarea>
+                    </div>
+                }
+            }
+            <div id="otheroptions">
+            </div>
+            <div class="mt-2">
+                <button id="addoption" type="button" class="btn form-btn btn-secondary hover-boxshadow me-1"><i class="fa-solid fa-plus"></i> @Resource.Add @Resource.AnswerOption</button>
+            </div>
+        </div>
+        <div class="row mt-4">
+            <div class="col-12">
+                <a class="btn form-btn btn-secondary hover-boxshadow me-1" href="@Url.Action("index","question")">@Resource.BackToList</a>
+                <a class="btn form-btn btn-secondary hover-boxshadow me-1" href="@Url.Action("edit","question")"><i class="fa-solid fa-plus"></i> @Resource.AddAnotherQuestion</a>
+                <button type="submit" class="btn form-btn btn-primary hover-boxshadow">@Resource.Save</button>
+            </div>
+        </div>
+    }
+</section>
+
+@section Scripts{
+    <script>
+        $("#addoption").click(function () {
+            var number = $('textarea.answerinput').length;
+            if ("@Model.QuestionTypeCode" == "MCQ") {
+                $("#otheroptions").append("<div class='d-flex align-items-center mb-1'><input class='form-check-input mt-0 me-2' type='radio' name='CorrectAnswer' id='AnswerOptions[" + number + "].IsCorrect' value='" + number + "' style='width:1.2em;height:1.2em;vertical-align:middle'><textarea class='form-control text-box single-line answerinput' id='AnswerOptions_" + number + "__Text' name='AnswerOptions[" + number + "].Text' type='text' value='' placeholder='@Resource.Fillinansweroption' rows='1'></textarea></div>");
+            } else if ("@Model.QuestionTypeCode" == "SA") {
+                $("#otheroptions").append("<div class='row align-items-center mb-2 gx-0'><textarea class='form-control text-box single-line answerinput' id='AnswerOptions_" + number + "__Text' name='AnswerOptions[" + number + "].Text' value='' rows='1' type='text' placeholder='@Resource.Fillinansweroption'></textarea></div>");
+            }
+        });
+    </script>
+}

@@ -1,0 +1,102 @@
+﻿@model EMSYS.Models.UserAttachmentViewModel
+@using EMSYS.CustomHelper
+@{
+    ViewBag.Title = Resource.EditUserAttachment;
+    Layout = "~/Views/Shared/_LayoutAfterLogin.cshtml";
+}
+
+<div class="row">
+    <div class="col-12">
+        <div style="--bs-breadcrumb-divider: '>';">
+            <ol class="breadcrumb m-0">
+                <li class="breadcrumb-item fw-normal"><a class="color-primarycolor opacity-50" href="@Url.Action("index","user")">@Resource.UserManagement</a></li>
+                <li class="breadcrumb-item fw-normal"><a class="color-primarycolor opacity-50" href="@Url.Action("viewrecord","user", new { Id = Model.UserProfileId })">@Resource.ViewUser</a></li>
+                <li class="breadcrumb-item fw-normal"><a class="color-primarycolor opacity-50" href="@Url.Action("index", new {Id = Model.UserProfileId })">@Resource.ManageUserAttachment</a></li>
+                <li class="breadcrumb-item fw-normal active">@Resource.EditUserAttachment</li>
+            </ol>
+        </div>
+        <div class="page-title-box d-sm-flex align-items-center justify-content-between pt-2">
+            <h4 class="pagetitle mb-sm-0 fw600">@Resource.EditUserAttachment</h4>
+        </div>
+    </div>
+</div>
+
+<section class="section mt-3">
+    <div class="bg-white rounded p-3 p-lg-4 px-lg-5 shadow">
+        <h2 class="fs-20 fw600 mb-4">@Resource.EditAttachments</h2>
+        <div class="row">
+            <div class="col-md-6">
+                <div class="mb-3 text-break">
+                    <div>@Html.LabelFor(model => model.Username, htmlAttributes: new { @class = "fw600" })</div>
+                    <div>@Html.DisplayFor(model => model.Username)</div>
+                </div>
+            </div>
+            <div class="col-md-6">
+                <div class="mb-3 text-break">
+                    <div>@Html.LabelFor(model => model.FullName, htmlAttributes: new { @class = "fw600" })</div>
+                    <div>@Html.DisplayFor(model => model.FullName)</div>
+                </div>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-md-6">
+                <div class="mb-3 text-break">
+                    <div>@Html.LabelFor(model => model.FileName, htmlAttributes: new { @class = "fw600" })</div>
+                    <div>@Html.DisplayFor(model => model.FileName)</div>
+                </div>
+            </div>
+            <div class="col-md-6">
+                <div class="mb-3 text-break">
+                    <div>@Html.LabelFor(model => model.AttachmentTypeName, htmlAttributes: new { @class = "fw600" })</div>
+                    <div>@Html.DisplayFor(model => model.AttachmentTypeName)</div>
+                </div>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-md-6">
+                <div class="mb-3 text-break">
+                    <div>@Html.LabelFor(model => model.CreatedAndModified.FormattedCreatedOn, htmlAttributes: new { @class = "fw600" })</div>
+                    <div class="datetimetext">@Html.DisplayFor(model => model.CreatedAndModified.FormattedCreatedOn)</div>
+                </div>
+            </div>
+            <div class="col-md-6">
+                <div class="mb-3 text-break">
+                    <div>@Html.LabelFor(model => model.CreatedAndModified.CreatedByName, htmlAttributes: new { @class = "fw600" })</div>
+                    <div>@Html.DisplayFor(model => model.CreatedAndModified.CreatedByName)</div>
+                </div>
+            </div>
+        </div>
+    </div>
+    @using (Html.BeginForm("Edit", "UserAttachment", new { ReturnUrl = ViewBag.ReturnUrl }, FormMethod.Post, null, new { @class = "form-horizontal", role = "form" }))
+    {
+        @Html.HiddenFor(m => m.UserProfileId)
+        @Html.HiddenFor(m => m.AspNetUserId)
+        @Html.HiddenFor(m => m.Id)
+        @Html.HiddenFor(m => m.Username)
+        @Html.HiddenFor(m => m.FullName)
+        @Html.HiddenFor(m => m.FileName)
+        @Html.HiddenFor(m => m.FileUrl)
+        @Html.HiddenFor(m => m.AttachmentTypeName)
+        @Html.HiddenFor(m => m.UploadedBy)
+        @Html.HiddenFor(m => m.UploadedOn)
+        @Html.HiddenFor(m => m.IsoUtcUploadedOn)
+        <div class="bg-white rounded p-3 p-lg-4 p-xl-5 shadow mt-4">
+            <div class="alert alert-danger alert-dismissible pb-2" style="display:none;" id="validation-msg"></div>
+            <div class="row">
+                <div class="col-md-6">
+                    <div class="mb-3 text-break">
+                        @Html.LabelFor(model => model.AttachmentTypeId, htmlAttributes: new { @class = "form-label required fw600" }) <a class="color-secondarycolor fs-12 hover-color-primarycolor" href="@Url.Action("edit","userattachmenttype")" target="_blank">Create New</a>
+                        @CustomHelper.CustomDropDownList("AttachmentTypeId", Model.UserAttachmentTypeSelectList)
+                        @Html.ValidationMessageFor(model => model.AttachmentTypeId, "", new { @class = "invalid-message" })
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="row mt-4">
+            <div class="col-12">
+                <a type="button" class="btn form-btn btn-secondary hover-boxshadow me-1" href="@Url.Action("index","userattachment",new{Id=Model.UserProfileId})">@Resource.BackToList</a>
+                <button type="submit" class="btn form-btn btn-primary hover-boxshadow">@Resource.Save</button>
+            </div>
+        </div>
+    }
+</section>

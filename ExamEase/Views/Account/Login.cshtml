@@ -1,0 +1,90 @@
+﻿@using EMSYS.Models
+@using Microsoft.Extensions.Configuration
+@inject IConfiguration Configuration;
+@model             LoginViewModel
+@{
+    ViewBag.Title = Resource.Login;
+}
+
+@await Html.PartialAsync("~/Views/Shared/_Notification.cshtml")
+
+<div class="my-5"></div>
+
+<section class="py-10 px-3 px-sm-5">
+    <div class="container">
+        <div class="row justify-content-start align-items-start gx-0 gx-sm-5">
+            <div class="col-lg-6 pt-5 pt-lg-0 order-1 order-lg-0">
+                <img src="~/assets/login.jpg" class="img-fluid w-100 rounded" alt="" />
+            </div>
+            <div class="col-lg-6 order-0 order-lg-1">
+                <h1 class="fw600 pb-2 title-lg"><span class="color-primarycolor">@Resource.Login</span> @Resource.ToNetStarter</h1>
+                <div class="pb-3">@Resource.FillInYourUsernameAndPasswordToSignIn</div>
+                @if (Configuration.GetValue<string>("environment") == "prod")
+                {
+                    <div class="border rounded p-2 mb-2">
+                        <div class="fs-11 text-edit">Demo Admin Username: <span class="fw600">nsadmin</span>, Password: <span class="fw600">Admin@123</span>&nbsp;&nbsp;<i id="copyAdminDemoBtn" class="ps-1 fs-12 fa-solid fa-copy cursor-pointer" data-bs-toggle="tooltip" data-bs-placement="top" title="Copy"></i></div>
+                        <div class="fs-11 text-edit">Demo Teacher Username: <span class="fw600">samantha</span>, Password: <span class="fw600">User@123</span>&nbsp;&nbsp;<i id="copyTeacherDemoBtn" class="ps-1 fs-12 fa-solid fa-copy cursor-pointer" data-bs-toggle="tooltip" data-bs-placement="top" title="Copy"></i></div>
+                        <div class="fs-11 text-edit">Demo Student Username: <span class="fw600">athena</span>, Password: <span class="fw600">User@123</span>&nbsp;&nbsp;<i id="copyStudentDemoBtn" class="ps-1 fs-12 fa-solid fa-copy cursor-pointer" data-bs-toggle="tooltip" data-bs-placement="top" title="Copy"></i></div>
+                    </div>
+                }
+                @Html.ValidationSummary("", new { @class = "invalid-message" })
+                @using (Html.BeginForm("Login", "Account", new { ReturnUrl = ViewBag.ReturnUrl }, FormMethod.Post, null, new { @class = "form-horizontal", role = "form" }))
+                {
+                    @Html.AntiForgeryToken()
+                    <div class="mb-3 text-break">
+                        <div class="form-group">
+                            @Html.LabelFor(model => model.UserName, htmlAttributes: new { @class = "form-label required fw600" })
+                            @Html.EditorFor(model => model.UserName, new { htmlAttributes = new { @class = "form-control" } })
+                            @Html.ValidationMessageFor(model => model.UserName, "", new { @class = "invalid-message" })
+                        </div>
+                    </div>
+                    <div class="mb-3 text-break">
+                        <div class="form-group">
+                            @Html.LabelFor(model => model.Password, htmlAttributes: new { @class = "form-label required fw600" })
+                            @Html.EditorFor(model => model.Password, new { htmlAttributes = new { @class = "form-control", @type = "password" } })
+                            @Html.ValidationMessageFor(model => model.Password, "", new { @class = "invalid-message" })
+                        </div>
+                    </div>
+                    <div class="row gx-0 mb-4">
+                        <div class="col-md-6">
+                            <div class="form-check">
+                                @Html.CheckBoxFor(m => m.RememberMe, htmlAttributes: new { @class = "form-check-input", @type = "checkbox" })
+                                @Html.LabelFor(model => model.RememberMe, htmlAttributes: new { @class = "form-check-label small fw-light" })
+                            </div>
+                        </div>
+                        <div class="col-md-6 text-start text-md-end">
+                            <a class="small fw500 color-secondarycolor hover-color-primarycolor" href="@Url.Action("ForgotPassword")">@Resource.ForgotYourPassword</a>
+                        </div>
+                    </div>
+                    <button type="submit" class="btn form-btn btn-primary hover-boxshadow hover-moveup">@Resource.Submit</button>
+                }
+            </div>
+        </div>
+    </div>
+</section>
+
+@section Scripts{
+    <script>
+        var btn = document.querySelector("#copyAdminDemoBtn");
+        btn.addEventListener("click", function() {
+            var inputusername = document.querySelector("input#UserName");  
+            inputusername.value = "nsadmin";
+             var inputpw = document.querySelector("input#Password");  
+            inputpw.value = "Admin@123";
+        });
+        var btnTeacher = document.querySelector("#copyTeacherDemoBtn");
+        btnTeacher.addEventListener("click", function () {
+            var inputusername = document.querySelector("input#UserName");
+            inputusername.value = "samantha";
+             var inputpw = document.querySelector("input#Password");  
+            inputpw.value = "User@123";
+        });
+        var btnStudent = document.querySelector("#copyStudentDemoBtn");
+        btnStudent.addEventListener("click", function () {
+            var inputusername = document.querySelector("input#UserName");
+            inputusername.value = "athena";
+            var inputpw = document.querySelector("input#Password");
+            inputpw.value = "User@123";
+        });
+        </script>
+}

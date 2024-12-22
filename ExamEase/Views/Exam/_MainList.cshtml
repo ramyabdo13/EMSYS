@@ -1,0 +1,167 @@
+﻿@model PaginatedList<EMSYS.Models.ExamViewModel>
+@{
+    string sort = ViewData["CurrentSort"].ToString();
+    int calculatedTo = (Model.PageIndex - 1) * Model.PageSize + Model.PageSize;
+    int calculatedFrom = (Model.PageIndex - 1) * Model.PageSize + 1;
+    int showingFrom = Model.TotalItems == 0 ? 0 : calculatedFrom;
+    int showingTo = (calculatedTo) > Model.TotalItems ? Model.TotalItems : (calculatedTo);
+    string lockedColumnWidth = "200px";
+}
+
+<div class="row justify-content-between align-items-end pb-1">
+    <div class="col-sm-7 col-xl-3">
+        @await Html.PartialAsync("~/Views/Shared/_TableLengthDropDown.cshtml", new ViewDataDictionary(ViewData) { { "DropDownId", "-tableDropDown" },{"PageSize", Model.PageSize },{"TotalItems", Model.TotalItems } })
+    </div>
+    <div class="col-xl-4"></div>
+    <div class="col-xl-5 pt-2 pt-sm-0">
+        <div id="searchinput">
+            <div class="input-group flex-nowrap">
+                <input type="text" id="search" name="search" value="@ViewData["CurrentSearch"]" class="form-control" placeholder="@Model.SearchMessage" />
+                <a class="input-group-text bg-transparent hover-bg-primarycolor hover-color-white cursor-pointer"
+                   id="searchbtn"
+                   onclick="refreshTable('@ViewData["CurrentSort"]', null, null, '@ViewData["CurrentSize"]', false, false)"><i class="fa-solid fa-magnifying-glass pe-1"></i> @Resource.Search</a>
+                <a class="input-group-text bg-transparent hover-bg-primarycolor hover-color-white cursor-pointer" onclick="resetTable()"><i class="fa-solid fa-rotate-left pe-1"></i> @Resource.Reset</a>
+            </div>
+        </div>
+    </div>
+</div>
+<div id="-table-wrapper">
+    <div class="table-responsive">
+        <table id="-table" class="table table-hover align-middle mb-0">
+            <thead class="table-light">
+                <tr>
+                    @foreach (var item in Model.ColumnHeaders)
+                    {
+                        if (item.Key != "Actions")
+                        {
+                            <th class="thead @(item.Key == "Name" ? "locked-column" : "")">
+                                <a class="d-flex justify-content-between align-items-center cursor-pointer" onclick="refreshTable('@item.OrderAction','@ViewData["CurrentSearch"]',null,'@ViewData["CurrentSize"]')">
+                                    <span style="@(item.Key == "Name" ? $"min-width:{lockedColumnWidth};max-width:{lockedColumnWidth};"
+                                    //date time column min-width
+                                    : item.Key == "StartDate" ? $"min-width:{ListUtil.DateTimeColumnWidth};"
+                                    : item.Key == "EndDate" ? $"min-width:{ListUtil.DateTimeColumnWidth};"
+                                    : item.Key == "CreatedOn" ? $"min-width:{ListUtil.DateTimeColumnWidth};"
+                                    : "")">@item.Title</span>
+                                    <i class="fa-solid fs-12 text-muted @(sort.Contains(item.Key.ToString())? sort.Contains("asc")? "fa-arrow-up-wide-short": sort.Contains("desc")? "fa-arrow-down-wide-short": "": "")"></i>
+                                </a>
+                            </th>
+                        }
+                        else
+                        {
+                            <th class="thead notexport actioncol"><div class="d-flex justify-content-between align-items-center"><span>@item.Title</span></div></th>
+                        }
+                    }
+                </tr>
+            </thead>
+            <tbody>
+                @foreach (var item in Model)
+                {
+                    <!-- In small screens, when scrolling to the right to click on the action button, the user doesn't know which exam the row is referring to, so display the exam name in a toast when the user clicks on the tr (row). -->
+                    <tr onclick="openHintToast('@Html.Raw(item.Name.Replace("'", "\\&#39;").Replace("\"", "\\&#34;"))')">
+                        <td class="locked-column">
+                            <a class="fw600 color-primarycolor hover-color-secondarycolor locked-column-text" style="max-width:@lockedColumnWidth;" href="@Url.Action("viewrecord", new { Id = @Html.ValueFor(modelItem => item.Id) })" title="@item.Name">@item.Name</a>
+                        </td>
+                        <td class="datetimetext">@item.StartDateIsoUtc</td>
+                        <td class="datetimetext">@item.EndDateIsoUtc</td>
+                        <td>@item.Duration</td>
+                        <td>@item.TotalQuestions</td>
+                        <td>@item.TotalMark</td>
+                        <td>@await Html.PartialAsync("_ExamStatusBadge", new ViewDataDictionary(ViewData) { { "ExamStatus", @item.ExamStatus } })</td>
+                        <td class="datetimetext">@item.CreatedOnIsoUtc</td>
+                        <td>
+                            <div class="d-flex text-breakspaces">
+                                <span class="fs-20 canedit"><a href="@Url.Action("edit", new { Id = @Html.ValueFor(modelItem => item.Id) })"><i class="fa-solid fa-edit text-edit hover-color-secondarycolor" data-bs-toggle="tooltip" data-bs-placement="top" title="@Resource.Edit"></i></a> &nbsp;</span>
+                                <span class="fs-20 canedit"><a href="@Url.Action("addquestion", new { Id = @Html.ValueFor(modelItem => item.Id) })"><i class="fa-solid fa-clipboard-question text-attachment hover-color-secondarycolor" data-bs-toggle="tooltip" data-bs-placement="top" title="@Resource.Add @Resource.Question"></i></a> &nbsp;</span>
+                                <span class="fs-20 candelete" onclick="triggerDeleteConfirmationModal('@Url.Action("delete", new { id = item.Id })')"><i class="fa-solid fa-trash-can text-delete hover-color-secondarycolor cursor-pointer" data-bs-toggle="tooltip" data-bs-placement="top" title="@Resource.Delete"></i></span>
+                            </div>
+                        </td>
+                    </tr>
+                }
+            </tbody>
+        </table>
+    </div>
+    <div class="row justify-content-between align-items-center fs-14 mb-2">
+        <div class="col-md-6">
+            Showing @showingFrom to @showingTo of @Model.TotalItems Records
+        </div>
+        <div class="col-md-6 text-end">
+            <nav class="d-inline-block" aria-label="Page navigation example">
+                <ul class="pagination m-0">
+                    <li class="page-item">
+                        @if (Model.HasPreviousPage)
+                        {
+                            <a onclick="refreshTable('@ViewData["CurrentSort"]','@ViewData["CurrentSearch"]','@(Model.PageIndex - 1)','@ViewData["CurrentSize"]')" class="page-link cursor-pointer">@Resource.Previous</a>
+                        }
+                        else
+                        {
+                            <span class="page-link cursor-default disabled opacity-50">@Resource.Previous</span>
+                        }
+                    </li>
+                    @if (Model.PageIndex > 3)
+                    {
+                        <li class="page-item">
+                            <a onclick="refreshTable('@ViewData["CurrentSort"]','@ViewData["CurrentSearch"]', '1','@ViewData["CurrentSize"]')" class="page-link cursor-pointer">1</a>
+                        </li>
+                        <li class="page-item disabled"><a class="page-link" href="#">...</a></li>
+                    }
+                    @for (int i = Math.Max(1, Model.PageIndex - 2); i <= Math.Min(Model.TotalPages, Model.PageIndex + 2); i++)
+                    {
+                        <li class="page-item @(i == Model.PageIndex ? "active" : "")">
+                            <a onclick="refreshTable('@ViewData["CurrentSort"]','@ViewData["CurrentSearch"]', '@i', '@ViewData["CurrentSize"]')" class="page-link cursor-pointer">@i</a>
+                        </li>
+                    }
+                    @if (Model.PageIndex < Model.TotalPages - 2)
+                    {
+                        <li class="page-item disabled"><a class="page-link" href="#">...</a></li>
+                        <li class="page-item">
+                            <a onclick="refreshTable('@ViewData["CurrentSort"]','@ViewData["CurrentSearch"]', '@Model.TotalPages','@ViewData["CurrentSize"]')" class="page-link cursor-pointer">@Model.TotalPages</a>
+                        </li>
+                    }
+                    <li class="page-item">
+                        @if (Model.HasNextPage)
+                        {
+                            <a onclick="refreshTable('@ViewData["CurrentSort"]','@ViewData["CurrentSearch"]', '@(Model.PageIndex + 1)','@ViewData["CurrentSize"]')" class="page-link cursor-pointer">@Resource.Next</a>
+                        }
+                        else
+                        {
+                            <span class="page-link cursor-default disabled opacity-50">@Resource.Next</span>
+                        }
+                    </li>
+                </ul>
+            </nav>
+        </div>
+    </div>
+</div>
+
+<script>
+    var tableWrapper = document.getElementById("-table-wrapper");
+    var table = document.getElementById("-table");
+    var tableDropDown = document.getElementById("-tableDropDown");
+    if (tableWrapper != null) {
+        tableWrapper.id = tableIdPrefix + "-table-wrapper";
+    }
+    if (table != null) {
+        table.id = tableIdPrefix + "-table";
+    }
+    if (tableDropDown != null) {
+        tableDropDown.id = tableIdPrefix + "-tableDropDown";
+    }
+
+    initDropdownlist();
+    //event listener for the "show 10 records" drop down list
+    for (const option of document.querySelectorAll("#" + tableIdPrefix + "-tableDropDown .custom-option")) {
+        option.addEventListener('click', function () {
+            this.parentNode.querySelector('.custom-option.selected').classList.remove('selected');
+            this.classList.add('selected');
+            this.closest('.select').querySelector('.select__trigger span').textContent = this.textContent;
+            let chosenValue = this.getAttribute("data-value");
+            refreshTable('@ViewData["CurrentSort"]', '@ViewData["CurrentSearch"]', null, chosenValue, false, false);
+        })
+    }
+
+    var tooltipTriggerList = [].slice.call(document.querySelectorAll('[data-bs-toggle="tooltip"]'))
+    var tooltipList = tooltipTriggerList.map(function (tooltipTriggerEl) {
+        return new bootstrap.Tooltip(tooltipTriggerEl)
+    })
+
+</script>

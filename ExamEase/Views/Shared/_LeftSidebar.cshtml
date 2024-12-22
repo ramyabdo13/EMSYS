@@ -1,0 +1,233 @@
+﻿@using EMSYS.Models
+@using Microsoft.AspNetCore.Identity
+
+<!-- ======= Sidebar ======= -->
+<aside id="sidebar-default" class="sidebar d-none d-md-block" tabindex="-1">
+    <ul class="sidebar-nav" id="sidebar-nav">
+        <li class="nav-item mt-3"><a class="nav-link @(ViewContext.RouteData.Values["Controller"].ToString().ToLower() == "dashboard" && ViewContext.RouteData.Values["Action"].ToString().ToLower() == "index" ? "active" : "")" href="@Url.Action("index","dashboard")"><i class="fa-solid fa-chart-pie"></i><span>@Resource.Dashboard</span></a></li>
+        @if (User.IsInRole("System Admin"))
+        {
+            <li class="nav-item">
+                <a class="nav-link collapsed @(ViewContext.RouteData.Values["Controller"].ToString().ToLower() == "systemrole" ? "active" : "")" data-bs-target="#components-nav" data-bs-toggle="collapse" href="#">
+                    <i class="fa-solid fa-gear"></i><span>@Resource.GeneralSettings</span><i class="fa-solid fa-caret-down ms-auto"></i>
+                </a>
+                <ul id="components-nav" class="nav-content collapse " data-bs-parent="#sidebar-nav">
+                    <li><a href="@Url.Action("index","userstatus")" class="@(ViewContext.RouteData.Values["Controller"].ToString().ToLower() == "userstatus" ? "active" : "")"><i class="fa-solid fa-user-tag"></i><span>@Resource.UserStatus</span></a></li>
+                    <li><a href="@Url.Action("index","userattachmenttype")" class="@(ViewContext.RouteData.Values["Controller"].ToString().ToLower() == "userattachmenttype" ? "active" : "")"><i class="fa-solid fa-file"></i><span>@Resource.UserAttachmentType</span></a></li>
+                </ul>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link @(ViewContext.RouteData.Values["Controller"].ToString().ToLower() == "classhub" ? "active" : "")" href="@Url.Action("index","classhub")">
+                    <i class="fa-solid fa-building"></i> <span>@Resource.ClassManagement</span>
+                </a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link @(ViewContext.RouteData.Values["Controller"].ToString().ToLower() == "user" || ViewContext.RouteData.Values["Controller"].ToString().ToLower() == "userattachment" ? "active" : "")" href="@Url.Action("index","user")">
+                    <i class="fa-solid fa-user-plus"></i> <span>@Resource.UserManagement</span>
+                </a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link @(ViewContext.RouteData.Values["Controller"].ToString().ToLower() == "subject" ? "active" : "")" href="@Url.Action("index","subject")">
+                    <i class="fa-solid fa-book-bookmark"></i> <span>@Resource.SubjectManagement</span>
+                </a>
+            </li>
+        }
+        @if (User.IsInRole("System Admin") || User.IsInRole("Teacher"))
+        {
+            <li class="nav-item">
+                <a class="nav-link @(ViewContext.RouteData.Values["Controller"].ToString().ToLower() == "question" || ViewContext.RouteData.Values["Controller"].ToString().ToLower() == "answer" ? "active" : "")" href="@Url.Action("index","question")">
+                    <i class="fa-solid fa-question"></i> <span>@Resource.QuestionManagement</span>
+                </a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link @(ViewContext.RouteData.Values["Controller"].ToString().ToLower() == "exam" ? "active" : "")" href="@Url.Action("index","exam")">
+                    <i class="fa-solid fa-file-lines"></i> <span>@Resource.ExamManagement</span>
+                </a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link @(ViewContext.RouteData.Values["Controller"].ToString().ToLower() == "result" ? "active" : "")" href="@Url.Action("index","result")">
+                    <i class="fa-solid fa-certificate"></i> <span>@Resource.ExamResult</span>
+                </a>
+            </li>
+        }
+        @if (User.IsInRole("Student"))
+        {
+            <li class="nav-item">
+                <a class="nav-link @(ViewContext.RouteData.Values["Controller"].ToString().ToLower() == "studentexam" && ViewContext.RouteData.Values["Action"].ToString().ToLower() == "upcomingexam" ? "active" : "")" href="@Url.Action("upcomingexam","studentexam")">
+                    <i class="fa-solid fa-meteor"></i> <span>@Resource.UpcomingExams</span>
+                </a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link @(ViewContext.RouteData.Values["Controller"].ToString().ToLower() == "studentexam" && ViewContext.RouteData.Values["Action"].ToString().ToLower() == "currentexam" || ViewContext.RouteData.Values["Action"].ToString().ToLower() =="confirmtakeexam" ? "active" : "")" href="@Url.Action("currentexam","studentexam")">
+                    <i class="fa-solid fa-circle-play"></i> <span>@Resource.CurrentExams</span>
+                </a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link @((ViewContext.RouteData.Values["Controller"].ToString().ToLower() == "studentexam" && ViewContext.RouteData.Values["Action"].ToString().ToLower() == "pastexam") || ViewContext.RouteData.Values["Controller"].ToString().ToLower() == "result" ? "active" : "")" href="@Url.Action("pastexam","studentexam")">
+                    <i class="fa-solid fa-circle-stop"></i> <span>@Resource.PastExams</span>
+                </a>
+            </li>
+        }
+        <li class="nav-item">
+            <a class="nav-link @(ViewContext.RouteData.Values["Controller"].ToString().ToLower() == "loginhistory"  & ViewContext.RouteData.Values["Action"].ToString().ToLower() == "index"? "active" : "")" href="@Url.Action("index","loginhistory")">
+                <i class="fa-solid fa-clock-rotate-left"></i> <span>@Resource.LoginHistory</span>
+            </a>
+        </li>
+    </ul>
+</aside>
+
+<!-- ======= 'Only icon' sidebar ======= -->
+<aside id="sidebar-onlyicon" class="sidebar onlyicon d-none d-sm-block d-md-none">
+    <ul class="sidebar-nav" id="sidebar-nav">
+        <li class="nav-item mt-3"><a class="nav-link @(ViewContext.RouteData.Values["Controller"].ToString().ToLower() == "dashboard" && ViewContext.RouteData.Values["Action"].ToString().ToLower() == "index" ? "active" : "")" href="@Url.Action("index","dashboard")" data-bs-toggle="tooltip" data-bs-placement="right" title="@Resource.Dashboard"><i class="fa-solid fa-chart-pie"></i></a></li>
+        @if (User.IsInRole("System Admin"))
+        {
+            <li class="nav-item">
+                <a class="nav-link collapsed @(ViewContext.RouteData.Values["Controller"].ToString().ToLower() == "systemrole" ? "active" : "")" data-bs-target="#components-nav" data-bs-toggle="collapse" href="#">
+                    <i class="fa-solid fa-gear" data-bs-toggle="tooltip" data-bs-placement="right" title="@Resource.GeneralSettings"></i> <i class="fa-solid fa-caret-down ms-auto"></i>
+                </a>
+                <ul id="components-nav" class="nav-content collapse " data-bs-parent="#sidebar-nav">
+                    <li><a href="@Url.Action("index","userstatus")" class="@(ViewContext.RouteData.Values["Controller"].ToString().ToLower() == "userstatus" ? "active" : "")" data-bs-toggle="tooltip" data-bs-placement="right" title="@Resource.UserStatus"><i class="fa-solid fa-user-tag"></i></a></li>
+                    <li><a href="@Url.Action("index","userattachmenttype")" class="@(ViewContext.RouteData.Values["Controller"].ToString().ToLower() == "userattachmenttype" ? "active" : "")" data-bs-toggle="tooltip" data-bs-placement="right" title="@Resource.UserAttachmentType"><i class="fa-solid fa-file"></i></a></li>
+                </ul>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link @(ViewContext.RouteData.Values["Controller"].ToString().ToLower() == "classhub" ? "active" : "")" href="@Url.Action("index","classhub")" data-bs-toggle="tooltip" data-bs-placement="right" title="@Resource.ClassManagement">
+                    <i class="fa-solid fa-building"></i>
+                </a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link @(ViewContext.RouteData.Values["Controller"].ToString().ToLower() == "user" || ViewContext.RouteData.Values["Controller"].ToString().ToLower() == "userattachment" ? "active" : "")" href="@Url.Action("index","user")" data-bs-toggle="tooltip" data-bs-placement="right" title="@Resource.UserManagement">
+                    <i class="fa-solid fa-user-plus"></i>
+                </a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link @(ViewContext.RouteData.Values["Controller"].ToString().ToLower() == "subject" ? "active" : "")" href="@Url.Action("index","subject")" data-bs-toggle="tooltip" data-bs-placement="right" title="@Resource.SubjectManagement">
+                    <i class="fa-solid fa-book-bookmark"></i>
+                </a>
+            </li>
+        }
+        @if (User.IsInRole("System Admin") || User.IsInRole("Teacher"))
+        {
+            <li class="nav-item">
+                <a class="nav-link @(ViewContext.RouteData.Values["Controller"].ToString().ToLower() == "question" || ViewContext.RouteData.Values["Controller"].ToString().ToLower() == "answer" ? "active" : "")" href="@Url.Action("index","question")" data-bs-toggle="tooltip" data-bs-placement="right" title="@Resource.QuestionManagement">
+                    <i class="fa-solid fa-question"></i>
+                </a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link @(ViewContext.RouteData.Values["Controller"].ToString().ToLower() == "exam" ? "active" : "")" href="@Url.Action("index","exam")" data-bs-toggle="tooltip" data-bs-placement="right" title="@Resource.ExamManagement">
+                    <i class="fa-solid fa-file-lines"></i>
+                </a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link @(ViewContext.RouteData.Values["Controller"].ToString().ToLower() == "result" ? "active" : "")" href="@Url.Action("index","result")" data-bs-toggle="tooltip" data-bs-placement="right" title="@Resource.ExamResult">
+                    <i class="fa-solid fa-certificate"></i>
+                </a>
+            </li>
+        }
+        @if (User.IsInRole("Student"))
+        {
+            <li class="nav-item">
+                <a class="nav-link @(ViewContext.RouteData.Values["Controller"].ToString().ToLower() == "studentexam" && ViewContext.RouteData.Values["Action"].ToString().ToLower() == "upcomingexam" ? "active" : "")" href="@Url.Action("upcomingexam","studentexam")" data-bs-toggle="tooltip" data-bs-placement="right" title="@Resource.UpcomingExams">
+                    <i class="fa-solid fa-meteor"></i>
+                </a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link @(ViewContext.RouteData.Values["Controller"].ToString().ToLower() == "studentexam" && ViewContext.RouteData.Values["Action"].ToString().ToLower() == "currentexam" || ViewContext.RouteData.Values["Action"].ToString().ToLower() =="confirmtakeexam" ? "active" : "")" href="@Url.Action("currentexam","studentexam")" data-bs-toggle="tooltip" data-bs-placement="right" title="@Resource.CurrentExams">
+                    <i class="fa-solid fa-circle-play"></i>
+                </a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link @((ViewContext.RouteData.Values["Controller"].ToString().ToLower() == "studentexam" && ViewContext.RouteData.Values["Action"].ToString().ToLower() == "pastexam") || ViewContext.RouteData.Values["Controller"].ToString().ToLower() == "result" ? "active" : "")" href="@Url.Action("pastexam","studentexam")" data-bs-toggle="tooltip" data-bs-placement="right" title="@Resource.PastExams">
+                    <i class="fa-solid fa-circle-stop"></i>
+                </a>
+            </li>
+        }
+        <li class="nav-item">
+            <a class="nav-link @(ViewContext.RouteData.Values["Controller"].ToString().ToLower() == "loginhistory" ? "active" : "")" href="@Url.Action("index","loginhistory")" data-bs-toggle="tooltip" data-bs-placement="right" title="@Resource.LoginHistory">
+                <i class="fa-solid fa-clock-rotate-left"></i>
+            </a>
+        </li>
+    </ul>
+</aside>
+
+<!-- ======= offcanvas Sidebar for Mobile phone device ======= -->
+<aside id="offcanvas" class="offcanvas offcanvas-start" tabindex="-1">
+    <div class="brandname ps-3">EMSYS</div>
+    <ul class="sidebar-nav" id="sidebar-nav">
+        <li class="nav-item mt-3"><a class="nav-link @(ViewContext.RouteData.Values["Controller"].ToString().ToLower() == "dashboard" && ViewContext.RouteData.Values["Action"].ToString().ToLower() == "index" ? "active" : "")" href="@Url.Action("index","dashboard")"><i class="fa-solid fa-chart-pie"></i><span>@Resource.Dashboard</span></a></li>
+        @if (User.IsInRole("System Admin"))
+        {
+            <li class="nav-item">
+                <a class="nav-link collapsed @(ViewContext.RouteData.Values["Controller"].ToString().ToLower() == "systemrole" ? "active" : "")" data-bs-target="#components-nav" data-bs-toggle="collapse" href="#">
+                    <i class="fa-solid fa-gear"></i><span>@Resource.GeneralSettings</span><i class="fa-solid fa-caret-down ms-auto"></i>
+                </a>
+                <ul id="components-nav" class="nav-content collapse " data-bs-parent="#sidebar-nav">
+                    <li><a href="@Url.Action("index","userstatus")" class="@(ViewContext.RouteData.Values["Controller"].ToString().ToLower() == "userstatus" ? "active" : "")"><i class="fa-solid fa-user-tag"></i><span>@Resource.UserStatus</span></a></li>
+                    <li><a href="@Url.Action("index","userattachmenttype")" class="@(ViewContext.RouteData.Values["Controller"].ToString().ToLower() == "userattachmenttype" ? "active" : "")"><i class="fa-solid fa-file"></i><span>@Resource.UserAttachmentType</span></a></li>
+                </ul>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link @(ViewContext.RouteData.Values["Controller"].ToString().ToLower() == "classhub" ? "active" : "")" href="@Url.Action("index","classhub")">
+                    <i class="fa-solid fa-building"></i> <span>@Resource.ClassManagement</span>
+                </a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link @(ViewContext.RouteData.Values["Controller"].ToString().ToLower() == "user" || ViewContext.RouteData.Values["Controller"].ToString().ToLower() == "userattachment" ? "active" : "")" href="@Url.Action("index","user")">
+                    <i class="fa-solid fa-user-plus"></i> <span>@Resource.UserManagement</span>
+                </a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link @(ViewContext.RouteData.Values["Controller"].ToString().ToLower() == "subject" ? "active" : "")" href="@Url.Action("index","subject")">
+                    <i class="fa-solid fa-book-bookmark"></i> <span>@Resource.SubjectManagement</span>
+                </a>
+            </li>
+        }
+        @if (User.IsInRole("System Admin") || User.IsInRole("Teacher"))
+        {
+            <li class="nav-item">
+                <a class="nav-link @(ViewContext.RouteData.Values["Controller"].ToString().ToLower() == "question" || ViewContext.RouteData.Values["Controller"].ToString().ToLower() == "answer" ? "active" : "")" href="@Url.Action("index","question")">
+                    <i class="fa-solid fa-question"></i> <span>@Resource.QuestionManagement</span>
+                </a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link @(ViewContext.RouteData.Values["Controller"].ToString().ToLower() == "exam" ? "active" : "")" href="@Url.Action("index","exam")">
+                    <i class="fa-solid fa-file-lines"></i> <span>@Resource.ExamManagement</span>
+                </a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link @(ViewContext.RouteData.Values["Controller"].ToString().ToLower() == "result" ? "active" : "")" href="@Url.Action("index","result")">
+                    <i class="fa-solid fa-certificate"></i> <span>@Resource.ExamResult</span>
+                </a>
+            </li>
+        }
+        @if (User.IsInRole("Student"))
+        {
+            <li class="nav-item">
+                <a class="nav-link @(ViewContext.RouteData.Values["Controller"].ToString().ToLower() == "studentexam" && ViewContext.RouteData.Values["Action"].ToString().ToLower() == "upcomingexam" ? "active" : "")" href="@Url.Action("upcomingexam","studentexam")">
+                    <i class="fa-solid fa-meteor"></i> <span>@Resource.UpcomingExams</span>
+                </a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link @(ViewContext.RouteData.Values["Controller"].ToString().ToLower() == "studentexam" && ViewContext.RouteData.Values["Action"].ToString().ToLower() == "currentexam" || ViewContext.RouteData.Values["Action"].ToString().ToLower() =="confirmtakeexam" ? "active" : "")" href="@Url.Action("currentexam","studentexam")">
+                    <i class="fa-solid fa-circle-play"></i> <span>@Resource.CurrentExams</span>
+                </a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link @((ViewContext.RouteData.Values["Controller"].ToString().ToLower() == "studentexam" && ViewContext.RouteData.Values["Action"].ToString().ToLower() == "pastexam") || ViewContext.RouteData.Values["Controller"].ToString().ToLower() == "result" ? "active" : "")" href="@Url.Action("pastexam","studentexam")">
+                    <i class="fa-solid fa-circle-stop"></i> <span>@Resource.PastExams</span>
+                </a>
+            </li>
+        }
+        <li class="nav-item">
+            <a class="nav-link @(ViewContext.RouteData.Values["Controller"].ToString().ToLower() == "loginhistory" ? "active" : "")" href="@Url.Action("index","loginhistory")">
+                <i class="fa-solid fa-clock-rotate-left"></i> <span>@Resource.LoginHistory</span>
+            </a>
+        </li>
+        <li class="nav-item d-inline-block d-sm-none">
+            <div class="ps-2">
+                @await Html.PartialAsync("~/Views/Shared/_LoginPartial.cshtml")
+            </div>
+        </li>
+    </ul>
+</aside>

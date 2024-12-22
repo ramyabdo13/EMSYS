@@ -1,0 +1,1236 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<root>
+  <!-- 
+    Microsoft ResX Schema 
+    
+    Version 2.0
+    
+    The primary goals of this format is to allow a simple XML format 
+    that is mostly human readable. The generation and parsing of the 
+    various data types are done through the TypeConverter classes 
+    associated with the data types.
+    
+    Example:
+    
+    ... ado.net/XML headers & schema ...
+    <resheader name="resmimetype">text/microsoft-resx</resheader>
+    <resheader name="version">2.0</resheader>
+    <resheader name="reader">System.Resources.ResXResourceReader, System.Windows.Forms, ...</resheader>
+    <resheader name="writer">System.Resources.ResXResourceWriter, System.Windows.Forms, ...</resheader>
+    <data name="Name1"><value>this is my long string</value><comment>this is a comment</comment></data>
+    <data name="Color1" type="System.Drawing.Color, System.Drawing">Blue</data>
+    <data name="Bitmap1" mimetype="application/x-microsoft.net.object.binary.base64">
+        <value>[base64 mime encoded serialized .NET Framework object]</value>
+    </data>
+    <data name="Icon1" type="System.Drawing.Icon, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
+        <value>[base64 mime encoded string representing a byte array form of the .NET Framework object]</value>
+        <comment>This is a comment</comment>
+    </data>
+                
+    There are any number of "resheader" rows that contain simple 
+    name/value pairs.
+    
+    Each data row contains a name, and value. The row also contains a 
+    type or mimetype. Type corresponds to a .NET class that support 
+    text/value conversion through the TypeConverter architecture. 
+    Classes that don't support this are serialized and stored with the 
+    mimetype set.
+    
+    The mimetype is used for serialized objects, and tells the 
+    ResXResourceReader how to depersist the object. This is currently not 
+    extensible. For a given mimetype the value must be set accordingly:
+    
+    Note - application/x-microsoft.net.object.binary.base64 is the format 
+    that the ResXResourceWriter will generate, however the reader can 
+    read any of the formats listed below.
+    
+    mimetype: application/x-microsoft.net.object.binary.base64
+    value   : The object must be serialized with 
+            : System.Runtime.Serialization.Formatters.Binary.BinaryFormatter
+            : and then encoded with base64 encoding.
+    
+    mimetype: application/x-microsoft.net.object.soap.base64
+    value   : The object must be serialized with 
+            : System.Runtime.Serialization.Formatters.Soap.SoapFormatter
+            : and then encoded with base64 encoding.
+
+    mimetype: application/x-microsoft.net.object.bytearray.base64
+    value   : The object must be serialized into a byte array 
+            : using a System.ComponentModel.TypeConverter
+            : and then encoded with base64 encoding.
+    -->
+  <xsd:schema id="root" xmlns="" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:msdata="urn:schemas-microsoft-com:xml-msdata">
+    <xsd:import namespace="http://www.w3.org/XML/1998/namespace" />
+    <xsd:element name="root" msdata:IsDataSet="true">
+      <xsd:complexType>
+        <xsd:choice maxOccurs="unbounded">
+          <xsd:element name="metadata">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" />
+              </xsd:sequence>
+              <xsd:attribute name="name" use="required" type="xsd:string" />
+              <xsd:attribute name="type" type="xsd:string" />
+              <xsd:attribute name="mimetype" type="xsd:string" />
+              <xsd:attribute ref="xml:space" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="assembly">
+            <xsd:complexType>
+              <xsd:attribute name="alias" type="xsd:string" />
+              <xsd:attribute name="name" type="xsd:string" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="data">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" msdata:Ordinal="1" />
+                <xsd:element name="comment" type="xsd:string" minOccurs="0" msdata:Ordinal="2" />
+              </xsd:sequence>
+              <xsd:attribute name="name" type="xsd:string" use="required" msdata:Ordinal="1" />
+              <xsd:attribute name="type" type="xsd:string" msdata:Ordinal="3" />
+              <xsd:attribute name="mimetype" type="xsd:string" msdata:Ordinal="4" />
+              <xsd:attribute ref="xml:space" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="resheader">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" msdata:Ordinal="1" />
+              </xsd:sequence>
+              <xsd:attribute name="name" type="xsd:string" use="required" />
+            </xsd:complexType>
+          </xsd:element>
+        </xsd:choice>
+      </xsd:complexType>
+    </xsd:element>
+  </xsd:schema>
+  <resheader name="resmimetype">
+    <value>text/microsoft-resx</value>
+  </resheader>
+  <resheader name="version">
+    <value>2.0</value>
+  </resheader>
+  <resheader name="reader">
+    <value>System.Resources.ResXResourceReader, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </resheader>
+  <resheader name="writer">
+    <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </resheader>
+  <data name="AcceptedAnswers" xml:space="preserve">
+    <value>الإجابات المقبولة</value>
+  </data>
+  <data name="Actions" xml:space="preserve">
+    <value>أجراءات</value>
+  </data>
+  <data name="ActiveInactive" xml:space="preserve">
+    <value>نشط/غير نشط</value>
+  </data>
+  <data name="Add" xml:space="preserve">
+    <value>يضيف</value>
+  </data>
+  <data name="AddAnotherQuestion" xml:space="preserve">
+    <value>أضف سؤالا آخر</value>
+  </data>
+  <data name="AddNewRecord" xml:space="preserve">
+    <value>أضف سجل جديد</value>
+  </data>
+  <data name="AddQuestionForExam" xml:space="preserve">
+    <value>إضافة سؤال للامتحان</value>
+  </data>
+  <data name="AddressInformation" xml:space="preserve">
+    <value>معلومات العنوان</value>
+  </data>
+  <data name="AddUser" xml:space="preserve">
+    <value>إضافة مستخدم</value>
+  </data>
+  <data name="AllocateMarks" xml:space="preserve">
+    <value>تخصيص العلامات</value>
+  </data>
+  <data name="AllocateMarksForEachQuestion" xml:space="preserve">
+    <value>الإعطاء العلامات لكل سؤال في الامتحان</value>
+  </data>
+  <data name="AllocateMarksNote" xml:space="preserve">
+    <value>ملاحظة: إذا كان هناك بالفعل طلاب قد اتخذوا الامتحان، فسيؤدي تغيير العلامات هنا إلى إعادة حساب علاماتهم أيضًا.</value>
+  </data>
+  <data name="alreadyexists" xml:space="preserve">
+    <value>موجود مسبقا.</value>
+  </data>
+  <data name="AnAccount" xml:space="preserve">
+    <value>حساب</value>
+  </data>
+  <data name="Anerroroccurred" xml:space="preserve">
+    <value>حدث خطأ أثناء معالجة طلبك.</value>
+  </data>
+  <data name="Answer" xml:space="preserve">
+    <value>إجابه</value>
+  </data>
+  <data name="AnswerCasesInfo" xml:space="preserve">
+    <value>لا يهم الأحرف الكبيرة أو الصغيرة ، فلن يؤثر ذلك على مطابقة إجابة الطالب والإجابة المقدمة.</value>
+  </data>
+  <data name="AnsweredCorrect" xml:space="preserve">
+    <value>أجاب بشكل صحيح</value>
+  </data>
+  <data name="AnswerOption" xml:space="preserve">
+    <value>خيار الإجابة</value>
+  </data>
+  <data name="AnswerSaved" xml:space="preserve">
+    <value>هل تم حفظ الإجابة؟</value>
+  </data>
+  <data name="AreyouSureToDeleteThisRecord" xml:space="preserve">
+    <value>هل أنت متأكد من حذف هذا السجل؟</value>
+  </data>
+  <data name="ArrangeQuestionOrder" xml:space="preserve">
+    <value>ترتيب السؤال</value>
+  </data>
+  <data name="AttachmentType" xml:space="preserve">
+    <value>نوع المرفق</value>
+  </data>
+  <data name="Back" xml:space="preserve">
+    <value>خلف</value>
+  </data>
+  <data name="BackToList" xml:space="preserve">
+    <value>الرجوع للقائمة</value>
+  </data>
+  <data name="ByDefaultSystemAdminCanManageWhileNormalUserCant" xml:space="preserve">
+    <value>بشكل افتراضي ، يمكن لمسؤول النظام إدارة هذه الوحدة ، بينما لا يمتلك المستخدم العادي إذنًا لعرض / إضافة / تحرير / حذف هذه الوحدة.</value>
+  </data>
+  <data name="CannotAddNewQuestionButCanExclude" xml:space="preserve">
+    <value>اجتاز الطلاب الامتحان بالفعل. لا يمكنك إضافة أسئلة جديدة إلى الامتحان. يمكنك فقط استبعاد الأسئلة من الاختبار إذا كانت إجابة السؤال غير صحيحة. سيقوم النظام بإعادة تقدير درجات الطلاب بعد استبعاد السؤال.</value>
+  </data>
+  <data name="CannotChooseEmptyAnswerAsCorrectAnswer" xml:space="preserve">
+    <value>لا يمكن اختيار إجابة فارغة كإجابة صحيحة.</value>
+  </data>
+  <data name="CannotEditQuestion" xml:space="preserve">
+    <value>هناك بالفعل طلاب يؤدون الامتحان. لا يمكنك إضافة أسئلة أو حذفها أثناء أداء الطالب للاختبار.</value>
+  </data>
+  <data name="CannotReturnToPreviousQuestion" xml:space="preserve">
+    <value>تحذير! يرجى حفظ الإجابة قبل النقر على زر "التالي" لأنه لا يمكن العودة إلى الأسئلة السابقة بعد النقر على الزر.</value>
+  </data>
+  <data name="CannotSaveExamTooltip" xml:space="preserve">
+    <value>بدأ الاختبار بالفعل. لا يمكنك تغيير التفاصيل إلا بعد انتهاء الاختبار.</value>
+  </data>
+  <data name="ChangeAnswerNote" xml:space="preserve">
+    <value>إذا كان هناك طلاب حاليون أجروا الاختبار الذي يحتوي على هذا السؤال وقمت بتغيير نص الإجابة أو غيرت الإجابة الصحيحة الآن ، فسيتم إعادة حساب نتيجتهم. هذا لحل مشكلة خطأ المعلم في اختيار الإجابة الخاطئة.</value>
+  </data>
+  <data name="ChangePassword" xml:space="preserve">
+    <value>غير كلمة السر</value>
+  </data>
+  <data name="ChangePasswordForUser" xml:space="preserve">
+    <value>تغيير كلمة المرور للمستخدم</value>
+  </data>
+  <data name="CheckTheRadioButtonForCorrectAnswer" xml:space="preserve">
+    <value>حدد زر الاختيار لتعيين الإجابة الصحيحة للسؤال.</value>
+  </data>
+  <data name="Class" xml:space="preserve">
+    <value>فصل</value>
+  </data>
+  <data name="ClassManagement" xml:space="preserve">
+    <value>الإدارة العليا</value>
+  </data>
+  <data name="ClickHereToLogin" xml:space="preserve">
+    <value>انقر هنا لتسجيل الدخول</value>
+  </data>
+  <data name="Clicktoseeerrordetail" xml:space="preserve">
+    <value>انقر لرؤية تفاصيل الخطأ.</value>
+  </data>
+  <data name="Close" xml:space="preserve">
+    <value>يغلق</value>
+  </data>
+  <data name="Code" xml:space="preserve">
+    <value>شفرة</value>
+  </data>
+  <data name="Column" xml:space="preserve">
+    <value>عمود</value>
+  </data>
+  <data name="ColumnsCountMismatch" xml:space="preserve">
+    <value>عدد الأعمدة غير متطابق.</value>
+  </data>
+  <data name="ConfigurationError" xml:space="preserve">
+    <value>خطأ في تكوين</value>
+  </data>
+  <data name="ConfirmEmail" xml:space="preserve">
+    <value>.تأكيد عنوان البريد الإلكتروني</value>
+  </data>
+  <data name="ConfirmNewPassword" xml:space="preserve">
+    <value>تأكيد كلمة المرور الجديدة</value>
+  </data>
+  <data name="ConfirmPassword" xml:space="preserve">
+    <value>تأكيد كلمة المرور</value>
+  </data>
+  <data name="ConfirmPasswordRequired" xml:space="preserve">
+    <value>مطلوب حقل تأكيد كلمة المرور.</value>
+  </data>
+  <data name="ContinueExam" xml:space="preserve">
+    <value>استمر في الامتحان</value>
+  </data>
+  <data name="Country" xml:space="preserve">
+    <value>دولة</value>
+  </data>
+  <data name="CountryNotFound" xml:space="preserve">
+    <value>البلد غير موجود.</value>
+  </data>
+  <data name="CountryRequired" xml:space="preserve">
+    <value>حقل البلد مطلوب.</value>
+  </data>
+  <data name="CreatedBy" xml:space="preserve">
+    <value>انشأ من قبل</value>
+  </data>
+  <data name="CreatedOn" xml:space="preserve">
+    <value>تم إنشاؤها على</value>
+  </data>
+  <data name="CurrentExams" xml:space="preserve">
+    <value>الامتحانات الحالية</value>
+  </data>
+  <data name="CurrentImage" xml:space="preserve">
+    <value>الصورة الحالية</value>
+  </data>
+  <data name="CurrentPassword" xml:space="preserve">
+    <value>كلمة المرور الحالي</value>
+  </data>
+  <data name="CurrentProfilePicture" xml:space="preserve">
+    <value>صورة الملف الشخصي الحالية:</value>
+  </data>
+  <data name="Dashboard" xml:space="preserve">
+    <value>لوحة القيادة</value>
+  </data>
+  <data name="DashboardRolePermissionDescription" xml:space="preserve">
+    <value>بشكل افتراضي ، يمكن لمسؤول النظام عرض لوحة معلومات تتعلق ببيانات جميع المستخدمين ، بينما يمكن للمستخدم العادي فقط عرض لوحة معلومات تتعلق ببياناتهم الخاصة.</value>
+  </data>
+  <data name="DateOfBirth" xml:space="preserve">
+    <value>تاريخ الولادة</value>
+  </data>
+  <data name="Delete" xml:space="preserve">
+    <value>حذف</value>
+  </data>
+  <data name="DemoAccountCannotBeDeleted" xml:space="preserve">
+    <value>عذرا ، لا يمكن حذف الحساب التجريبي.</value>
+  </data>
+  <data name="Description" xml:space="preserve">
+    <value>وصف</value>
+  </data>
+  <data name="DisabledQuestionOrderTooltip" xml:space="preserve">
+    <value>هذا معطل لأن الامتحان قد تم ضبط ترتيب الأسئلة عشوائيًا.</value>
+  </data>
+  <data name="DisplayOrder" xml:space="preserve">
+    <value>ترتيب العرض</value>
+  </data>
+  <data name="DragAndDropToArrangeTheQuestionOrder" xml:space="preserve">
+    <value>قم بالسحب والإفلات لترتيب ترتيب الأسئلة.</value>
+  </data>
+  <data name="DurationInMinute" xml:space="preserve">
+    <value>المدة (دقيقة)</value>
+  </data>
+  <data name="Edit" xml:space="preserve">
+    <value>تعديل</value>
+  </data>
+  <data name="EditAttachments" xml:space="preserve">
+    <value>تحرير المرفقات:</value>
+  </data>
+  <data name="EditExamDesciption" xml:space="preserve">
+    <value>تذكير لطيف: يرجى التحقق مرة أخرى من جميع تفاصيل الاختبار قبل تاريخ ووقت بدء الاختبار لتجنب الأخطاء أثناء قيام الطالب بإجراء الاختبار.</value>
+  </data>
+  <data name="EditMyProfile" xml:space="preserve">
+    <value>تعديل ملفي الشخصي</value>
+  </data>
+  <data name="EditQuestionDescription" xml:space="preserve">
+    <value>يرجى التأكد من صحة جميع الأسئلة والإجابات قبل بدء الاختبار ، حيث لا يمكن إضافة أسئلة أو حذفها أثناء قيام الطلاب بإجراء الاختبار.</value>
+  </data>
+  <data name="EditQuestionDescription2" xml:space="preserve">
+    <value>ومع ذلك ، إذا كانت إجابتك على سؤال غير صحيحة ، فلا يزال بإمكانك تصحيحها بعد انتهاء الاختبار. سيقوم النظام بإعادة تقدير درجات الطلاب تلقائيًا.</value>
+  </data>
+  <data name="EditUser" xml:space="preserve">
+    <value>تحرير العضو</value>
+  </data>
+  <data name="EditUserAttachment" xml:space="preserve">
+    <value>تحرير مرفق المستخدم</value>
+  </data>
+  <data name="EmailAddress" xml:space="preserve">
+    <value>عنوان البريد الإلكتروني</value>
+  </data>
+  <data name="EmailAddressTaken" xml:space="preserve">
+    <value>عنوان البريد الإلكتروني مأخوذ بالفعل. يرجى المحاولة مرة أخرى باستخدام عنوان بريد إلكتروني آخر.</value>
+  </data>
+  <data name="EmptyAnswerWillBeIgnored" xml:space="preserve">
+    <value>سيتم تجاهل خيار الإجابة الفارغة.</value>
+  </data>
+  <data name="EndDateTime" xml:space="preserve">
+    <value>تاريخ ووقت الانتهاء</value>
+  </data>
+  <data name="EndDateTime1" xml:space="preserve">
+    <value>تاريخ الانتهاء &amp; الوقت</value>
+  </data>
+  <data name="EndDateTimeMustBeGreater" xml:space="preserve">
+    <value>يجب أن يكون تاريخ ووقت الانتهاء أكبر من تاريخ ووقت البدء.</value>
+  </data>
+  <data name="EnterTheDetails" xml:space="preserve">
+    <value>أدخل التفاصيل</value>
+  </data>
+  <data name="Error" xml:space="preserve">
+    <value>خطأ</value>
+  </data>
+  <data name="Exam" xml:space="preserve">
+    <value>امتحان</value>
+  </data>
+  <data name="ExamCompleted" xml:space="preserve">
+    <value>اكتمل الامتحان</value>
+  </data>
+  <data name="ExamCompletedTooltip" xml:space="preserve">
+    <value>لقد تجاوز إجمالي الاختبارات تاريخ الانتهاء بالفعل.</value>
+  </data>
+  <data name="ExamDurationInfo" xml:space="preserve">
+    <value>المدة (بالدقائق) الممنوحة للطالب لإكمال الاختبار. بمجرد أن ينقر الطالب على زر "بدء الاختبار" ، سيبدأ الاختبار في العد التنازلي من قيمة هذه المدة.</value>
+  </data>
+  <data name="ExamEndDateTimeInfo" xml:space="preserve">
+    <value>هذا هو موعد استحقاق الطالب لبدء الاختبار. بعد هذا التاريخ والوقت ، لن يتمكن الطالب من إجراء الاختبار.</value>
+  </data>
+  <data name="ExamEndedDescription" xml:space="preserve">
+    <value>من المحتمل أن يكون قد تم إلغاء هذا الامتحان من قبل مدرس أو مدير. لا يمكنك الاستمرار في الامتحان بعد الآن.</value>
+  </data>
+  <data name="ExamEndedTitle" xml:space="preserve">
+    <value>عذرا، انتهت الامتحان.</value>
+  </data>
+  <data name="ExamFailed" xml:space="preserve">
+    <value>فشل الاختبار</value>
+  </data>
+  <data name="ExamFailedTooltip" xml:space="preserve">
+    <value>إجمالي عدد الاختبارات التي فشلت فيها. لا تستسلم ، إنها مجرد فرصة تعليمية ، لقد حصلت على هذا.</value>
+  </data>
+  <data name="ExamInProgress" xml:space="preserve">
+    <value>امتحان في التقدم</value>
+  </data>
+  <data name="ExamInProgressTooltip" xml:space="preserve">
+    <value>إجمالي الامتحان الذي لا يزال متاحًا للطلاب لبدء الاختبار.</value>
+  </data>
+  <data name="ExamManagement" xml:space="preserve">
+    <value>إدارة الامتحانات</value>
+  </data>
+  <data name="ExamName" xml:space="preserve">
+    <value>اسم الامتحان</value>
+  </data>
+  <data name="Examnotfound" xml:space="preserve">
+    <value>لم يتم العثور على الامتحان</value>
+  </data>
+  <data name="ExamPassed" xml:space="preserve">
+    <value>اجتاز الاختبار</value>
+  </data>
+  <data name="ExamPassedTooltip" xml:space="preserve">
+    <value>إجمالي عدد الاختبارات التي اجتزتها. تهانينا! يستمر في التقدم.</value>
+  </data>
+  <data name="ExamResult" xml:space="preserve">
+    <value>نتيجة الامتحان</value>
+  </data>
+  <data name="ExamStartDateTimeInfo" xml:space="preserve">
+    <value>يمكن للطالب التقدم للامتحان ابتداء من هذا التاريخ والوقت.</value>
+  </data>
+  <data name="Exit" xml:space="preserve">
+    <value>خروج</value>
+  </data>
+  <data name="ExporttoExcel" xml:space="preserve">
+    <value>تصدير إلى Excel</value>
+  </data>
+  <data name="ExportToExcelNote" xml:space="preserve">
+    <value>يمكنك التحكم في ما تريد تصديره إلى Excel قبل النقر فوق هذا. على سبيل المثال ، إذا كنت ترغب في تصدير جميع السجلات ، فانقر فوق "إظهار الكل" في زر القائمة المنسدلة أدناه قبل النقر فوق "تصدير إلى Excel".</value>
+  </data>
+  <data name="ExporttoPdf" xml:space="preserve">
+    <value>تصدير إلى ملف PDF</value>
+  </data>
+  <data name="ExportToPDFNote" xml:space="preserve">
+    <value>يمكنك التحكم في ما تريد تصديره إلى PDF قبل النقر فوق هذا. على سبيل المثال ، إذا كنت ترغب في تصدير جميع السجلات ، فانقر فوق "إظهار الكل" في زر القائمة المنسدلة أدناه قبل النقر فوق "تصدير إلى PDF".</value>
+  </data>
+  <data name="Failed" xml:space="preserve">
+    <value>فاشل</value>
+  </data>
+  <data name="FailedExceptionError" xml:space="preserve">
+    <value>فشل بسبب خطأ استثناء.</value>
+  </data>
+  <data name="FailedOnlyJpgJpegPngCanBeSetAsProfilePicture" xml:space="preserve">
+    <value>باءت بالفشل. يمكن فقط تعيين ملف jpg و jpeg و png كصورة الملف الشخصي.</value>
+  </data>
+  <data name="FailedToResetPassword" xml:space="preserve">
+    <value>فشل إعادة تعيين كلمة المرور.</value>
+  </data>
+  <data name="FieldIsRequired" xml:space="preserve">
+    <value>الحقل مطلوب.</value>
+  </data>
+  <data name="File" xml:space="preserve">
+    <value>ملف</value>
+  </data>
+  <data name="FileName" xml:space="preserve">
+    <value>اسم الملف</value>
+  </data>
+  <data name="FileURL" xml:space="preserve">
+    <value>URL الملف</value>
+  </data>
+  <data name="Fillinansweroption" xml:space="preserve">
+    <value>املأ خيار الإجابة</value>
+  </data>
+  <data name="FillInEmailAddressWeWillSendYouResetPasswordLink" xml:space="preserve">
+    <value>أدخل عنوان بريدك الإلكتروني ، وسنرسل لك رابطًا لإعادة تعيين كلمة المرور الخاصة بك.</value>
+  </data>
+  <data name="FillInYourUsernameAndPasswordToSignIn" xml:space="preserve">
+    <value>املأ اسم المستخدم وكلمة المرور لتسجيل الدخول.</value>
+  </data>
+  <data name="FillYourDetailsToRegister" xml:space="preserve">
+    <value>املأ بياناتك للتسجيل.</value>
+  </data>
+  <data name="Filter" xml:space="preserve">
+    <value>منقي</value>
+  </data>
+  <data name="FirstName" xml:space="preserve">
+    <value>الاسم الاول</value>
+  </data>
+  <data name="Forgot" xml:space="preserve">
+    <value>نسيت</value>
+  </data>
+  <data name="ForgotPassword" xml:space="preserve">
+    <value>هل نسيت كلمة السر</value>
+  </data>
+  <data name="ForgotYourPassword" xml:space="preserve">
+    <value>نسيت رقمك السري؟</value>
+  </data>
+  <data name="FullAddress" xml:space="preserve">
+    <value>العنوان الكامل</value>
+  </data>
+  <data name="FullName" xml:space="preserve">
+    <value>الاسم بالكامل</value>
+  </data>
+  <data name="Gender" xml:space="preserve">
+    <value>جنس تذكير أو تأنيث</value>
+  </data>
+  <data name="GeneralSettings" xml:space="preserve">
+    <value>الاعدادات العامة</value>
+  </data>
+  <data name="HomeIndexTabTitle" xml:space="preserve">
+    <value>NetStarter- قالب بدء تطبيق الويب ASP.NET MVC C #</value>
+  </data>
+  <data name="IDCardNumber" xml:space="preserve">
+    <value>رقم بطاقة الهوية</value>
+  </data>
+  <data name="ImportFromExcel" xml:space="preserve">
+    <value>الاستيراد من Excel</value>
+  </data>
+  <data name="ImportFromExcelDescription" xml:space="preserve">
+    <value>يرجى تنزيل نموذج Excel أدناه وإدخال بياناتك. الرجاء عدم تحرير أو إضافة أعمدة إضافية. سيتم تجاهل الأعمدة الإضافية أثناء استيراد البيانات. بعد الانتهاء من إدخال البيانات الخاصة بك في ملف Excel ، قم بحفظها وتحميلها من خلال قسم التحميل أدناه.</value>
+  </data>
+  <data name="ImportingDataFromExcelPleaseWait" xml:space="preserve">
+    <value>جاري استيراد البيانات من Excel ... الرجاء الانتظار ...</value>
+  </data>
+  <data name="ImportUserFromExcel" xml:space="preserve">
+    <value>استيراد مستخدم من Excel</value>
+  </data>
+  <data name="ImportUserFromExcelDescription" xml:space="preserve">
+    <value>يرجى تنزيل نموذج Excel أدناه وإدخال بيانات المستخدم الخاصة بك. الرجاء عدم تحرير أو إضافة أعمدة إضافية. سيتم تجاهل الأعمدة الإضافية أثناء استيراد البيانات. بعد الانتهاء من إدخال البيانات الخاصة بك في ملف Excel ، قم بحفظها وتحميلها من خلال قسم التحميل أدناه.</value>
+  </data>
+  <data name="Information" xml:space="preserve">
+    <value>معلومة</value>
+  </data>
+  <data name="IntakeYear" xml:space="preserve">
+    <value>المدخول العام</value>
+  </data>
+  <data name="InvalidDuration" xml:space="preserve">
+    <value>المدة غير صحيحة</value>
+  </data>
+  <data name="InvalidEmailAddress" xml:space="preserve">
+    <value>عنوان البريد الإلكتروني غير صالح.</value>
+  </data>
+  <data name="InvalidLoginAttempt" xml:space="preserve">
+    <value>محاولة تسجيل الدخول غير صحيحة</value>
+  </data>
+  <data name="InvalidPassword" xml:space="preserve">
+    <value>يجب أن تتكون كلمة المرور من 6 أحرف على الأقل ، بما في ذلك حرف واحد كبير على الأقل وحرف صغير واحد ورقم واحد ورمز واحد.</value>
+  </data>
+  <data name="InvalidPhoneNumber" xml:space="preserve">
+    <value>يرجى إدخال رقم هاتف صالح.</value>
+  </data>
+  <data name="InvalidPostalCode" xml:space="preserve">
+    <value>الرجاء إدخال رمز بريدي صالح.</value>
+  </data>
+  <data name="InvalidQuestionType" xml:space="preserve">
+    <value>نوع السؤال غير صالح. يرجى الاختيار من القائمة المنسدلة في Excel.</value>
+  </data>
+  <data name="InvalidSubject" xml:space="preserve">
+    <value>موضوع غير صالح. يرجى الاختيار من القائمة المنسدلة في Excel.</value>
+  </data>
+  <data name="InvalidTemplate" xml:space="preserve">
+    <value>الأعمدة غير صالحة. الرجاء استخدام النموذج المقدم والتأكد من عدم إزالة الأعمدة أو تحريرها.</value>
+  </data>
+  <data name="InvalidUsername" xml:space="preserve">
+    <value>إسم المستخدم غير صحيح. يجب أن يتكون اسم المستخدم من 4 أحرف على الأقل ، ويجب أن يبدأ بحرف ، ولا يمكن أن يحتوي على رموز خاصة.</value>
+  </data>
+  <data name="InvalidUserTemplate" xml:space="preserve">
+    <value>الأعمدة غير صالحة. الرجاء استخدام النموذج المقدم (UserExcelTemplate.xlsx) والتأكد من عدم إزالة الأعمدة أو تحريرها.</value>
+  </data>
+  <data name="IsCorrect" xml:space="preserve">
+    <value>هل الجواب صحيح؟</value>
+  </data>
+  <data name="LastName" xml:space="preserve">
+    <value>الكنية</value>
+  </data>
+  <data name="ListofRoles" xml:space="preserve">
+    <value>قائمة الأدوار</value>
+  </data>
+  <data name="ListofUserAttachments" xml:space="preserve">
+    <value>قائمة مرفقات المستخدم</value>
+  </data>
+  <data name="ListofUserAttachmentTypes" xml:space="preserve">
+    <value>قائمة أنواع مرفقات المستخدم</value>
+  </data>
+  <data name="ListofUsers" xml:space="preserve">
+    <value>قائمة المستخدمين</value>
+  </data>
+  <data name="ListofUserStatus" xml:space="preserve">
+    <value>قائمة حالة المستخدم</value>
+  </data>
+  <data name="ListOfUserWith" xml:space="preserve">
+    <value>قائمة المستخدمين مع</value>
+  </data>
+  <data name="Loading" xml:space="preserve">
+    <value>جار التحميل...</value>
+  </data>
+  <data name="Lockedout" xml:space="preserve">
+    <value>اقفل</value>
+  </data>
+  <data name="Login" xml:space="preserve">
+    <value>تسجيل الدخول</value>
+  </data>
+  <data name="LoginDateTime" xml:space="preserve">
+    <value>وقت تاريخ تسجيل الدخول</value>
+  </data>
+  <data name="LoginHistory" xml:space="preserve">
+    <value>سجل تسجيل الدخول</value>
+  </data>
+  <data name="LoginHistoryRolePermissionDescription" xml:space="preserve">
+    <value>بشكل افتراضي ، يمكن لمسؤول النظام عرض سجلات تسجيل الدخول لجميع المستخدمين ، بينما يمكن للمستخدم العادي فقط عرض سجلات تسجيل الدخول الخاصة به.</value>
+  </data>
+  <data name="ManageAttachmentsFor" xml:space="preserve">
+    <value>إدارة المرفقات لـ:</value>
+  </data>
+  <data name="Management" xml:space="preserve">
+    <value>إدارة</value>
+  </data>
+  <data name="ManageUserAttachment" xml:space="preserve">
+    <value>إدارة مرفق المستخدم</value>
+  </data>
+  <data name="Mark" xml:space="preserve">
+    <value>علامة</value>
+  </data>
+  <data name="MarksToPass" xml:space="preserve">
+    <value>علامات لتمرير</value>
+  </data>
+  <data name="MaxLength100" xml:space="preserve">
+    <value>الحد الأقصى للطول المسموح به هو 100 حرف.</value>
+  </data>
+  <data name="MaxLength128" xml:space="preserve">
+    <value>الحد الأقصى للطول المسموح به هو 128 حرفًا.</value>
+  </data>
+  <data name="MaxLength256" xml:space="preserve">
+    <value>الحد الأقصى للطول المسموح به هو 256 حرفًا.</value>
+  </data>
+  <data name="MaxNumberAllowedIs100" xml:space="preserve">
+    <value>أقصى عدد مسموح به هو 100.</value>
+  </data>
+  <data name="MCQMustHaveAtLeast2AnswerOptions" xml:space="preserve">
+    <value>يجب أن يحتوي MCQ على خيارين للإجابة على الأقل.</value>
+  </data>
+  <data name="MinLength6" xml:space="preserve">
+    <value>يجب أن يتكون الحقل من 6 أحرف على الأقل.</value>
+  </data>
+  <data name="Minutes" xml:space="preserve">
+    <value>دقائق</value>
+  </data>
+  <data name="ModifiedBy" xml:space="preserve">
+    <value>تم التعديل بواسطة</value>
+  </data>
+  <data name="ModifiedOn" xml:space="preserve">
+    <value>تعديل على</value>
+  </data>
+  <data name="MonthlyAveragePerformance" xml:space="preserve">
+    <value>متوسط ​​الأداء الشهري</value>
+  </data>
+  <data name="MostOfTheUsersAreWithThisStatus" xml:space="preserve">
+    <value>معظم المستخدمين بهذه الحالة.</value>
+  </data>
+  <data name="MyExams" xml:space="preserve">
+    <value>امتحاناتي</value>
+  </data>
+  <data name="MyProfile" xml:space="preserve">
+    <value>ملفي</value>
+  </data>
+  <data name="NA" xml:space="preserve">
+    <value>غير متاح</value>
+  </data>
+  <data name="Name" xml:space="preserve">
+    <value>اسم</value>
+  </data>
+  <data name="NetStarter" xml:space="preserve">
+    <value>نت ستارتر</value>
+  </data>
+  <data name="NewPassword" xml:space="preserve">
+    <value>كلمة سر جديدة</value>
+  </data>
+  <data name="NewPasswordNotMatch" xml:space="preserve">
+    <value>كلمة المرور الجديدة وتأكيد كلمة المرور الجديدة غير متطابقين.</value>
+  </data>
+  <data name="Next" xml:space="preserve">
+    <value>التالي</value>
+  </data>
+  <data name="NoDataAvailable" xml:space="preserve">
+    <value>لا تتوافر بيانات</value>
+  </data>
+  <data name="NoQuestionYet" xml:space="preserve">
+    <value>هذا الامتحان ليس لديه أسئلة حتى الآن. الرجاء إضافة أسئلة للاختبار قبل المتابعة.</value>
+  </data>
+  <data name="NormalUserSystemAdminCannotBeDeleted" xml:space="preserve">
+    <value>لا يمكن حذف أو تحرير أدوار المستخدم العادي ومسؤول النظام. لأنه سيتم استخدامها لتحديد تحميل سجلات تسجيل الدخول (يمكن للمسؤول رؤية سجلات تسجيل الدخول لجميع المستخدمين ، ولكن يمكن للمستخدم العادي رؤية سجله الخاص فقط).</value>
+  </data>
+  <data name="NotAllowToChangePasswordForDemoAccount" xml:space="preserve">
+    <value>عذرًا ، لا يُسمح لك بتغيير كلمة المرور للحساب التجريبي. الرجاء تسجيل حساب آخر لتجربة هذه الميزة.</value>
+  </data>
+  <data name="NoteColon" xml:space="preserve">
+    <value>ملحوظة:</value>
+  </data>
+  <data name="NoteSystemInformation" xml:space="preserve">
+    <value>ملاحظة: لا يمكن تحرير معلومات النظام إلا بواسطة مسؤول النظام.</value>
+  </data>
+  <data name="notfoundormismatch" xml:space="preserve">
+    <value>غير موجود أو غير متطابق.</value>
+  </data>
+  <data name="OnlyLettersAndNumbers" xml:space="preserve">
+    <value>يسمح فقط باستخدام الأحرف والأرقام.</value>
+  </data>
+  <data name="OnlyNumbers" xml:space="preserve">
+    <value>يسمح فقط بالأرقام.</value>
+  </data>
+  <data name="Oops" xml:space="preserve">
+    <value>عفوًا.</value>
+  </data>
+  <data name="OopsSomethingwrong" xml:space="preserve">
+    <value>عفوًا! هل هناك خطب ما.</value>
+  </data>
+  <data name="OtherInformation" xml:space="preserve">
+    <value>معلومات أخرى</value>
+  </data>
+  <data name="outof" xml:space="preserve">
+    <value>بعيدا عن المكان</value>
+  </data>
+  <data name="Page0OfPage0" xml:space="preserve">
+    <value>الصفحة 0 من الصفحة 0</value>
+  </data>
+  <data name="Passed" xml:space="preserve">
+    <value>ناجح</value>
+  </data>
+  <data name="Password" xml:space="preserve">
+    <value>كلمة المرور</value>
+  </data>
+  <data name="PasswordChangedSuccessfully" xml:space="preserve">
+    <value>تم تغيير الرقم السري بنجاح!</value>
+  </data>
+  <data name="PasswordNotMatch" xml:space="preserve">
+    <value>كلمة المرور وكلمة المرور التأكيدية غير متطابقتين.</value>
+  </data>
+  <data name="PasswordRequired" xml:space="preserve">
+    <value>حقل كلمة المرور مطلوب.</value>
+  </data>
+  <data name="PasswordRequirementText" xml:space="preserve">
+    <value>على الأقل 6 خانات. يتطلب على الأقل حرفًا كبيرًا واحدًا وحرفًا صغيرًا واحدًا ورقمًا واحدًا ورمزًا واحدًا.</value>
+  </data>
+  <data name="PastExams" xml:space="preserve">
+    <value>الامتحانات الماضية</value>
+  </data>
+  <data name="PersonalInformation" xml:space="preserve">
+    <value>معلومات شخصية</value>
+  </data>
+  <data name="PhoneNumber" xml:space="preserve">
+    <value>رقم الهاتف</value>
+  </data>
+  <data name="Pleasefillinthefollowing" xml:space="preserve">
+    <value>يرجى ملء ما يلي.</value>
+  </data>
+  <data name="PleaseInsertConnectionString" xml:space="preserve">
+    <value>الرجاء الانتقال إلى Web.config وإدراج قيمة سلسلة الاتصال لتشغيل تطبيق الويب هذا.</value>
+  </data>
+  <data name="PleaseSelect" xml:space="preserve">
+    <value>الرجاء التحديد ...</value>
+  </data>
+  <data name="PleaseSelectACorrectAnswer" xml:space="preserve">
+    <value>الرجاء تحديد إجابة صحيحة.</value>
+  </data>
+  <data name="Pleaseselectallthefilesthatyouwanttoupload" xml:space="preserve">
+    <value>الرجاء تحديد كافة الملفات التي تريد تحميلها.</value>
+  </data>
+  <data name="Pleaseselectallthefilesthatyouwanttoupload1" xml:space="preserve">
+    <value>الرجاء تحديد كافة الملفات التي تريد تحميلها.</value>
+  </data>
+  <data name="Pleaseselectanexcelfile" xml:space="preserve">
+    <value>الرجاء تحديد ملف اكسل.</value>
+  </data>
+  <data name="Pleaseselectanexcelfile1" xml:space="preserve">
+    <value>الرجاء تحديد ملف اكسل.</value>
+  </data>
+  <data name="PleaseSelectAtLeastOneQuestion" xml:space="preserve">
+    <value>الرجاء تحديد سؤال واحد على الأقل.</value>
+  </data>
+  <data name="PleaseSendSupportEmail" xml:space="preserve">
+    <value>يرجى إرسال بريد إلكتروني للدعم مع لقطة الشاشة هذه إلى example@gmail.com. شكرًا لك.</value>
+  </data>
+  <data name="PleaseSubmitAnAnswer" xml:space="preserve">
+    <value>الرجاء إرسال إجابة.</value>
+  </data>
+  <data name="PostalCode" xml:space="preserve">
+    <value>الرمز البريدي</value>
+  </data>
+  <data name="Previous" xml:space="preserve">
+    <value>سابق</value>
+  </data>
+  <data name="PrintResult" xml:space="preserve">
+    <value>طباعة النتيجة</value>
+  </data>
+  <data name="ProfilePicture" xml:space="preserve">
+    <value>الصوره الشخصيه</value>
+  </data>
+  <data name="ProfilePictureAttachmentTypeCannotBeEditedOrDeleted" xml:space="preserve">
+    <value>لا يمكن تحرير أو حذف نوع مرفق صورة الملف الشخصي. لأنه يُستخدم للتحقق مما إذا كان يمكن تحديد ملف تم تحميله بواسطة المستخدم كصورة ملف تعريف.</value>
+  </data>
+  <data name="Publish" xml:space="preserve">
+    <value>ينشر</value>
+  </data>
+  <data name="PublishedSuccessfully" xml:space="preserve">
+    <value>تم النشر بنجاح!</value>
+  </data>
+  <data name="PublishExamDisabled" xml:space="preserve">
+    <value>لا يمكنك نشر الامتحان الآن لأنه لا يحتوي على أي أسئلة أو بعض الأسئلة لم يتم حفظ الإجابات بعد أو لم تخصص العلامات لكل سؤال بعد.</value>
+  </data>
+  <data name="PublishExamTooltip" xml:space="preserve">
+    <value>بعد نشر الاختبار ، سيرى الطالب هذا الاختبار يظهر كاختبار قادم. يمكنهم بدء الاختبار بمجرد الوصول إلى تاريخ ووقت بدء الاختبار.</value>
+  </data>
+  <data name="Question" xml:space="preserve">
+    <value>سؤال</value>
+  </data>
+  <data name="QuestionImage" xml:space="preserve">
+    <value>صورة السؤال</value>
+  </data>
+  <data name="QuestionInUsedCannotBeDeleted" xml:space="preserve">
+    <value>لا يمكن حذف هذا السؤال من بنك الأسئلة لأنه تم استخدامه بالفعل في أحد الاختبارات. إذا لم تعد بحاجة إلى هذا السؤال في المستقبل ، فيمكنك تمييزه على أنه غير نشط بدلاً من ذلك.</value>
+  </data>
+  <data name="QuestionManagement" xml:space="preserve">
+    <value>إدارة الأسئلة</value>
+  </data>
+  <data name="QuestionTitle" xml:space="preserve">
+    <value>عنوان السؤال</value>
+  </data>
+  <data name="QuestionType" xml:space="preserve">
+    <value>نوع السؤال</value>
+  </data>
+  <data name="RandomizeQuestions" xml:space="preserve">
+    <value>ترتيب الأسئلة عشوائيًا</value>
+  </data>
+  <data name="Readytostarttheexam" xml:space="preserve">
+    <value>جاهز لبدء الامتحان؟</value>
+  </data>
+  <data name="RecalculatingDot" xml:space="preserve">
+    <value>جارٍ إعادة الحساب ...</value>
+  </data>
+  <data name="Record" xml:space="preserve">
+    <value>سِجِلّ</value>
+  </data>
+  <data name="RecordDeletedSuccessfully" xml:space="preserve">
+    <value>تم حذف السجل بنجاح!</value>
+  </data>
+  <data name="RecordSavedSuccessfully" xml:space="preserve">
+    <value>تم حفظ السجل بنجاح!</value>
+  </data>
+  <data name="RecordsImportedSuccessfully" xml:space="preserve">
+    <value>تم استيراد السجلات بنجاح!</value>
+  </data>
+  <data name="recordsuploaded" xml:space="preserve">
+    <value>السجلات التي تم تحميلها</value>
+  </data>
+  <data name="Register" xml:space="preserve">
+    <value>يسجل</value>
+  </data>
+  <data name="RegisteredUserStatusCannotBeDeletedOrEdited" xml:space="preserve">
+    <value>حالة المستخدم المسجل لا يمكن حذفها أو تحريرها. لأنها الحالة الافتراضية لتعيينها للمستخدم المسجل.</value>
+  </data>
+  <data name="RegisterSuccessLoginNow" xml:space="preserve">
+    <value>سجل النجاح! الرجاء تسجيل الدخول الآن.</value>
+  </data>
+  <data name="ReleaseAnswer" xml:space="preserve">
+    <value>هل تريد عرض الإجابة على الطالب؟</value>
+  </data>
+  <data name="ReleaseAnswerInfo" xml:space="preserve">
+    <value>عندما ينقر الطالب على "خروج" ، هل يجب عرض السؤال والجواب على الطالب؟ نوصي بتحديد "لا" في الوقت الحالي. بعد الانتهاء من مراجعة جميع نتائج الطلاب ، يمكنك تغيير هذا إلى "نعم" حتى يتمكن الطلاب من دراسة الأسئلة والأجوبة.</value>
+  </data>
+  <data name="ReleaseResult" xml:space="preserve">
+    <value>أطلق النتيجة والإجابة</value>
+  </data>
+  <data name="ReleaseResultTooltip" xml:space="preserve">
+    <value>لم يتم إطلاق الإجابات على أسئلة الاختبار إلى الطلاب بعد، حيث تم تعيين مجال "عرض الإجابة للطالب؟" على "لا". بعد انتهاء مراجعة الإجابات التي تم تقديمها من قبل الطالب، يمكنك إطلاق الإجابات على الطالب بحيث يمكنه مراجعة إجابات اختبار الأسئلة.</value>
+  </data>
+  <data name="Rememberme" xml:space="preserve">
+    <value>تذكرنى؟</value>
+  </data>
+  <data name="Removeselectedfile" xml:space="preserve">
+    <value>إزالة الملفات المحددة</value>
+  </data>
+  <data name="Reset" xml:space="preserve">
+    <value>إعادة ضبط</value>
+  </data>
+  <data name="ResetPassword" xml:space="preserve">
+    <value>إعادة تعيين كلمة المرور</value>
+  </data>
+  <data name="ResetPasswordEmailSent" xml:space="preserve">
+    <value>تم إرسال البريد الإلكتروني الخاص بإعادة تعيين كلمة المرور بنجاح!</value>
+  </data>
+  <data name="Result" xml:space="preserve">
+    <value>النتيجة</value>
+  </data>
+  <data name="ResultStatus" xml:space="preserve">
+    <value>حالة النتيجة</value>
+  </data>
+  <data name="ReviewQuestionAndAnswer" xml:space="preserve">
+    <value>مراجعة السؤال &amp; الإجابة</value>
+  </data>
+  <data name="Role" xml:space="preserve">
+    <value>دور</value>
+  </data>
+  <data name="RolebyNumberofUsers" xml:space="preserve">
+    <value>الدور حسب عدد المستخدمين</value>
+  </data>
+  <data name="RoleManagement" xml:space="preserve">
+    <value>إدارة الدور</value>
+  </data>
+  <data name="RoleName" xml:space="preserve">
+    <value>اسم الدور</value>
+  </data>
+  <data name="RoleNameAlreadyExist" xml:space="preserve">
+    <value>اسم الدور موجود بالفعل في النظام.</value>
+  </data>
+  <data name="RoleNotFound" xml:space="preserve">
+    <value>الدور غير موجود.</value>
+  </data>
+  <data name="RolePermissionfor" xml:space="preserve">
+    <value>إذن الدور لـ</value>
+  </data>
+  <data name="RoleRequired" xml:space="preserve">
+    <value>حقل الدور مطلوب.</value>
+  </data>
+  <data name="Save" xml:space="preserve">
+    <value>يحفظ</value>
+  </data>
+  <data name="SaveAndExit" xml:space="preserve">
+    <value>حفظ وخروج</value>
+  </data>
+  <data name="SaveAndNext" xml:space="preserve">
+    <value>حفظ والتالي</value>
+  </data>
+  <data name="ScoreToPass" xml:space="preserve">
+    <value>درجة النجاح</value>
+  </data>
+  <data name="Search" xml:space="preserve">
+    <value>يبحث</value>
+  </data>
+  <data name="SearchDot" xml:space="preserve">
+    <value>يبحث...</value>
+  </data>
+  <data name="SelectAnImageFile" xml:space="preserve">
+    <value>حدد ملف صورة</value>
+  </data>
+  <data name="Selectmultiple" xml:space="preserve">
+    <value>حدد عدة ...</value>
+  </data>
+  <data name="ShortAnswerOptionsDescription" xml:space="preserve">
+    <value>املأ جميع الإجابات الصحيحة لسؤال الإجابة المختصرة. عندما تتطابق إجابة الطالب مع إحدى الإجابات التالية ، يُعتبر أن إجابة الطالب صحيحة.</value>
+  </data>
+  <data name="Show10Records" xml:space="preserve">
+    <value>إظهار 10 سجلات</value>
+  </data>
+  <data name="Show25Records" xml:space="preserve">
+    <value>إظهار 25 سجلاً</value>
+  </data>
+  <data name="Show50Records" xml:space="preserve">
+    <value>إظهار 50 تسجيلاً</value>
+  </data>
+  <data name="ShowAll" xml:space="preserve">
+    <value>عرض الكل</value>
+  </data>
+  <data name="Showing0Entries" xml:space="preserve">
+    <value>إظهار 0 إلى 0 من 0 مدخلات</value>
+  </data>
+  <data name="SignOut" xml:space="preserve">
+    <value>خروج</value>
+  </data>
+  <data name="SignUp" xml:space="preserve">
+    <value>اشتراك</value>
+  </data>
+  <data name="SomeAnswerOptionsAreDuplicated" xml:space="preserve">
+    <value>بعض خيارات الإجابة مكررة.</value>
+  </data>
+  <data name="SomeRequiredFieldsAreEmpty" xml:space="preserve">
+    <value>بعض الحقول المطلوبة * فارغة. يرجى ملء جميع الحقول * المطلوبة.</value>
+  </data>
+  <data name="StartDateTime" xml:space="preserve">
+    <value>تاريخ ووقت البدء</value>
+  </data>
+  <data name="StartDateTime1" xml:space="preserve">
+    <value>تاريخ البدء &amp; الوقت</value>
+  </data>
+  <data name="StartExam" xml:space="preserve">
+    <value>بدء الامتحان</value>
+  </data>
+  <data name="StartNow" xml:space="preserve">
+    <value>ابدأ الآن</value>
+  </data>
+  <data name="StartsIn" xml:space="preserve">
+    <value>يبدأ في</value>
+  </data>
+  <data name="Status" xml:space="preserve">
+    <value>حالة</value>
+  </data>
+  <data name="StatusRequired" xml:space="preserve">
+    <value>حقل الحالة مطلوب.</value>
+  </data>
+  <data name="StudentAbsent" xml:space="preserve">
+    <value>غائب الطالب</value>
+  </data>
+  <data name="StudentAnswer" xml:space="preserve">
+    <value>إجابة الطالب</value>
+  </data>
+  <data name="StudentFailed" xml:space="preserve">
+    <value>فشل الطالب</value>
+  </data>
+  <data name="StudentIn" xml:space="preserve">
+    <value>طالب في</value>
+  </data>
+  <data name="StudentName" xml:space="preserve">
+    <value>اسم الطالب</value>
+  </data>
+  <data name="StudentNotStarted" xml:space="preserve">
+    <value>الطالب لم يبدأ</value>
+  </data>
+  <data name="StudentPassed" xml:space="preserve">
+    <value>الطالب نجح</value>
+  </data>
+  <data name="Subject" xml:space="preserve">
+    <value>موضوع</value>
+  </data>
+  <data name="SubjectManagement" xml:space="preserve">
+    <value>إدارة الموضوع</value>
+  </data>
+  <data name="Submit" xml:space="preserve">
+    <value>إرسال</value>
+  </data>
+  <data name="Success" xml:space="preserve">
+    <value>النجاح!</value>
+  </data>
+  <data name="SystemInformation" xml:space="preserve">
+    <value>معلومات النظام</value>
+  </data>
+  <data name="TableIsStillLoading" xml:space="preserve">
+    <value>انتظر من فضلك. الجدول لا يزال قيد التحميل.</value>
+  </data>
+  <data name="Theerrorsareasbelow" xml:space="preserve">
+    <value>الأخطاء كالتالي:</value>
+  </data>
+  <data name="Thisaccounthasbeenlockedout" xml:space="preserve">
+    <value>تم حظر هذا الحساب ، يرجى المحاولة مرة أخرى في وقت لاحق.</value>
+  </data>
+  <data name="Thiscannotbeundone" xml:space="preserve">
+    <value>هذا لا يمكن التراجع عنها! سوف تتأثر السجلات الأخرى ذات الصلة أيضًا.</value>
+  </data>
+  <data name="ThisIsADuplicatedValue" xml:space="preserve">
+    <value>هذا بالفعل قيد الاستخدام. يرجى تقديم قيمة مختلفة.</value>
+  </data>
+  <data name="ThisRoleHasTheLeastNumberOfUser" xml:space="preserve">
+    <value>يحتوي هذا الدور على أقل عدد من المستخدمين ، وربما يكون دورًا يتمتع بإذن أعلى.</value>
+  </data>
+  <data name="TimesUpDescription" xml:space="preserve">
+    <value>انتهت فترة الامتحان. انقر فوق زر الخروج أدناه للخروج من الاختبار والاطلاع على نتيجتك. يجب أن تضغط على زر الخروج! خلاف ذلك ، لن يتم احتساب نتيجة الاختبار الخاصة بك. شكرًا لك.</value>
+  </data>
+  <data name="TimesUpTitle" xml:space="preserve">
+    <value>الوقت قد إنتهى!</value>
+  </data>
+  <data name="TimeTaken" xml:space="preserve">
+    <value>الوقت الذي استغرق</value>
+  </data>
+  <data name="ToNetStarter" xml:space="preserve">
+    <value>إلى EMSYS</value>
+  </data>
+  <data name="TopQuestionsAnsweredWrongly" xml:space="preserve">
+    <value>أهم 5 أسئلة تمت الإجابة عليها بشكل خاطئ</value>
+  </data>
+  <data name="TopRole" xml:space="preserve">
+    <value>الدور العلوي</value>
+  </data>
+  <data name="TopStatus" xml:space="preserve">
+    <value>أعلى مركز</value>
+  </data>
+  <data name="TopStudentsByExam" xml:space="preserve">
+    <value>أفضل 10 طلاب بالامتحان</value>
+  </data>
+  <data name="TopUpcomingExams" xml:space="preserve">
+    <value>أعلى 5 امتحانات قادمة</value>
+  </data>
+  <data name="TotalFileSizeCannotBeLargerThan50MB" xml:space="preserve">
+    <value>لا يمكن أن يكون حجم الملف الإجمالي أكبر من 50 ميغا بايت.</value>
+  </data>
+  <data name="TotalMarks" xml:space="preserve">
+    <value>مجموع علامات</value>
+  </data>
+  <data name="TotalNumberOfRolesInTheSystem" xml:space="preserve">
+    <value>إجمالي عدد الأدوار في النظام.</value>
+  </data>
+  <data name="TotalNumberOfUsersInTheSystem" xml:space="preserve">
+    <value>إجمالي عدد المستخدمين في النظام.</value>
+  </data>
+  <data name="TotalQuestions" xml:space="preserve">
+    <value>مجموع الأسئلة</value>
+  </data>
+  <data name="TotalQuestions1" xml:space="preserve">
+    <value>إجمالي الأسئلة</value>
+  </data>
+  <data name="TotalRoles" xml:space="preserve">
+    <value>مجموع الأدوار</value>
+  </data>
+  <data name="TotalScore" xml:space="preserve">
+    <value>درجة الإجمالي</value>
+  </data>
+  <data name="TotalStudent" xml:space="preserve">
+    <value>مجموع الطالب</value>
+  </data>
+  <data name="TotalStudentTooltip" xml:space="preserve">
+    <value>إجمالي حساب الطالب في النظام.</value>
+  </data>
+  <data name="TotalTeacher" xml:space="preserve">
+    <value>مجموع المعلم</value>
+  </data>
+  <data name="TotalTeacherTooltip" xml:space="preserve">
+    <value>العدد الإجمالي للمعلمين في النظام.</value>
+  </data>
+  <data name="TotalUsers" xml:space="preserve">
+    <value>إجمالي المستخدمين</value>
+  </data>
+  <data name="TypetoSearch" xml:space="preserve">
+    <value>اكتب للبحث...</value>
+  </data>
+  <data name="Unauthorized" xml:space="preserve">
+    <value>غير مصرح</value>
+  </data>
+  <data name="UnauthorizedError" xml:space="preserve">
+    <value>خطأ غير مصرح به</value>
+  </data>
+  <data name="Unpublish" xml:space="preserve">
+    <value>إلغاء النشر</value>
+  </data>
+  <data name="UnpublishTooltip" xml:space="preserve">
+    <value>سيتم فرض إيقاف الطلاب عن اخذ الامتحان إذا قمت بالنقر على هذا. بعد النقر على "إلغاء النشر"، لن يتمكن جميع الطلاب من الاستمرار في الامتحان حتى تؤرشفه مرة أخرى.</value>
+  </data>
+  <data name="UpcomingExams" xml:space="preserve">
+    <value>الامتحانات القادمة</value>
+  </data>
+  <data name="Upload" xml:space="preserve">
+    <value>رفع</value>
+  </data>
+  <data name="UploadedBy" xml:space="preserve">
+    <value>تم الرفع بواسطة</value>
+  </data>
+  <data name="UploadedOn" xml:space="preserve">
+    <value>تم الرفع في</value>
+  </data>
+  <data name="UploadExcel" xml:space="preserve">
+    <value>تحميل إكسل</value>
+  </data>
+  <data name="UploadFiles" xml:space="preserve">
+    <value>تحميل الملفات</value>
+  </data>
+  <data name="UploadUserAttachment" xml:space="preserve">
+    <value>تحميل مرفق المستخدم</value>
+  </data>
+  <data name="User" xml:space="preserve">
+    <value>المستعمل</value>
+  </data>
+  <data name="UserAttachment" xml:space="preserve">
+    <value>مرفق المستخدم</value>
+  </data>
+  <data name="UserAttachmentType" xml:space="preserve">
+    <value>نوع مرفق المستخدم</value>
+  </data>
+  <data name="UserAttachmentTypeNameAlreadyExist" xml:space="preserve">
+    <value>اسم نوع مرفق المستخدم موجود بالفعل في النظام.</value>
+  </data>
+  <data name="UserbyStatusChart" xml:space="preserve">
+    <value>المستخدم حسب مخطط الحالة</value>
+  </data>
+  <data name="UserInformation" xml:space="preserve">
+    <value>معلومات المستخدم</value>
+  </data>
+  <data name="UserManagement" xml:space="preserve">
+    <value>إدارةالمستخدم</value>
+  </data>
+  <data name="Username" xml:space="preserve">
+    <value>اسم المستخدم</value>
+  </data>
+  <data name="UsernameTaken" xml:space="preserve">
+    <value>الاسم مستخدم من قبل. يرجى المحاولة مرة أخرى باستخدام اسم مستخدم آخر.</value>
+  </data>
+  <data name="UserNotExist" xml:space="preserve">
+    <value>المستخدم غير موجود في النظام.</value>
+  </data>
+  <data name="UsersInTheRoleOf" xml:space="preserve">
+    <value>المستخدمون في دور</value>
+  </data>
+  <data name="UserStatus" xml:space="preserve">
+    <value>حالة المستخدم</value>
+  </data>
+  <data name="UserStatusNameAlreadyExist" xml:space="preserve">
+    <value>اسم حالة المستخدم موجود بالفعل في النظام.</value>
+  </data>
+  <data name="View" xml:space="preserve">
+    <value>رأي</value>
+  </data>
+  <data name="ViewList" xml:space="preserve">
+    <value>عرض القائمة</value>
+  </data>
+  <data name="ViewRole" xml:space="preserve">
+    <value>مشاهدة ملف الدور</value>
+  </data>
+  <data name="Viewroles" xml:space="preserve">
+    <value>اعرض الأدوار</value>
+  </data>
+  <data name="Viewthisrole" xml:space="preserve">
+    <value>اعرض هذا الدور</value>
+  </data>
+  <data name="ViewUser" xml:space="preserve">
+    <value>عرض المستخدم</value>
+  </data>
+  <data name="Viewusers" xml:space="preserve">
+    <value>عرض المستخدمين</value>
+  </data>
+  <data name="Viewuserstatus" xml:space="preserve">
+    <value>عرض حالة المستخدم</value>
+  </data>
+  <data name="YesDeleteIt" xml:space="preserve">
+    <value>نعم ، احذفها!</value>
+  </data>
+  <data name="YouDontHavePermissionToAccess" xml:space="preserve">
+    <value>ليس لديك إذن للوصول إلى هذه الصفحة.</value>
+  </data>
+  <data name="YourExamResult" xml:space="preserve">
+    <value>نتيجة الامتحان الخاص بك</value>
+  </data>
+  <data name="YourPassword" xml:space="preserve">
+    <value>كلمة مرورك</value>
+  </data>
+  <data name="YourPasswordResetSuccessfully" xml:space="preserve">
+    <value>تم إعادة تعيين كلمة المرور الخاصة بك بنجاح!</value>
+  </data>
+  <data name="YourScore" xml:space="preserve">
+    <value>درجتك</value>
+  </data>
+  <data name="YourTopBestPerformance" xml:space="preserve">
+    <value>أفضل 5 أداء لديك</value>
+  </data>
+  <data name="YourTopExamsThatNeedImprovement" xml:space="preserve">
+    <value>أفضل 5 امتحانات تحتاج إلى تحسين</value>
+  </data>
+</root>

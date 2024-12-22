@@ -1,0 +1,97 @@
+﻿@model EMSYS.Models.ExamViewModel
+@using EMSYS.CustomHelper
+@{
+    ViewBag.Title = Resource.AllocateMarks;
+    Layout = "~/Views/Shared/_LayoutAfterLogin.cshtml";
+}
+
+<div class="row">
+    <div class="col-12">
+        <div style="--bs-breadcrumb-divider: '>';">
+            <ol class="breadcrumb m-0">
+                <li class="breadcrumb-item fw-normal"><a class="color-primarycolor opacity-50" href="@Url.Action("index")">@Resource.ExamManagement</a></li>
+                @if (!string.IsNullOrEmpty(Model.Id))
+                {
+                    <li class="breadcrumb-item fw-normal"><a class="color-primarycolor opacity-50" href="@Url.Action("viewrecord", new { id = Model.Id})">@Resource.View @Resource.Exam</a></li>
+                }
+                <li class="breadcrumb-item fw-normal active">@ViewBag.Title</li>
+            </ol>
+        </div>
+        <div class="page-title-box d-sm-flex align-items-center justify-content-between pt-2">
+            <h4 class="pagetitle mb-sm-0 fw600">@ViewBag.Title (@Model.Name)</h4>
+        </div>
+    </div>
+</div>
+
+@await Html.PartialAsync("~/Views/Exam/_Tabs.cshtml", new ViewDataDictionary(ViewData) {{ "active", "allocatemarks" }, { "id", Model.Id }, { "random", Model.RandomizeQuestions } })
+
+@using (Html.BeginForm("AllocateMarks", "Exam", new { ReturnUrl = ViewBag.ReturnUrl }, FormMethod.Post, null, new { @class = "form-horizontal", role = "form", enctype = "multipart/form-data" }))
+{
+    @Html.HiddenFor(m => m.Id)
+    <section class="section">
+        <div class="bg-white rounded p-3 p-lg-4 p-xl-5 shadow">
+            <h2 class="fs-20 fw600">@Resource.AllocateMarksForEachQuestion</h2>
+            @if (Model.ExamStatus == "Ended")
+            {
+                <div>@Resource.AllocateMarksNote</div>
+            }
+            <div class="mb-4"></div>
+            @if (Model.QuestionListing.Listing.Count == 0)
+            {
+                <div class="mb-2">
+                    @Resource.NoQuestionYet
+                </div>
+                <div>
+                    <a class="btn form-btn btn-secondary hover-boxshadow" href="@Url.Action("addquestion",new{Id= Model.Id})">@Resource.Add @Resource.Question</a>
+                </div>
+            }
+            else
+            {
+                <div class="row gx-1">
+                    <div class="alert alert-info">
+                        @Resource.TotalMarks: <span id="totalmark"></span>
+                    </div>
+                </div>
+                foreach (var item in Model.QuestionListing.Listing)
+                {
+                    <input class="form-control" asp-for="QuestionIds" value="@item.Id" hidden />
+                    <div class="row mb-3">
+                        <div class="col-10"> @item.QuestionTitle <span class="color-primarycolor small">(@item.QuestionTypeName)</span></div>
+                        <div class="col-2"> <input class="form-control mark-col" asp-for="MarkForEachQuestions" value="@item.ExamQuestionMark" placeholder="@Resource.Mark" onkeyup="calculate()" /></div>
+                    </div>
+                }
+            }
+        </div>
+        <div class="row mt-4">
+            <div class="col-12">
+                @if (Model.AlreadyStarted == true && Model.ExamStatus != "Ended")
+                {
+                    <button type="button" class="btn form-btn btn-primary hover-boxshadow opacity-50" data-bs-toggle="tooltip" data-bs-placement="top" title="@Resource.CannotSaveExamTooltip">@Resource.Save</button>
+                }
+                else
+                {
+                    <button type="submit" class="btn form-btn btn-primary hover-boxshadow">@Resource.Save</button>
+                }
+            </div>
+        </div>
+    </section>
+}
+
+@section scripts{
+    <script>
+        $(document).ready(function () {
+            calculate();
+        });
+
+        function calculate() {
+            var inputElements = document.querySelectorAll('.mark-col');
+            var num = 0;
+            var sum = Array.from(inputElements).map(function (inputElement) {
+                if (!isNaN(parseFloat(inputElement.value))) {
+                    num = num + parseFloat(inputElement.value);
+                }
+            });
+            document.getElementById('totalmark').innerText = num.toFixed(2);
+        }
+    </script>
+    }

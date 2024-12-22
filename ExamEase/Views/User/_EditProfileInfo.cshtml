@@ -1,0 +1,166 @@
+﻿@model EMSYS.Models.UserProfileViewModel
+@using EMSYS.CustomHelper
+@using EMSYS.Models;
+<div class="bg-white rounded p-3 p-lg-4 p-xl-5 shadow">
+    <h2 class="fs-20 fw600 mb-4">@Resource.PersonalInformation</h2>
+    <div class="row">
+        <div class="col-md-6">
+            <div class="mb-3 text-break">
+                <div class="form-group">
+                    @Html.LabelFor(model => model.FullName, htmlAttributes: new { @class = "form-label required fw600" })
+                    @Html.EditorFor(model => model.FullName, new { htmlAttributes = new { @class = "form-control" } })
+                    @Html.ValidationMessageFor(model => model.FullName, "", new { @class = "invalid-message" })
+                </div>
+            </div>
+        </div>
+        <div class="col-md-6">
+            <div class="mb-3 text-break">
+                <div class="form-group">
+                    @Html.LabelFor(model => model.DateOfBirth, htmlAttributes: new { @class = "form-label fw600" })
+                    <div>
+                        <input type="date" asp-for="DateOfBirth" class="w-100 form-control" />
+                    </div>
+                    @Html.ValidationMessageFor(model => model.DateOfBirth, "", new { @class = "invalid-message" })
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-md-6">
+            <div class="mb-3 text-break">
+                <div class="form-group">
+                    @Html.LabelFor(model => model.FirstName, htmlAttributes: new { @class = "form-label fw600" })
+                    @Html.EditorFor(model => model.FirstName, new { htmlAttributes = new { @class = "form-control" } })
+                    @Html.ValidationMessageFor(model => model.FirstName, "", new { @class = "invalid-message" })
+                </div>
+            </div>
+        </div>
+        <div class="col-md-6">
+            <div class="mb-3 text-break">
+                <div class="form-group">
+                    @Html.LabelFor(model => model.LastName, htmlAttributes: new { @class = "form-label fw600" })
+                    @Html.EditorFor(model => model.LastName, new { htmlAttributes = new { @class = "form-control" } })
+                    @Html.ValidationMessageFor(model => model.LastName, "", new { @class = "invalid-message" })
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-md-6">
+            <div class="mb-3 text-break">
+                <div class="form-group">
+                    @Html.LabelFor(model => model.PhoneNumber, htmlAttributes: new { @class = "form-label required fw600" })
+                    @Html.EditorFor(model => model.PhoneNumber, new { htmlAttributes = new { @class = "form-control" } })
+                    @Html.ValidationMessageFor(model => model.PhoneNumber, "", new { @class = "invalid-message" })
+                </div>
+            </div>
+        </div>
+        <div class="col-md-6">
+            <div class="mb-3 text-break">
+                <div class="form-group">
+                    @Html.LabelFor(model => model.IDCardNumber, htmlAttributes: new { @class = "form-label fw600" })
+                    @Html.EditorFor(model => model.IDCardNumber, new { htmlAttributes = new { @class = "form-control" } })
+                    @Html.ValidationMessageFor(model => model.IDCardNumber, "", new { @class = "invalid-message" })
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-md-6">
+            <div class="mb-3 text-break">
+                <div class="form-group">
+                    @Html.LabelFor(model => model.GenderId, htmlAttributes: new { @class = "form-label fw600" })
+                    <div>
+                        @foreach (var item in Model.GenderSelectList)
+                        {
+                            @CustomHelper.CustomRadioButton("GenderId","GenderId_"+ item.Text, item.Value, item.Text, Model.GenderId, "")
+                        }
+                    </div>
+                    @Html.ValidationMessageFor(model => model.GenderId, "", new { @class = "invalid-message" })
+                </div>
+            </div>
+        </div>
+        <!-- for normal user, they will be able to edit profile picture in my profile page, for system admin who has edit right to any users' profile, then they can edit profile picture from here -->
+        @* @if (User.Identity.IsAllowed(ProjectEnum.ModuleCode.UserManagement.ToString(),util).EditRight == true)
+        {
+
+        }*@
+        <div class="col-md-6">
+            <div class="mb-3 text-break">
+                <div class="form-group">
+                    @Html.LabelFor(model => model.ProfilePicture, htmlAttributes: new { @class = "form-label fw600" })
+                    @Html.TextBox("ProfilePicture", "", new { @type = "file", @class = "form-control" })
+                    @Html.ValidationMessageFor(model => model.ProfilePicture, "", new { @class = "invalid-message" })
+                    @if (!string.IsNullOrEmpty(Model.ProfilePictureFileName))
+                    {
+                        <div class="small opacity-75 lh-sm mt-2">Current Profile Picture:</div>
+                        <figure class="figure">
+                            <a href="~/UploadedFiles/@Model.ProfilePictureFileName" target="_blank" data-bs-toggle="tooltip" data-bs-placement="right" title="Open Image in New Tab"><img src="~/UploadedFiles/@Model.ProfilePictureFileName" class="figure-img img-fluid rounded" alt="Profile picture image"></a>
+                        </figure>
+                    }
+                    else
+                    {
+                        <div class="small opacity-75 lh-sm mt-2">@Resource.CurrentProfilePicture&nbsp; @Resource.NA</div>
+                    }
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<div class="bg-white rounded p-3 p-lg-4 p-xl-5 shadow mt-4">
+    <h2 class="fs-20 fw600 mb-4">@Resource.AddressInformation</h2>
+    <div class="row">
+        <div class="col-md-6">
+            <div class="mb-3 text-break">
+                <div class="form-group">
+                    @Html.LabelFor(model => model.CountryName, htmlAttributes: new { @class = "form-label required fw600" })
+                    @CustomHelper.CustomSearchAndSelect("CountryName", "CountryName_Datalist", Model.CountrySelectList)
+                    @Html.ValidationMessageFor(model => model.CountryName, "", new { @class = "invalid-message" })
+                </div>
+            </div>
+        </div>
+        <div class="col-md-6">
+            <div class="mb-3 text-break">
+                <div class="form-group">
+                    @Html.LabelFor(model => model.PostalCode, htmlAttributes: new { @class = "form-label fw600" })
+                    @Html.EditorFor(model => model.PostalCode, new { htmlAttributes = new { @class = "form-control" } })
+                    @Html.ValidationMessageFor(model => model.PostalCode, "", new { @class = "invalid-message" })
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-md-6">
+            <div class="mb-3 text-break">
+                <div class="form-group">
+                    @Html.LabelFor(model => model.Address, htmlAttributes: new { @class = "form-label fw600" })
+                    @Html.TextAreaFor(model => model.Address, htmlAttributes: new { @class = "form-control", @rows = "3" })
+                    @Html.ValidationMessageFor(model => model.Address, "", new { @class = "invalid-message" })
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<div class="bg-white rounded p-3 p-lg-4 p-xl-5 shadow mt-4">
+    <h2 class="fs-20 fw600 mb-4">@Resource.OtherInformation</h2>
+    <div class="row">
+        <div class="col-md-6">
+            <div class="mb-3 text-break">
+                <div class="form-group">
+                    @Html.LabelFor(model => model.IntakeYear, htmlAttributes: new { @class = "form-label fw600" })
+                    @Html.EditorFor(model => model.IntakeYear, new { htmlAttributes = new { @class = "form-control" } })
+                    @Html.ValidationMessageFor(model => model.IntakeYear, "", new { @class = "invalid-message" })
+                </div>
+            </div>
+        </div>
+        <div class="col-md-6">
+            <div class="mb-3 text-break">
+                <div class="form-group">
+                    @Html.LabelFor(model => model.Code, htmlAttributes: new { @class = "form-label fw600" })
+                    @Html.EditorFor(model => model.Code, new { htmlAttributes = new { @class = "form-control" } })
+                    @Html.ValidationMessageFor(model => model.Code, "", new { @class = "invalid-message" })
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

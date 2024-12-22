@@ -1,0 +1,76 @@
+﻿@{
+    string activeAction = ViewData["active"].ToString();
+    string id = ViewData["id"] == null ? "" : ViewData["id"].ToString();
+    bool? randomQuestion = ViewData["random"] == null ? true : ViewData["random"] as bool?;
+}
+
+<ul class="nav nav-tabs">
+    <li class="nav-item">
+        @if (activeAction == "edit")
+        {
+            <a class="nav-link active">@Resource.Edit @Resource.Exam</a>
+        }
+        else
+        {
+            <a class="nav-link hover-color-secondarycolor" href="@Url.Action("edit", "exam", new { Id = id})">@Resource.Edit @Resource.Exam</a>
+        }
+    </li>
+    <li class="nav-item">
+        @if (!string.IsNullOrEmpty(id))
+        {
+            @if (activeAction == "addquestion")
+            {
+                <a class="nav-link active">@Resource.Add @Resource.Question</a>
+            }
+            else
+            {
+                <a class="nav-link hover-color-secondarycolor" href="@Url.Action("addquestion", "exam", new { Id = id})">@Resource.Add @Resource.Question</a>
+            }
+        }
+        else
+        {
+            <a class="nav-link text-muted opacity-50">@Resource.Add @Resource.Question</a>
+        }
+    </li>
+    <li class="nav-item">
+        @if (!string.IsNullOrEmpty(id))
+        {
+            @if (randomQuestion == false)
+            {
+                if (activeAction == "sortquestion")
+                {
+                    <a class="nav-link active">@Resource.ArrangeQuestionOrder</a>
+                }
+                else
+                {
+                    <a class="nav-link hover-color-secondarycolor" href="@Url.Action("sortquestion", "exam", new { Id =id})">@Resource.ArrangeQuestionOrder</a>
+                }
+            }
+            else
+            {
+                <a class="nav-link text-muted opacity-50" data-bs-toggle="tooltip" data-bs-placement="right" title="@Resource.DisabledQuestionOrderTooltip">@Resource.ArrangeQuestionOrder <i class="fa-solid fa-info-circle"></i></a>
+            }
+        }
+        else
+        {
+            <a class="nav-link text-muted opacity-50">@Resource.ArrangeQuestionOrder</a>
+        }
+    </li>
+    <li class="nav-item">
+        @if (!string.IsNullOrEmpty(id))
+        {
+            @if (activeAction == "allocatemarks")
+            {
+                <a class="nav-link active">@Resource.AllocateMarks</a>
+            }
+            else
+            {
+                <a class="nav-link hover-color-secondarycolor" href="@Url.Action("allocatemarks", "exam", new { Id =id})">@Resource.AllocateMarks</a>
+            }
+        }
+        else
+        {
+            <a class="nav-link text-muted opacity-50">@Resource.AllocateMarks</a>
+        }
+    </li>
+</ul>

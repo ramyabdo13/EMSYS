@@ -1,0 +1,143 @@
+﻿@model EMSYS.Models.UserProfileViewModel
+@using EMSYS.CustomHelper
+@{
+    if (string.IsNullOrEmpty(Model.Id))
+    {
+        ViewBag.Title = Resource.AddUser;
+    }
+    else
+    {
+        ViewBag.Title = Resource.EditUser;
+    }
+    Layout = "~/Views/Shared/_LayoutAfterLogin.cshtml";
+}
+
+<div class="row">
+    <div class="col-12">
+        <div style="--bs-breadcrumb-divider: '>';">
+            <ol class="breadcrumb m-0">
+                <li class="breadcrumb-item fw-normal"><a class="color-primarycolor opacity-50" href="@Url.Action("index")">@Resource.UserManagement</a></li>
+                @if (!string.IsNullOrEmpty(Model.Id))
+                {
+                    <li class="breadcrumb-item fw-normal"><a class="color-primarycolor opacity-50" href="@Url.Action("viewrecord", new { Id = Model.Id })">@Resource.ViewUser</a></li>
+                }
+                <li class="breadcrumb-item fw-normal active">@ViewBag.Title</li>
+            </ol>
+        </div>
+        <div class="page-title-box d-sm-flex align-items-center justify-content-between pt-2">
+            <h4 class="pagetitle mb-sm-0 fw600">@ViewBag.Title</h4>
+        </div>
+    </div>
+</div>
+
+@using (Html.BeginForm("Edit", "User", new { ReturnUrl = ViewBag.ReturnUrl }, FormMethod.Post, null, new { @class = "form-horizontal", role = "form", enctype = "multipart/form-data" }))
+{
+    @Html.HiddenFor(m => m.Id)
+    @Html.HiddenFor(m => m.AspNetUserId)
+    <section class="section mt-3">
+        <div class="bg-white rounded p-3 p-lg-4 p-xl-5 shadow mb-4">
+            <h2 class="fs-20 fw600 mb-4">@Resource.SystemInformation</h2>
+            <div class="row">
+                <div class="col-md-6">
+                    <div class="mb-3 text-break">
+                        <div class="form-group">
+                            @Html.LabelFor(model => model.Username, htmlAttributes: new { @class = "form-label required fw600" })
+                            @Html.EditorFor(model => model.Username, new { htmlAttributes = new { @class = "form-control" } })
+                            @Html.ValidationMessageFor(model => model.Username, "", new { @class = "invalid-message" })
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-6">
+                    <div class="mb-3 text-break">
+                        <div class="form-group">
+                            @Html.LabelFor(model => model.EmailAddress, htmlAttributes: new { @class = "form-label required fw600" })
+                            @Html.EditorFor(model => model.EmailAddress, new { htmlAttributes = new { @class = "form-control" } })
+                            @Html.ValidationMessageFor(model => model.EmailAddress, "", new { @class = "invalid-message" })
+                        </div>
+                    </div>
+                </div>
+            </div>
+            @if (Model.Id == null)
+            {
+                <div class="row">
+                    <div class="col-md-6">
+                        <div class="mb-3 text-break">
+                            <div class="form-group">
+                                @Html.LabelFor(model => model.Password, htmlAttributes: new { @class = "form-label required fw600" })
+                                <i class="fa-solid fa-circle-info text-info" data-bs-toggle="tooltip" data-bs-placement="right"
+                           title="@Resource.PasswordRequirementText"></i>
+                                @Html.EditorFor(model => model.Password, new { htmlAttributes = new { @class = "form-control", @type = "password" } })
+                                @Html.ValidationMessageFor(model => model.Password, "", new { @class = "invalid-message" })
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-md-6">
+                        <div class="mb-3 text-break">
+                            <div class="form-group">
+                                @Html.LabelFor(model => model.ConfirmPassword, htmlAttributes: new { @class = "form-label required fw600", @for = "ConfirmPassword" })
+                                @Html.EditorFor(model => model.ConfirmPassword, new { htmlAttributes = new { @class = "form-control", @type = "password", @id = "ConfirmPassword" } })
+                                @Html.ValidationMessageFor(model => model.ConfirmPassword, "", new { @class = "invalid-message" })
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            }
+            <div class="row">
+                <div class="col-md-6">
+                    <div class="mb-3 text-break">
+                        @Html.LabelFor(model => model.UserStatusId, htmlAttributes: new { @class = "form-label required fw600" }) <a class="color-secondarycolor fs-12 hover-color-primarycolor" href="@Url.Action("edit","userstatus")" target="_blank">Create New</a>
+                        @CustomHelper.CustomDropDownList("UserStatusId", Model.UserStatusSelectList)
+                        @Html.ValidationMessageFor(model => model.UserStatusId, "", new { @class = "invalid-message" })
+                    </div>
+                </div>
+                <div class="col-md-6">
+                    <div class="mb-3 text-break">
+                        <div class="form-group">
+                            @Html.LabelFor(model => model.UserRoleName, htmlAttributes: new { @class = "form-label required fw600" })
+                            @CustomHelper.CustomDropDownList("UserRoleName", Model.UserRoleSelectList,null,"showHideClass")
+                            @*<div id="UserRoleIdList-wrapper">@CustomHelper.CustomMultiSelect("UserRoleIdList", Model.UserRoleSelectList)</div>*@
+                            @Html.ValidationMessageFor(model => model.UserRoleName, "", new { @class = "invalid-message" })
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="row">
+                <div id="class-wrapper" class="col-md-6">
+                    <div class="mb-3 text-break">
+                        @Html.LabelFor(model => model.ClassIdList, htmlAttributes: new { @class = "form-label required fw600" }) <a class="color-secondarycolor fs-12 hover-color-primarycolor" href="@Url.Action("edit","classhub")" target="_blank">Create New</a>
+                        @CustomHelper.CustomMultiSelect("ClassIdList", Model.ClassSelectList)
+                        @Html.ValidationMessageFor(model => model.ClassIdList, "", new { @class = "invalid-message" })
+                    </div>
+                </div>
+            </div>
+        </div>
+        @await Html.PartialAsync("~/Views/User/_EditProfileInfo.cshtml")
+        <div class="row mt-4">
+            <div class="col-12">
+                <a type="button" class="btn form-btn btn-secondary hover-boxshadow me-1" href="@Url.Action("index")">@Resource.BackToList</a>
+                <button id="save-btn" type="submit" class="btn form-btn btn-primary hover-boxshadow">@Resource.Save</button>
+            </div>
+        </div>
+    </section>
+}
+
+@section scripts{
+    <script>
+        const classWrapper = document.getElementById("class-wrapper");
+        $(document).ready(function () {
+            if ("@Model.UserRoleName" == "Student") {
+                classWrapper.style.display = "block";
+            } else {
+                classWrapper.style.display = "none";
+            }
+        });
+        function showHideClass(element) {
+            let datavalue = $(element).attr('data-value');
+            if (datavalue == "Student") {
+                classWrapper.style.display = "block";
+            } else {
+                classWrapper.style.display = "none";
+            }
+        }
+    </script>
+}

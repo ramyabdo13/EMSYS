@@ -1,0 +1,166 @@
+﻿@model PaginatedList<EMSYS.Models.QuestionViewModel>
+@{
+    string sort = ViewData["CurrentSort"].ToString();
+    int calculatedTo = (Model.PageIndex - 1) * Model.PageSize + Model.PageSize;
+    int calculatedFrom = (Model.PageIndex - 1) * Model.PageSize + 1;
+    int showingFrom = Model.TotalItems == 0 ? 0 : calculatedFrom;
+    int showingTo = (calculatedTo) > Model.TotalItems ? Model.TotalItems : (calculatedTo);
+}
+
+<div id="-table-wrapper">
+    <div class="table-responsive">
+        <table id="-table" class="table table-hover align-middle mb-0">
+            <thead class="table-light">
+                <tr>
+                    <td class="locked-column"><input id="selectall" class="form-check-input" type="checkbox" name="SelectedQuestions" value="all"></td>
+                    @foreach (var item in Model.ColumnHeaders)
+                    {
+                        if (item.Key != "Actions")
+                        {
+                            <th class="thead">
+                                <div class="d-flex justify-content-between align-items-center">
+                                    <span style="@(item.Key == "QuestionTitle" ? "min-width:360px;"
+                                    : item.Key == "CreatedOn" ? $"min-width:{ListUtil.DateTimeColumnWidth};"
+                                    : "")">@item.Title</span>
+                                </div>
+                            </th>
+                        }
+                        else
+                        {
+                            <th class="thead notexport actioncol"><div class="d-flex justify-content-between align-items-center"><span>@item.Title</span></div></th>
+                        }
+                    }
+                </tr>
+            </thead>
+            <tbody>
+                @foreach (var item in Model)
+                {
+                    <tr>
+                        <td class="locked-column">
+                            @if (item.AnswerSaved == true)
+                            {
+                                <div>
+                                    <input data-id="@item.Id" class="form-check-input isallowed" type="checkbox" name="SelectedQuestions" value="@item.Id" />
+                                </div>
+                            }
+                            else
+                            {
+                                <div class="cursor-notallowed" data-bs-toggle="tooltip" data-bs-placement="right" title="This is disabled because the answer of this question is not yet saved.">
+                                    <input data-id="@item.Id" class="form-check-input" type="checkbox" name="SelectedQuestions" value="@item.Id" disabled />
+                                </div>
+                            }
+                        </td>
+                        <td>
+                            <div style="width:330px;text-overflow:ellipsis;white-space:nowrap;overflow:hidden;">
+                                <a class="fw600 color-primarycolor hover-color-secondarycolor" href="@Url.Action("viewrecord", new { Id = @Html.ValueFor(modelItem => item.Id) })">@item.QuestionTitle</a>
+                            </div>
+                        </td>
+                        <td><div style="width:190px">@item.SubjectName</div></td>
+                        <td><div style="width:230px">@item.QuestionTypeName</div></td>
+                        <td><div class="datetimetext" style="width:200px">@item.IsoUtcCreatedOn</div></td>
+                        <td>
+                            <div style="width:150px">
+                                @if (item.AnswerSaved == true)
+                                {
+                                    <span class="badge bg-success text-black fw500 fs-13">Yes</span>
+                                }
+                                else
+                                {
+                                    <span class="badge bg-danger fw500 fs-13">No</span>
+                                }
+                            </div>
+                        </td>
+                    </tr>
+                }
+            </tbody>
+        </table>
+    </div>
+</div>
+
+<script>
+    var tableWrapper = document.getElementById("-table-wrapper");
+    var table = document.getElementById("-table");
+    var tableDropDown = document.getElementById("-tableDropDown");
+    if (tableWrapper != null) {
+        tableWrapper.id = tableIdPrefix + "-table-wrapper";
+    }
+    if (table != null) {
+        table.id = tableIdPrefix + "-table";
+    }
+    if (tableDropDown != null) {
+        tableDropDown.id = tableIdPrefix + "-tableDropDown";
+    }
+
+    var allCheckbox = document.querySelector(".form-check-input.isallowed");
+    if (void 0 !== allCheckbox && null != allCheckbox) {
+        for (var element, allCheckboxs = document.querySelectorAll(".form-check-input.isallowed"), i = 0; element = allCheckboxs[i]; i++) {
+            var qId = element.getAttribute("data-id");
+            if (questionsArray.includes(qId)) {
+                element.checked = true;
+            }
+        }
+    }
+
+    var tooltipTriggerList = [].slice.call(document.querySelectorAll('[data-bs-toggle="tooltip"]'))
+    var tooltipList = tooltipTriggerList.map(function (tooltipTriggerEl) {
+        return new bootstrap.Tooltip(tooltipTriggerEl)
+    });
+
+    calculateTotalMark(false);
+
+    function checkboxEnabled() {
+        // if exam ended and student already took the exam
+        // user can only uncheck the question to exclude the questions' mark in the score calculation (regrading)
+        // they cannot check the checkbox to add question to the exam
+        // studentTakenExam and examStatus are from the main view "AddQuestion.cshtml"
+        if (studentTakenExam == 'True' && examStatus == 'Ended') {
+            return false;
+        } else {
+            return true;
+        }
+    }
+
+    function calculateTotalMark(showToast) {
+        let totalQuestion = 0;
+        $('#' + tableIdPrefix + '-table tr').each(function () {
+            var checkbox = $(this).find("input[name=SelectedQuestions]");
+            if (checkbox.val() != "all" && checkbox.is(':checked')) {
+                totalQuestion++;
+            }
+        });
+        $("#totalquestion").text(totalQuestion);
+        if (showToast == true) {
+            $("#questionSelectedtoast .toast-body").text(totalQuestion);
+            var toast = new bootstrap.Toast(document.getElementById('questionSelectedtoast'), {
+                delay: 3500
+            });
+            toast.show();
+        }
+    }
+
+    $('input[name=SelectedQuestions]').click(function () {
+        if ($(this).is(':checked')) {
+            if (checkboxEnabled() == false) {
+                return;
+            } else {
+                $(this).prop('checked', true);
+            }
+        } else {
+            $(this).prop('checked', false);
+        }
+        $("#totalmark").text("@Resource.RecalculatingDot");
+        $("#totalquestion").text("@Resource.RecalculatingDot");
+        calculateTotalMark(true);
+    });
+
+    $('#selectall').click(function () {
+        if ($(this).is(':checked')) {
+            $('div input.isallowed').prop('checked', true);
+        } else {
+            $('div input.isallowed').prop('checked', false);
+        }
+        calculateTotalMark(true);
+    });
+
+
+</script>

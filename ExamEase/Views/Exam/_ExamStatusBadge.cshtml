@@ -1,0 +1,23 @@
+﻿@{
+    string examStatus = "";
+    if (ViewData["ExamStatus"] != null)
+    {
+        examStatus = ViewData["ExamStatus"].ToString();
+    }
+}
+@if (examStatus == "Published")
+{
+    <span class="badge bg-primarycolor text-white fw500 fs-13">@examStatus</span>
+}
+else if (examStatus == "On Going")
+{
+    <span class="badge bg-success text-black fw500 fs-13">@examStatus</span>
+}
+else if (examStatus == "Draft")
+{
+    <span class="badge bg-info text-white fw500 fs-13">@examStatus</span>
+}
+else
+{
+    <span class="badge bg-danger fw500 fs-13">@examStatus</span>
+}

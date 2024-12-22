@@ -1,0 +1,184 @@
+﻿@model EMSYS.Models.ExamViewModel
+@using EMSYS.CustomHelper
+@using EMSYS.Models;
+@{
+    ViewBag.Title = $"{Resource.View} {Resource.Exam}";
+    ViewBag.ModuleName = Resource.Exam;
+    Layout = "~/Views/Shared/_LayoutAfterLogin.cshtml";
+}
+
+<div class="row">
+    <div class="col-12">
+        <div style="--bs-breadcrumb-divider: '>';">
+            <ol class="breadcrumb m-0">
+                <li class="breadcrumb-item fw-normal"><a class="color-primarycolor opacity-50" href="@Url.Action("index")">@ViewBag.ModuleName @Resource.Management</a></li>
+                <li class="breadcrumb-item fw-normal active">@ViewBag.Title</li>
+            </ol>
+        </div>
+        <div class="page-title-box d-sm-flex align-items-center justify-content-between pt-2">
+            <h4 class="pagetitle mb-sm-0 fw600">@ViewBag.Title (@Model.Name)</h4>
+            <div class="d-flex mt-2 mt-0">
+                <span class="fs-22"><a href="@Url.Action("edit", new { Id = Model.Id })"><i class="fa-solid fa-edit text-edit hover-color-secondarycolor" data-bs-toggle="tooltip" data-bs-placement="top" title="@Resource.Edit"></i></a></span>
+                @if (Model.Id != null && Model.Id != Guid.Empty.ToString())
+                {
+                    <span class="fs-22">&nbsp; <a href="@Url.Action("addquestion", "exam", new { id= Model.Id })"><i class="fa-solid fa-clipboard-question text-attachment hover-color-secondarycolor" data-bs-toggle="tooltip" data-bs-placement="top" title="@Resource.Add @Resource.Question"></i></a></span>
+                }
+                <span class="fs-22">&nbsp; <i onclick="triggerDeleteConfirmationModal('@Url.Action("delete", new { id= Model.Id})')" class="fa-solid fa-trash-can text-delete cursor-pointer hover-color-secondarycolor" data-bs-toggle="tooltip" data-bs-placement="top" title="@Resource.Delete"></i></span>
+            </div>
+        </div>
+    </div>
+</div>
+
+@Html.HiddenFor(m => m.Id)
+<section class="section mt-3">
+    <div class="bg-white rounded p-3 p-lg-4 p-xl-5 shadow">
+        <h2 class="fs-20 fw600 mb-4">@ViewBag.ModuleName @Resource.Information</h2>
+        <div class="row">
+            <div class="col-md-6">
+                <div class="mb-3 text-break">
+                    <div>@Html.LabelFor(model => model.Name, htmlAttributes: new { @class = "fw600" })</div>
+                    <div>@Html.DisplayFor(model => model.Name, new { htmlAttributes = new { @class = "form-control d-block" } })</div>
+                </div>
+            </div>
+            <div class="col-md-6">
+                <div class="mb-3 text-break">
+                    <div>@Html.LabelFor(model => model.Description, htmlAttributes: new { @class = "fw600" })</div>
+                    <div>@Html.DisplayFor(model => model.Description, new { htmlAttributes = new { @class = "form-control d-block" } })</div>
+                </div>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-md-6">
+                <div class="mb-3 text-break">
+                    <div>@Html.LabelFor(model => model.StartDate, htmlAttributes: new { @class = "fw600" })</div>
+                    <div class="datetimetext">@Html.DisplayFor(model => model.StartDateIsoUtc, new { htmlAttributes = new { @class = "form-control d-block" } })</div>
+                </div>
+            </div>
+            <div class="col-md-6">
+                <div class="mb-3 text-break">
+                    <div>@Html.LabelFor(model => model.EndDate, htmlAttributes: new { @class = "fw600" })</div>
+                    <div class="datetimetext">@Html.DisplayFor(model => model.EndDateIsoUtc, new { htmlAttributes = new { @class = "form-control d-block" } })</div>
+                </div>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-md-6">
+                <div class="mb-3 text-break">
+                    <div>@Html.LabelFor(model => model.Duration, htmlAttributes: new { @class = "fw600" })</div>
+                    <div>@Html.DisplayFor(model => model.Duration, new { htmlAttributes = new { @class = "form-control d-block" } })</div>
+                </div>
+            </div>
+            <div class="col-md-6">
+                <div class="mb-3 text-break">
+                    <div>@Html.LabelFor(model => model.MarksToPass, htmlAttributes: new { @class = "fw600" })</div>
+                    <div>@Html.DisplayFor(model => model.MarksToPass, new { htmlAttributes = new { @class = "form-control d-block" } })</div>
+                </div>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-md-6">
+                <div class="mb-3 text-break">
+                    <div>@Html.LabelFor(model => model.ClassName, htmlAttributes: new { @class = "fw600" })</div>
+                    <div>@Html.DisplayFor(model => model.ClassName, new { htmlAttributes = new { @class = "form-control d-block" } })</div>
+                </div>
+            </div>
+            <div class="col-md-6">
+                <div class="mb-3 text-break">
+                    <div>@Html.LabelFor(model => model.SubjectName, htmlAttributes: new { @class = "fw600" })</div>
+                    <div>@Html.DisplayFor(model => model.SubjectName, new { htmlAttributes = new { @class = "form-control d-block" } })</div>
+                </div>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-md-6">
+                <div class="mb-3 text-break">
+                    <div>@Html.LabelFor(model => model.RandomizeQuestions, htmlAttributes: new { @class = "fw600" })</div>
+                    @if (Model.RandomizeQuestions == true)
+                    {
+                        <div>Yes</div>
+                    }
+                    else
+                    {
+                        <div>No</div>
+                    }
+                </div>
+            </div>
+            <div class="col-md-6">
+                <div class="mb-3 text-break">
+                    <div>@Html.LabelFor(model => model.IsActive, htmlAttributes: new { @class = "fw600" })</div>
+                    <div>@Html.DisplayFor(model => model.IsActive, new { htmlAttributes = new { @class = "form-control d-block" } })</div>
+                </div>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-md-6">
+                <div class="mb-3 text-break">
+                    <div>@Html.LabelFor(model => model.ReleaseAnswer, htmlAttributes: new { @class = "fw600" })</div>
+                    @if (Model.ReleaseAnswer == true)
+                    {
+                        <div>Yes</div>
+                    }
+                    else
+                    {
+                        <div>No</div>
+                    }
+                </div>
+            </div>
+            <div class="col-md-6">
+                <div class="mb-3 text-break">
+                    <div>@Html.LabelFor(model => model.ExamStatus, htmlAttributes: new { @class = "fw600" })</div>
+                    <div>
+                        @await Html.PartialAsync("_ExamStatusBadge", new ViewDataDictionary(ViewData) { { "ExamStatus", Model.ExamStatus } })
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="bg-white rounded p-3 p-lg-4 p-xl-5 shadow mt-4">
+        <h2 class="fs-20 fw600 mb-4">@Resource.OtherInformation</h2>
+        <div class="row">
+            <div class="col-md-6">
+                <div class="mb-3 text-break">
+                    <div>@Html.LabelFor(model => model.CreatedAndModified.CreatedByName, htmlAttributes: new { @class = "fw600" })</div>
+                    <div>@Html.DisplayFor(model => model.CreatedAndModified.CreatedByName, new { htmlAttributes = new { @class = "form-control" } })</div>
+                </div>
+            </div>
+            <div class="col-md-6">
+                <div class="mb-3 text-break">
+                    <div>@Html.LabelFor(model => model.CreatedAndModified.FormattedCreatedOn, htmlAttributes: new { @class = "fw600" })</div>
+                    <div class="datetimetext">@Html.DisplayFor(model => model.CreatedAndModified.FormattedCreatedOn, new { htmlAttributes = new { @class = "form-control" } })</div>
+                </div>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-md-6">
+                <div class="mb-3 text-break">
+                    <div>@Html.LabelFor(model => model.CreatedAndModified.ModifiedByName, htmlAttributes: new { @class = "fw600" })</div>
+                    <div>@Html.DisplayFor(model => model.CreatedAndModified.ModifiedByName, new { htmlAttributes = new { @class = "form-control" } })</div>
+                </div>
+            </div>
+            <div class="col-md-6">
+                <div class="mb-3 text-break">
+                    <div>@Html.LabelFor(model => model.CreatedAndModified.FormattedModifiedOn, htmlAttributes: new { @class = "fw600" })</div>
+                    <div class="datetimetext">@Html.DisplayFor(model => model.CreatedAndModified.FormattedModifiedOn, new { htmlAttributes = new { @class = "form-control" } })</div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="row mt-4">
+        <div class="col-12">
+            @await Html.PartialAsync("_Buttons", Model)
+        </div>
+    </div>
+</section>
+
+@section scripts{
+    <script>
+        $('#publishbutton').on('click', function () {
+            $('#confirmPublishModal').modal('show');
+        });
+        $('#unpublishbutton').on('click', function () {
+            $('#confirmUnPublishModal').modal('show');
+        });
+    </script>
+}

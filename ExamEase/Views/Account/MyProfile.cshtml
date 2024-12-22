@@ -1,0 +1,30 @@
+﻿@model EMSYS.Models.UserProfileViewModel
+@{
+    ViewBag.Title = Resource.MyProfile;
+    Layout = "~/Views/Shared/_LayoutAfterLogin.cshtml";
+}
+
+<div class="row">
+    <div class="col-12">
+        <div class="page-title-box d-sm-flex align-items-center justify-content-between pt-2">
+            <div class="pagetitle mb-sm-0 fw600">
+                @ViewBag.Title
+            </div>
+            <div class="d-flex">
+                <span class="fs-20"><a href="@Url.Action("editmyprofile","account")"><i class="fa-solid fa-edit text-edit hover-color-secondarycolor" data-bs-toggle="tooltip" data-bs-placement="top" title="@Resource.EditMyProfile"></i></a></span>
+            </div>
+        </div>
+    </div>
+</div>
+
+<section class="section mt-3">
+
+    @await Html.PartialAsync("~/views/user/_profileinfo.cshtml")
+
+    <div class="row mt-4">
+        <div class="col-12">
+            <a class="btn form-btn btn-primary hover-boxshadow me-1" href="@Url.Action("editmyprofile","account")">@Resource.EditMyProfile</a>
+        </div>
+    </div>
+
+</section>
