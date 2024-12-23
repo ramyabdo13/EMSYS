@@ -42,6 +42,14 @@ builder.Services.AddLocalization(options => options.ResourcesPath = "Resources")
 // Register the IStringLocalizerFactory service
 builder.Services.AddSingleton<IStringLocalizerFactory, ResourceManagerStringLocalizerFactory>();
 
+// Set English as the only culture
+builder.Services.Configure<RequestLocalizationOptions>(options =>
+{
+    options.DefaultRequestCulture = new Microsoft.AspNetCore.Localization.RequestCulture("en");
+    options.SupportedCultures = new List<System.Globalization.CultureInfo> { new System.Globalization.CultureInfo("en") };
+    options.SupportedUICultures = new List<System.Globalization.CultureInfo> { new System.Globalization.CultureInfo("en") };
+});
+
 //lowercase routing
 builder.Services.Configure<RouteOptions>(options => options.LowercaseUrls = true);
 builder.Services.Configure<RouteOptions>(options =>
@@ -71,26 +79,13 @@ app.UseRouting();
 app.UseAuthentication();
 app.UseAuthorization();
 
+// Use English localization
+app.UseRequestLocalization();
+
 app.MapControllerRoute(
     name: "default",
     pattern: "{controller=Home}/{action=Index}/{id?}");
 
 //app.MapRazorPages();
-
-app.Use(async (context, next) =>
-{
-    string? cookie = "";
-    if (context.Request.Cookies.TryGetValue("Language", out cookie))
-    {
-        System.Threading.Thread.CurrentThread.CurrentCulture = new System.Globalization.CultureInfo(cookie);
-        System.Threading.Thread.CurrentThread.CurrentUICulture = new System.Globalization.CultureInfo(cookie);
-    }
-    else
-    {
-        System.Threading.Thread.CurrentThread.CurrentCulture = new System.Globalization.CultureInfo("en");
-        System.Threading.Thread.CurrentThread.CurrentUICulture = new System.Globalization.CultureInfo("en");
-    }
-    await next.Invoke();
-});
 
 app.Run();

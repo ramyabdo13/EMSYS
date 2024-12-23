@@ -32,7 +32,7 @@ namespace EMSYS.Controllers
             string connection = Configuration.GetConnectionString("DefaultConnection");
             if (string.IsNullOrEmpty(connection))
             {
-                return View("ConfigurationError");
+                return View("Error");
             }
             try
             {
@@ -51,7 +51,7 @@ namespace EMSYS.Controllers
             }
             catch (Exception)
             {
-                return View("ConfigurationError");
+                return View("Error");
             }
 
             if (User.Identity.IsAuthenticated)
@@ -80,27 +80,6 @@ namespace EMSYS.Controllers
             ViewBag.Message = Resource.YouDontHavePermissionToAccess;
             return View();
         }
-
-        [AllowAnonymous]
-        public IActionResult ChangeLanguage(string lang)
-        {
-            if (lang != null)
-            {
-                Thread.CurrentThread.CurrentCulture = CultureInfo.CreateSpecificCulture(lang);
-                Thread.CurrentThread.CurrentUICulture = new CultureInfo(lang);
-            }
-            else
-            {
-                Thread.CurrentThread.CurrentCulture = CultureInfo.CreateSpecificCulture("en");
-                Thread.CurrentThread.CurrentUICulture = new CultureInfo("en");
-                lang = "en";
-            }
-
-            Response.Cookies.Append("Language", lang);
-
-            return Redirect(Request.GetTypedHeaders().Referer.ToString());
-        }
-
 
         private static IEnumerable<string> SplitSqlStatements(string sqlScript)
         {
