@@ -144,36 +144,6 @@
   <data name="EnvatoPortfolio" xml:space="preserve">
     <value>Envato Portfolio</value>
   </data>
-  <data name="FAQ" xml:space="preserve">
-    <value>FAQ</value>
-  </data>
-  <data name="FAQFourAnswer" xml:space="preserve">
-    <value>Yes, it's in our plan, but for now, we couldn't guarantee the release time.</value>
-  </data>
-  <data name="FAQFourQuestion" xml:space="preserve">
-    <value>Can you create a .NET Core MVC version?</value>
-  </data>
-  <data name="FAQOneAnswer" xml:space="preserve">
-    <value>We only provide support for fixing existing bugs in the templates and answering questions regarding the existing features. Step-by-step guidance on how to do your custom modifications, how to solve bugs after your own modifications and direct installation are not part of our support. Thank you so much for your understanding. We will spend our time to create more amazing templates for you.</value>
-  </data>
-  <data name="FAQOneQuestion" xml:space="preserve">
-    <value>How is the support policy?</value>
-  </data>
-  <data name="FAQThreeAnswer" xml:space="preserve">
-    <value>Yes, you can. Go to "/Views/Shared/_FooterBeforeLogin.cshtml" and find the footer section to edit or remove the copyright text.</value>
-  </data>
-  <data name="FAQThreeQuestion" xml:space="preserve">
-    <value>Can I edit or remove the Copyright text at the footer?</value>
-  </data>
-  <data name="FAQTwoAnswerPartOne" xml:space="preserve">
-    <value>Answer is: Immediately after purchase.</value>
-  </data>
-  <data name="FAQTwoAnswerPartTwo" xml:space="preserve">
-    <value>for more information, there is “Downloading your items” section at the end of this article.</value>
-  </data>
-  <data name="FAQTwoQuestion" xml:space="preserve">
-    <value>When can I download the file after purchase the item?</value>
-  </data>
   <data name="Feature1" xml:space="preserve">
     <value>User management</value>
   </data>
@@ -253,7 +223,7 @@
     <value>Features</value>
   </data>
   <data name="FeaturesDescription" xml:space="preserve">
-    <value>EMSYS Contains Full Essential Features To Conduct An Exam.</value>
+    <value>FGSSR EMSYS Contains Full Essential Features To Conduct An Exam.</value>
   </data>
   <data name="Fillyourdetailstoregister" xml:space="preserve">
     <value>Fill your details to register.</value>
@@ -265,7 +235,7 @@
     <value>Follow Us</value>
   </data>
   <data name="FollowUsDescription" xml:space="preserve">
-    <value>Follow our social media to get updates or news about the projects.</value>
+    <value>Follow our social media to get updates or news.</value>
   </data>
   <data name="Forgotyourpassword" xml:space="preserve">
     <value>Forgot your password?</value>
@@ -277,10 +247,10 @@
     <value>Home</value>
   </data>
   <data name="HomeDescription" xml:space="preserve">
-    <value>EMSYS is an online exam system that delivers exam management, question bank management, automated grading, an analytical dashboard, and more.</value>
+    <value>FGSSR EMSYS is an online exam system that delivers exam management, question bank management, automated grading, an analytical dashboard, and more.</value>
   </data>
   <data name="HomeTitleOne" xml:space="preserve">
-    <value>Revolutionize how you evaluate your students</value>
+    <value>FGGSR Online Examination System</value>
   </data>
   <data name="HomeTitleTwo" xml:space="preserve">
     <value />
@@ -292,7 +262,7 @@
     <value>Login</value>
   </data>
   <data name="NetStarterFAQArticles" xml:space="preserve">
-    <value>EMSYS FAQ Articles</value>
+    <value>FGSSR EMSYS FAQ Articles</value>
   </data>
   <data name="OurProducts" xml:space="preserve">
     <value>Our Products</value>
@@ -325,7 +295,7 @@
     <value>the following article</value>
   </data>
   <data name="ToNetStarter" xml:space="preserve">
-    <value>To EMSYS</value>
+    <value>FGSSR EMSYS</value>
   </data>
   <data name="UploadFile" xml:space="preserve">
     <value>Upload File</value>
@@ -343,22 +313,22 @@
     <value>EMSYS</value>
   </data>
   <data name="WhatyougetDescription" xml:space="preserve">
-    <value>After Purchasing, You Will Get A Zip File Which Contains The Following</value>
+    <value>FGSSR Examination System Features</value>
   </data>
   <data name="WhyUs1Description" xml:space="preserve">
-    <value>Save your question bank and re-use it in different exams with different mark distributions.</value>
+    <value>Save question banks to be re-used in different exams with different mark distributions.</value>
   </data>
   <data name="WhyUs1Title" xml:space="preserve">
     <value>Reusable Questions</value>
   </data>
   <data name="WhyUs2Description" xml:space="preserve">
-    <value>Say goodbye to the hassle of paper-based exams and the time-consuming manual grading system.</value>
+    <value>Hassle free paper-based exams and automatic grading system.</value>
   </data>
   <data name="WhyUs2Title" xml:space="preserve">
-    <value>Save Your Time</value>
+    <value>Save Time</value>
   </data>
   <data name="WhyUs3Description" xml:space="preserve">
-    <value>Streamline your examination process. Create exam, select questions from question bank, allocate marks, done!</value>
+    <value>Streamlined examination process. Create exam, select questions from question bank, allocate marks, done!</value>
   </data>
   <data name="WhyUs3Title" xml:space="preserve">
     <value>Simple Process</value>
@@ -367,6 +337,6 @@
     <value>Randomizing Question Order, Scheduling Exam Start Date &amp; Time, Storing Your Question Bank, And More.</value>
   </data>
   <data name="WhyUsTitle" xml:space="preserve">
-    <value>Why EMSYS</value>
+    <value>FGSSR EMSYS</value>
   </data>
 </root>
