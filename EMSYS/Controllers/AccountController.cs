@@ -162,7 +162,7 @@ namespace EMSYS.Controllers
         public void SetupSelectLists(UserProfileViewModel model)
         {
             model.GenderSelectList = util.GetGlobalOptionSets("Gender", model.GenderId);
-            model.CountrySelectList = util.GetCountryList(model.CountryName);
+            //model.CountrySelectList = util.GetCountryList(model.CountryName);
         }
 
         [HttpPost]

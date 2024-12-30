@@ -8,6 +8,13 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <Compile Remove="wwwroot\SQL\**" />
+    <Content Remove="wwwroot\SQL\**" />
+    <EmbeddedResource Remove="wwwroot\SQL\**" />
+    <None Remove="wwwroot\SQL\**" />
+  </ItemGroup>
+
+  <ItemGroup>
     <None Remove="Views\Account\rutfv1z5.sna~" />
   </ItemGroup>
 

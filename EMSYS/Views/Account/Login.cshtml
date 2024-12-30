@@ -66,25 +66,33 @@
 @section Scripts{
     <script>
         var btn = document.querySelector("#copyAdminDemoBtn");
+        if(btn){
         btn.addEventListener("click", function() {
             var inputusername = document.querySelector("input#UserName");  
             inputusername.value = "nsadmin";
              var inputpw = document.querySelector("input#Password");  
             inputpw.value = "Admin@123";
-        });
+        })
+        }
+        ;
         var btnTeacher = document.querySelector("#copyTeacherDemoBtn");
+        if(btnTeacher){
         btnTeacher.addEventListener("click", function () {
             var inputusername = document.querySelector("input#UserName");
             inputusername.value = "samantha";
              var inputpw = document.querySelector("input#Password");  
             inputpw.value = "User@123";
-        });
+        })
+        };
         var btnStudent = document.querySelector("#copyStudentDemoBtn");
+        if (btnStudent)
+        {
         btnStudent.addEventListener("click", function () {
             var inputusername = document.querySelector("input#UserName");
             inputusername.value = "athena";
             var inputpw = document.querySelector("input#Password");
             inputpw.value = "User@123";
-        });
+        })
+        };
         </script>
 }

@@ -155,7 +155,7 @@ namespace EMSYS.Controllers
             model.GenderSelectList = util.GetGlobalOptionSets("Gender", model.GenderId);
             model.UserStatusSelectList = util.GetGlobalOptionSets("UserStatus", model.UserStatusId);
             model.UserRoleSelectList = util.GetDataForDropDownList(model.UserRoleName, db.AspNetRoles, a => a.Name, a => a.Name);
-            model.CountrySelectList = util.GetCountryList(model.CountryName);
+            //model.CountrySelectList = util.GetCountryList(model.CountryName);
             model.ClassSelectList = util.GetDataForMultiSelect(model.ClassIdList, db.ClassHubs, a => a.Name, a => a.Id);
         }
 
@@ -208,11 +208,7 @@ namespace EMSYS.Controllers
                     {
                         errors.Add(Resource.RoleNotFound);
                     }
-                    List<SelectListItem> countries = util.GetCountryList("");
-                    if (countries?.Where(a => a.Text == model.CountryName).Any() == false)
-                    {
-                        errors.Add(Resource.CountryNotFound);
-                    }
+ 
                     var _user = db.AspNetUsers.FirstOrDefault(a => a.UserName == model.Username || a.Email == model.EmailAddress);
                     if (_user != null)
                     {
@@ -223,22 +219,7 @@ namespace EMSYS.Controllers
             return errors;
         }
 
-        public IActionResult DownloadImportTemplate()
-        {
-            var path = Path.Combine(this.Environment.WebRootPath, "Assets", "UserExcelTemplate.xlsx");
-            var tempFilePath = Path.Combine(this.Environment.WebRootPath, "Assets", "ImportUsersFromExcel.xlsx");
-            List<string> countries = db.Countries.Select(a => a.Name).ToList();
-            byte[] fileBytes = util.CreateDropDownListValueInExcel(path, tempFilePath, countries, "Country");
-            if (fileBytes == null)
-            {
-                return null;
-            }
-            string dtnow = util.GetIsoUtcNow();
-            dtnow = dtnow.Replace("-", "");
-            dtnow = dtnow.Replace(":", "");
-            dtnow = dtnow.Replace(".", "");
-            return File(fileBytes, System.Net.Mime.MediaTypeNames.Application.Octet, $"ImportUsersFromExcel{dtnow}.xlsx");
-        }
+      
 
         public IActionResult Import()
         {
@@ -288,7 +269,7 @@ namespace EMSYS.Controllers
                         "Confirm Password","Full Name","First Name",
                         "Last Name","Phone Number","Country","Role"
                     });
-                        //if all columns validated
+                       
                         if (errors.Count == 0)
                         {
                             for (int i = 0; i < dtRowsCount; i++)
@@ -511,11 +492,11 @@ namespace EMSYS.Controllers
                 }
                 else
                 {
-                    List<SelectListItem> countries = util.GetCountryList("");
-                    if (countries.Where(a => a.Text == model.CountryName).Any() == false)
-                    {
-                        ModelState.AddModelError("CountryName", Resource.CountryNotFound);
-                    }
+                    //List<SelectListItem> countries = util.GetCountryList("");
+                    //if (countries.Where(a => a.Text == model.CountryName).Any() == false)
+                    //{
+                    //    ModelState.AddModelError("CountryName", Resource.CountryNotFound);
+                    //}
                 }
                 if (model.ProfilePicture != null)
                 {

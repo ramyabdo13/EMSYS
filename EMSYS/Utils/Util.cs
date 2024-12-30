@@ -370,20 +370,7 @@ namespace EMSYS.Utils
             return model;
         }
 
-        public List<SelectListItem> GetCountryList(string selectedName)
-        {
-            List<SelectListItem> countryList = new List<SelectListItem>();
-            List<string> countries = db.Countries.Select(a => a.Name).ToList();
-            foreach (string country in countries)
-            {
-                SelectListItem selectListItem = new SelectListItem();
-                selectListItem.Text = country;
-                selectListItem.Value = country;
-                selectListItem.Selected = selectedName == country ? true : false;
-                countryList.Add(selectListItem);
-            }
-            return countryList.OrderBy(a => a.Text).ToList();
-        }
+       
 
         public List<SelectListItem> GetActiveInactiveDropDown(string selectedName)
         {
@@ -603,12 +590,7 @@ namespace EMSYS.Utils
             return list;
         }
 
-        //call this method like this:
-        //GetDataForDropDownList(model.UserRoleName, db.AspNetRoles, a => a.Name, a => a.Id);
-        //selectedId = the selected value
-        //dbSet = db.Subjects or other entity
-        //a => a.Name = the field in db.Subjects that is relevant to the 'Text' of SelectListItem
-        //a => a.Id = the field in db.Subjects that is relevant to the 'Value' of SelectListItem
+  
         public List<SelectListItem> GetDataForDropDownList<T>(string selectedId, DbSet<T> dbSet, Expression<Func<T, string>> fieldNameForText, Expression<Func<T, string>> fieldNameForValue) where T : class
         {
             List<SelectListItem> list = new List<SelectListItem>();
