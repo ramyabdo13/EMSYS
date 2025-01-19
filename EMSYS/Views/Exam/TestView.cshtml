@@ -1,0 +1,8 @@
+﻿@model EMSYS.Models.ExamViewModel
+@using EMSYS.CustomHelper
+@{
+    ViewBag.Title = $"{Resource.Add} {Resource.Question}";
+    Layout = "~/Views/Shared/_LayoutAfterLogin.cshtml";
+    ViewBag.TableIdPrefix = "question";
+    ViewBag.PartialViewWrapper = "question-partialview";
+}

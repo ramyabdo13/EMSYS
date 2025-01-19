@@ -1,10 +1,12 @@
 <Project Sdk="Microsoft.NET.Sdk.Web">
 
   <PropertyGroup>
+  <PreserveCompilationContext>true</PreserveCompilationContext>
+  <MvcRazorCompileOnPublish>false</MvcRazorCompileOnPublish>
     <TargetFramework>net8.0</TargetFramework>
     <Nullable>disable</Nullable>
     <ImplicitUsings>enable</ImplicitUsings>
-    <UserSecretsId>aspnet-ExamEase-0c753491-a2bb-4d8a-9dd1-d9955652f3e2</UserSecretsId>
+    <UserSecretsId>aspnet-ExamSYS-0c753491-a2bb-4d8a-9dd1-d9955652f3e2</UserSecretsId>
   </PropertyGroup>
 
   <ItemGroup>

@@ -10,7 +10,7 @@
         ViewBag.Title = $"{Model.ResultView.StudentName} {Resource.Answer}";
     }
     Layout = "~/Views/Shared/_LayoutAfterLogin.cshtml";
-    bool canSeeQuestionAndAnswer = (User.IsInRole("Student") && Model.ResultView.ReleaseAnswer == true) || User.IsInRole("System Admin") || User.IsInRole("Teacher");
+    bool canSeeQuestionAndAnswer = (User.IsInRole("Student") && Model.ResultView.ReleaseAnswer == true) || User.IsInRole("System Admin") || User.IsInRole("Instructor");
 }
 
 <div class="row">
@@ -157,7 +157,7 @@
                         <div class="col-md-6">
                             <div class="color-primarycolor">
                                 @Resource.AcceptedAnswers
-                                @if (User.IsInRole("System Admin") || User.IsInRole("Teacher"))
+                                @if (User.IsInRole("System Admin") || User.IsInRole("Instructor"))
                                 {
                                     <a class="color-secondarycolor fs-12 hover-color-primarycolor" href="@Url.Action("edit","answer",new { Id = item.QuestionId } )" target="_blank">Add</a>
                                 }

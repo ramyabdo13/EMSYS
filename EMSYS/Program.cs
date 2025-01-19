@@ -82,13 +82,16 @@ app.Use(async (context, next) =>
     string? cookie = "";
     if (context.Request.Cookies.TryGetValue("Language", out cookie))
     {
-        System.Threading.Thread.CurrentThread.CurrentCulture = new System.Globalization.CultureInfo(cookie);
-        System.Threading.Thread.CurrentThread.CurrentUICulture = new System.Globalization.CultureInfo(cookie);
+        var culture = new System.Globalization.CultureInfo(cookie);
+        System.Globalization.CultureInfo.DefaultThreadCurrentCulture = culture;
+        System.Globalization.CultureInfo.DefaultThreadCurrentUICulture = culture;
+
+       
     }
     else
     {
-        System.Threading.Thread.CurrentThread.CurrentCulture = new System.Globalization.CultureInfo("en");
-        System.Threading.Thread.CurrentThread.CurrentUICulture = new System.Globalization.CultureInfo("en");
+        System.Globalization.CultureInfo.DefaultThreadCurrentCulture = new System.Globalization.CultureInfo("en");
+        System.Globalization.CultureInfo.DefaultThreadCurrentUICulture = new System.Globalization.CultureInfo("en");
     }
     await next.Invoke();
 });

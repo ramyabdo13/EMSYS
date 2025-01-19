@@ -1101,10 +1101,10 @@
   <data name="TotalStudentTooltip" xml:space="preserve">
     <value>系统中的总学生帐户。</value>
   </data>
-  <data name="TotalTeacher" xml:space="preserve">
+  <data name="TotalInstructor" xml:space="preserve">
     <value>教师总数</value>
   </data>
-  <data name="TotalTeacherTooltip" xml:space="preserve">
+  <data name="TotalInstructorTooltip" xml:space="preserve">
     <value>系统中的教师总数。</value>
   </data>
   <data name="TotalUsers" xml:space="preserve">

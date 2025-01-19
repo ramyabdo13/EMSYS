@@ -173,7 +173,7 @@ namespace EMSYS.Controllers
                 ValidateEditMyProfile(model);
 
                 //These 2 fields can only be edited by system admin in user management section. When normal user edit profile from here, these 2 fields are not required.
-                if (User.IsInRole("Teacher") || User.IsInRole("Student"))
+                if (User.IsInRole("Instructor") || User.IsInRole("Student"))
                 {
                     ModelState.Remove("UserStatusId");
                     ModelState.Remove("UserRoleIdList");

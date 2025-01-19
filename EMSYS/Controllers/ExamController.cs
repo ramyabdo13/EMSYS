@@ -12,7 +12,7 @@ using EMSYS.Data;
 
 namespace EMSYS.Controllers
 {
-    [Authorize(Roles = "System Admin, Teacher")]
+    [Authorize(Roles = "System Admin, Instructor")]
     public class ExamController : Controller
     {
         private EMSYSdbContext db;
@@ -212,7 +212,7 @@ namespace EMSYS.Controllers
                 {
                     model.SelectedQuestions.RemoveAll(x => x == "all"); //if user selected the checkbox in <th>, remove it from the array
 
-                    //when student already took exam, teacher or admin can only exclude a question from the exam, they cannot add new question to it
+                    //when student already took exam, Instructor or admin can only exclude a question from the exam, they cannot add new question to it
                     bool? studentTakenExam = db.StudentExams.Where(a => a.ExamId == model.Id).Any();
                     if (studentTakenExam == true)
                     {
@@ -470,8 +470,8 @@ namespace EMSYS.Controllers
                             (t1.StartDate > now && t1.EndDate > now && t1.IsPublished == true) ? "Published" :
                             (t1.StartDate > now && t1.EndDate > now && t1.IsPublished == false) ? "Draft" : "Draft"
                         };
-            exams = User.IsInRole("Teacher") ? exams.Where(a => a.CreatedBy == currentUserId) : exams;
-            return exams;
+            exams = User.IsInRole("Instructor") ? exams.Where(a => a.CreatedBy == currentUserId) : exams;
+            return exams; 
 
         }
 

@@ -25,13 +25,13 @@ namespace EMSYS.Controllers
             _logger = logger;
         }
 
-        [Authorize(Roles = "System Admin, Teacher")]
+        [Authorize(Roles = "System Admin, Instructor")]
         public IActionResult Index()
         {
             return View();
         }
 
-        [Authorize(Roles = "System Admin, Teacher, Student")]
+        [Authorize(Roles = "System Admin, Instructor, Student")]
         public IActionResult StudentQuestionAnswer(string eId, string sId, int? num)
         {
             StudentExamResultList model = new StudentExamResultList();
@@ -64,7 +64,7 @@ namespace EMSYS.Controllers
             return View(model);
         }
 
-        [Authorize(Roles = "System Admin, Teacher")]
+        [Authorize(Roles = "System Admin, Instructor")]
         public void CheckStudentQuestionOrder(string eId, string sId, int? totalQuestions)
         {
             //if exam is set to randomize question order, but student question order is not saved yet, then save now
@@ -82,7 +82,7 @@ namespace EMSYS.Controllers
             }
         }
 
-        [Authorize(Roles = "System Admin, Teacher, Student")]
+        [Authorize(Roles = "System Admin, Instructor, Student")]
         public StudentExamViewModel GetStudentExamViewModel(string examId, string studentId, int? num)
         {
             StudentExamViewModel model = new StudentExamViewModel();
@@ -153,7 +153,7 @@ namespace EMSYS.Controllers
             return model;
         }
 
-        [Authorize(Roles = "System Admin, Teacher, Student")]
+        [Authorize(Roles = "System Admin, Instructor, Student")]
         public ResultViewModel GetResultViewModel(string eId, string sId, StudentExam studentExam, int? totalQuestion = 0)
         {
             ResultViewModel model = new ResultViewModel();
@@ -190,7 +190,7 @@ namespace EMSYS.Controllers
             return model;
         }
 
-        [Authorize(Roles = "System Admin, Teacher")]
+        [Authorize(Roles = "System Admin, Instructor")]
         public async Task<IActionResult> GetPartialViewListing(string sort, string search, int? pg, int? size)
         {
             try
@@ -223,7 +223,7 @@ namespace EMSYS.Controllers
         }
 
 
-        [Authorize(Roles = "System Admin, Teacher")]
+        [Authorize(Roles = "System Admin, Instructor")]
         public IQueryable<ExamResultViewModel> ReadExamResults()
         {
             IQueryable<string> exams = Enumerable.Empty<string>().AsQueryable();
@@ -232,7 +232,7 @@ namespace EMSYS.Controllers
             {
                 exams = db.StudentExams.OrderBy(a => a.StartedOn).Select(a => a.ExamId).Distinct();
             }
-            else if (User.IsInRole("Teacher"))
+            else if (User.IsInRole("Instructor"))
             {
                 string teacherId = _userManager.GetUserId(User);
                 exams = db.Exams.Where(x => x.CreatedBy == teacherId).Join(db.StudentExams, x => x.Id, y => y.ExamId, (x, y) => x.Id).Distinct();
@@ -255,7 +255,7 @@ namespace EMSYS.Controllers
         }
 
 
-        [Authorize(Roles = "System Admin, Teacher")]
+        [Authorize(Roles = "System Admin, Instructor")]
         public IActionResult StudentResult(string Id)
         {
             ExamViewModel model = new ExamViewModel();
@@ -276,7 +276,7 @@ namespace EMSYS.Controllers
             return View(model);
         }
 
-        [Authorize(Roles = "System Admin, Teacher")]
+        [Authorize(Roles = "System Admin, Instructor")]
         public async Task<IActionResult> GetPartialViewStudentResultListing(string Id, string sort, string search, int? pg, int? size)
         {
             try
@@ -308,7 +308,7 @@ namespace EMSYS.Controllers
             return PartialView("~/Views/Shared/Error.cshtml", null);
         }
 
-        [Authorize(Roles = "System Admin, Teacher")]
+        [Authorize(Roles = "System Admin, Instructor")]
         public IQueryable<ResultViewModel> ReadResultsByExamId(string Id)
         {
             var result = from t1 in db.StudentExams

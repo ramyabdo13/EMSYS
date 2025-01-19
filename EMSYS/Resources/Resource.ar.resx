@@ -1101,10 +1101,10 @@
   <data name="TotalStudentTooltip" xml:space="preserve">
     <value>إجمالي حساب الطالب في النظام.</value>
   </data>
-  <data name="TotalTeacher" xml:space="preserve">
+  <data name="TotalInstructor" xml:space="preserve">
     <value>مجموع المعلم</value>
   </data>
-  <data name="TotalTeacherTooltip" xml:space="preserve">
+  <data name="TotalInstructorTooltip" xml:space="preserve">
     <value>العدد الإجمالي للمعلمين في النظام.</value>
   </data>
   <data name="TotalUsers" xml:space="preserve">

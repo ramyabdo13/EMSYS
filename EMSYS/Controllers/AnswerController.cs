@@ -11,7 +11,7 @@ using EMSYS.Models;
 
 namespace EMSYS.Controllers
 {
-    [Authorize(Roles = "System Admin, Teacher")]
+    [Authorize(Roles = "System Admin, Instructor")]
     public class AnswerController : Controller
     {
         private EMSYSdbContext db;
@@ -60,7 +60,7 @@ namespace EMSYS.Controllers
 
                 List<StudentExamViewModel> studentExams = new List<StudentExamViewModel>();
 
-                //update the marks obtained by student according to their chosen answer, because teacher may changed the correct answer for the question
+                //update the marks obtained by student according to their chosen answer, because Instructor may changed the correct answer for the question
                 List<StudentAnswerCloned> studentAnswers = db.StudentAnswerCloneds.Where(a => a.QuestionId == model.QuestionId).ToList();
                 if (studentAnswers != null)
                 {
@@ -200,7 +200,7 @@ namespace EMSYS.Controllers
                                 }
                                 else if (model.QuestionTypeCode == "SA")
                                 {
-                                    //for short answer questions, admin/teacher will add a bunch of possible correct answers
+                                    //for short answer questions, admin/Instructor will add a bunch of possible correct answers
                                     answer.IsCorrect = true;
                                 }
                                 answer.ModifiedBy = _userManager.GetUserId(User);
@@ -223,7 +223,7 @@ namespace EMSYS.Controllers
                                 }
                                 else if (model.QuestionTypeCode == "SA")
                                 {
-                                    //for short answer questions, admin/teacher will add a bunch of possible correct answers
+                                    //for short answer questions, admin/Instructor will add a bunch of possible correct answers
                                     answer.IsCorrect = true;
                                 }
                                 answer.AnswerOrder = count;

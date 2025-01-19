@@ -3015,18 +3015,20 @@ namespace EMSYS.Resources {
         /// <summary>
         ///   Looks up a localized string similar to Total Teacher.
         /// </summary>
-        public static string TotalTeacher {
+        public static string TotalInstructor
+        {
             get {
-                return ResourceManager.GetString("TotalTeacher", resourceCulture);
+                return ResourceManager.GetString("TotalInstructor", resourceCulture);
             }
         }
         
         /// <summary>
         ///   Looks up a localized string similar to The total number of teachers in the system..
         /// </summary>
-        public static string TotalTeacherTooltip {
+        public static string TotalInstructorTooltip
+        {
             get {
-                return ResourceManager.GetString("TotalTeacherTooltip", resourceCulture);
+                return ResourceManager.GetString("TotalInstructorTooltip", resourceCulture);
             }
         }
         

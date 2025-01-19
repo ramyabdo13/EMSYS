@@ -1101,11 +1101,11 @@
   <data name="TotalStudentTooltip" xml:space="preserve">
     <value>The total student account in the system.</value>
   </data>
-  <data name="TotalTeacher" xml:space="preserve">
-    <value>Total Teacher</value>
+  <data name="TotalInstructor" xml:space="preserve">
+    <value>Total Instructor</value>
   </data>
-  <data name="TotalTeacherTooltip" xml:space="preserve">
-    <value>The total number of teachers in the system.</value>
+  <data name="TotalInstructorTooltip" xml:space="preserve">
+    <value>The total number of Instructors in the system.</value>
   </data>
   <data name="TotalUsers" xml:space="preserve">
     <value>Total Users</value>
