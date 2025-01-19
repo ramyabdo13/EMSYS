@@ -36,16 +36,16 @@ namespace EMSYS.Controllers
                 DateTime? now = util.GetSystemTimeZoneDateTimeNow();
                 if (User.IsInRole("System Admin"))
                 {
-                    string teacherRoleId = db.AspNetRoles.Where(a => a.Name == "Teacher").Select(a => a.Id).FirstOrDefault();
+                    string teacherRoleId = db.AspNetRoles.Where(a => a.Name == "Instructor").Select(a => a.Id).FirstOrDefault();
                     string studentRoleId = db.AspNetRoles.Where(a => a.Name == "Student").Select(a => a.Id).FirstOrDefault();
-                    model.TotalTeacher = db.AspNetUserRoles.Where(a => a.RoleId == teacherRoleId).Count();
+                    model.TotalInstructor = db.AspNetUserRoles.Where(a => a.RoleId == teacherRoleId).Count();
                     model.TotalStudent = db.AspNetUserRoles.Where(a => a.RoleId == studentRoleId).Count();
                     model.ExamPassed = db.StudentExams.Where(a => a.Passed == true).Select(a => a.ExamId).Distinct().Count();
                     model.ExamFailed = db.StudentExams.Where(a => a.Passed == false).Select(a => a.ExamId).Distinct().Count();
                 }
                 model.ExamInProgress = GetExamInProgress(-1)?.Count();
                 model.ExamCompleted = GetExamEnded(-1)?.Count();
-                if (User.IsInRole("Teacher"))
+                if (User.IsInRole("Instructor"))
                 {
                     model.ExamPassed = (from t1 in db.StudentExams
                                         join t2 in db.Exams on t1.ExamId equals t2.Id
@@ -79,12 +79,12 @@ namespace EMSYS.Controllers
                 }
                 model.DefaultExamToDisplayTopTenStudent = (from t1 in db.StudentExams
                                                            join t2 in db.Exams on t1.ExamId equals t2.Id
-                                                           where t2.IsActive == true && t1.Result != null && (User.IsInRole("Teacher") ? t2.CreatedBy == currentUserId : t1.Id != null)
+                                                           where t2.IsActive == true && t1.Result != null && (User.IsInRole("Instructor") ? t2.CreatedBy == currentUserId : t1.Id != null)
                                                            orderby t1.EndedOn descending
                                                            select t2.Id).FirstOrDefault();
                 model.ExamSelectList = (from t1 in db.StudentExams
                                         join t2 in db.Exams on t1.ExamId equals t2.Id
-                                        where t2.IsActive == true && t1.Result != null && (User.IsInRole("Teacher") ? t2.CreatedBy == currentUserId : t1.Id != null)
+                                        where t2.IsActive == true && t1.Result != null && (User.IsInRole("Instructor") ? t2.CreatedBy == currentUserId : t1.Id != null)
                                         select new SelectListItem
                                         {
                                             Text = t2.Name,
@@ -124,7 +124,7 @@ namespace EMSYS.Controllers
                                 DataLabel = g.Key.ToString()
                             }).ToList();
                 }
-                if (User.IsInRole("Teacher"))
+                if (User.IsInRole("Instructor"))
                 {
                     string userid = _userManager.GetUserId(User);
                     list = (from t1 in db.StudentExams
@@ -165,7 +165,7 @@ namespace EMSYS.Controllers
                                 .ToList();
 
                 }
-                if (User.IsInRole("Teacher"))
+                if (User.IsInRole("Instructor"))
                 {
                     string userid = _userManager.GetUserId(User);
                     result = (from t1 in db.StudentAnswerCloneds
@@ -243,7 +243,7 @@ namespace EMSYS.Controllers
                                   DataLabel = t3.FullName
                               }).OrderByDescending(a => a.DataValue).Take(num).ToList();
                 }
-                if (User.IsInRole("Teacher"))
+                if (User.IsInRole("Instructor"))
                 {
                     string userid = _userManager.GetUserId(User);
                     result = (from t1 in db.StudentExams
@@ -286,7 +286,7 @@ namespace EMSYS.Controllers
                               IsoUtcStartDate = t1.IsoUtcStartDate,
                               CreatedById = t1.CreatedBy
                           }).ToList();
-                if (User.IsInRole("Teacher"))
+                if (User.IsInRole("Instructor"))
                 {
                     result = result.Where(a => a.CreatedById == userid).ToList();
                 }
@@ -336,7 +336,7 @@ namespace EMSYS.Controllers
                               Id = t1.Id,
                               CreatedById = t1.CreatedBy
                           }).ToList();
-                if (User.IsInRole("Teacher"))
+                if (User.IsInRole("Instructor"))
                 {
                     result = result.Where(a => a.CreatedById == userid).ToList();
                 }
@@ -373,7 +373,7 @@ namespace EMSYS.Controllers
                           {
                               CreatedById = t1.CreatedBy
                           }).ToList();
-                if (User.IsInRole("Teacher"))
+                if (User.IsInRole("Instructor"))
                 {
                     result = result.Where(a => a.CreatedById == userid).ToList();
                 }

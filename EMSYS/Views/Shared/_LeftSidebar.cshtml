@@ -32,7 +32,7 @@
                 </a>
             </li>
         }
-        @if (User.IsInRole("System Admin") || User.IsInRole("Teacher"))
+        @if (User.IsInRole("System Admin") || User.IsInRole("Instructor"))
         {
             <li class="nav-item">
                 <a class="nav-link @(ViewContext.RouteData.Values["Controller"].ToString().ToLower() == "question" || ViewContext.RouteData.Values["Controller"].ToString().ToLower() == "answer" ? "active" : "")" href="@Url.Action("index","question")">
@@ -107,7 +107,7 @@
                 </a>
             </li>
         }
-        @if (User.IsInRole("System Admin") || User.IsInRole("Teacher"))
+        @if (User.IsInRole("System Admin") || User.IsInRole("Instructor"))
         {
             <li class="nav-item">
                 <a class="nav-link @(ViewContext.RouteData.Values["Controller"].ToString().ToLower() == "question" || ViewContext.RouteData.Values["Controller"].ToString().ToLower() == "answer" ? "active" : "")" href="@Url.Action("index","question")" data-bs-toggle="tooltip" data-bs-placement="right" title="@Resource.QuestionManagement">
@@ -183,7 +183,7 @@
                 </a>
             </li>
         }
-        @if (User.IsInRole("System Admin") || User.IsInRole("Teacher"))
+        @if (User.IsInRole("System Admin") || User.IsInRole("Instructor"))
         {
             <li class="nav-item">
                 <a class="nav-link @(ViewContext.RouteData.Values["Controller"].ToString().ToLower() == "question" || ViewContext.RouteData.Values["Controller"].ToString().ToLower() == "answer" ? "active" : "")" href="@Url.Action("index","question")">

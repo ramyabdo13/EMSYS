@@ -80,14 +80,7 @@
                                             <a class="nav-link ms-3 me-1 pe-0 hover-color-primarycolor" href="@Url.Action("index","home")#faq">@EMSYS.Resources.HomePageResource.FAQ</a>
                                         </li>
                                     }
-                                    <li class="nav-item dropdown">
-                                        <a class="nav-link dropdown-toggle ms-3 me-1 pe-0 hover-color-primarycolor" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
-                                            @System.Threading.Thread.CurrentThread.CurrentCulture.ToString().ToUpper()
-                                        </a>
-                                        <ul class="dropdown-menu">
-                                            @await Html.PartialAsync("~/Views/Shared/_LanguageChoices.cshtml")
-                                        </ul>
-                                    </li>
+                                   
                                     <li class="nav-item">
                                         <a class="nav-link ms-3 me-1 pe-0 hover-moveup" href="@Url.Action("login","account")">
                                             <span class="hover-boxshadow border-0 bg-light color-black hover-bg-primarycolor px-4 py-2 rounded shadow">@EMSYS.Resources.HomePageResource.Login</span>
@@ -123,12 +116,12 @@
             <div>
                 <a class="nav-link hover-color-primarycolor @(ViewContext.RouteData.Values["Controller"].ToString() == "home" && ViewContext.RouteData.Values["Action"].ToString() == "index" ? "color-primarycolor" : "")" href="@Url.Action("index","home")">@EMSYS.Resources.HomePageResource.Home</a>
             </div>
-            <div class="btn-group nav-link">
+            @* <div class="btn-group nav-link">
                 <button type="button" class="btn bg-transparent hover-color-primarycolor border-0 dropdown-toggle ps-0" data-bs-toggle="dropdown" aria-expanded="false">@System.Threading.Thread.CurrentThread.CurrentCulture.ToString().ToUpper()</button>
                 <ul class="dropdown-menu">
                     @await Html.PartialAsync("~/Views/Shared/_LanguageChoices.cshtml")
                 </ul>
-            </div>
+            </div> *@
             <div>
                 <a class="nav-link hover-color-primarycolor @(ViewContext.RouteData.Values["Controller"].ToString() == "account" && ViewContext.RouteData.Values["Action"].ToString() == "login" ? "color-primarycolor" : "")" href="@Url.Action("login","account")">@EMSYS.Resources.HomePageResource.Login</a>
             </div>

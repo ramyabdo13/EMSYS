@@ -293,9 +293,9 @@ namespace EMSYS.Resources {
                 return ResourceManager.GetString("Feature12Description", resourceCulture);
             }
         }
-        
+
         /// <summary>
-        ///   Looks up a localized string similar to System admin can create, update and delete users. Students and teachers can register an account by themselves too..
+        ///   Looks up a localized string similar to System admin can create, update and delete users. Students and Instructor can register an account by themselves too..
         /// </summary>
         public static string Feature1Description {
             get {

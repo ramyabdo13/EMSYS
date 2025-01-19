@@ -7,6 +7,7 @@ using EMSYS.Models;
 namespace EMSYS.Data
 {
 
+
     public class EMSYSdbContext : IdentityDbContext<AspNetUsers, AspNetRoles, string,
                                         AspNetUserClaims, AspNetUserRoles, AspNetUserLogins, IdentityRoleClaim<string>, IdentityUserToken<string>>
     {

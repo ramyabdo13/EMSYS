@@ -181,7 +181,7 @@
     <value>Automatic regrading</value>
   </data>
   <data name="Feature10Description" xml:space="preserve">
-    <value>If a teacher selects the wrong answer as the correct one and discovers this after the students have taken the exam, their results will be re-graded automatically if they want to change the answer.</value>
+    <value>If a Instructor selects the wrong answer as the correct one and discovers this after the students have taken the exam, their results will be re-graded automatically if they want to change the answer.</value>
   </data>
   <data name="Feature11" xml:space="preserve">
     <value>Analyze Chart</value>

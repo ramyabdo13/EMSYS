@@ -25,7 +25,7 @@
     </div>
 </div>
 
-@await Html.PartialAsync("~/Views/Exam/_Tabs.cshtml", new ViewDataDictionary(ViewData) {{ "active", "addquestion" }, { "id",Model.Id}, { "random",Model.RandomizeQuestions}  })
+@await Html.PartialAsync("~/Views/Exam/_Tabs.cshtml", new ViewDataDictionary(ViewData) { { "active", "addquestion" }, { "id", Model.Id }, { "random", Model.RandomizeQuestions } })
 
 @using (Html.BeginForm("AddQuestion", "Exam", new { ReturnUrl = ViewBag.ReturnUrl }, FormMethod.Post, null, new { @class = "form-horizontal", role = "form", enctype = "multipart/form-data" }))
 {
@@ -103,7 +103,7 @@
     </div>
 </div>
 
-@section scripts{
+@section scripts {
     <script>
         var tableIdPrefix = "@ViewBag.TableIdPrefix";
         var fileName = "@Resource.Question"; //the file name for excel and pdf file (Export to excel, pdf feature)

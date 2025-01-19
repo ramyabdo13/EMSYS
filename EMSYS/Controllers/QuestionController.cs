@@ -13,7 +13,7 @@ using EMSYS.Data;
 
 namespace EMSYS.Controllers
 {
-    [Authorize(Roles = "System Admin, Teacher")]
+    [Authorize(Roles = "System Admin, Instructor")]
     public class QuestionController : Controller
     {
         private EMSYSdbContext db;
@@ -242,7 +242,7 @@ namespace EMSYS.Controllers
                             from t7 in g3.DefaultIfEmpty()
                             let t8 = db.Answers.Where(a => a.QuestionId == t1.Id).Any()
                             let t9 = db.StudentAnswerCloneds.Where(a => a.QuestionId == t1.Id).Any()
-                            where (User.IsInRole("Teacher") == true) ? t1.CreatedBy == userid : t1.Id != null &&
+                            where (User.IsInRole("System Admin") == true || User.IsInRole("Instructor") == true) ? t1.CreatedBy == userid : t1.Id != null &&
                             (!string.IsNullOrEmpty(id) ? subjectsForExam.Contains(t3.Id) == true : t1.Id != null)
                             orderby t1.CreatedOn
                             select new QuestionViewModel

@@ -1101,10 +1101,10 @@
   <data name="TotalStudentTooltip" xml:space="preserve">
     <value>Jumlah akaun pelajar dalam sistem.</value>
   </data>
-  <data name="TotalTeacher" xml:space="preserve">
+  <data name="TotalInstructor" xml:space="preserve">
     <value>Jumlah Guru</value>
   </data>
-  <data name="TotalTeacherTooltip" xml:space="preserve">
+  <data name="TotalInstructorTooltip" xml:space="preserve">
     <value>Jumlah akaun guru dalam sistem.</value>
   </data>
   <data name="TotalUsers" xml:space="preserve">

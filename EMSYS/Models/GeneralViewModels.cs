@@ -43,7 +43,7 @@ namespace EMSYS.Models
 
     public class DashboardViewModel
     {
-        public int? TotalTeacher { get; set; } = 0;
+        public int? TotalInstructor { get; set; } = 0;
         public int? TotalStudent { get; set; } = 0;
         public int? ExamInProgress { get; set; } = 0;
         public int? ExamCompleted { get; set; } = 0;
