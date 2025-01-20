@@ -17,6 +17,11 @@
   </ItemGroup>
 
   <ItemGroup>
+    <Content Remove="Views\Question\Import.cshtml" />
+    <Content Remove="Views\User\Import.cshtml" />
+  </ItemGroup>
+
+  <ItemGroup>
     <None Remove="Views\Account\rutfv1z5.sna~" />
   </ItemGroup>
 

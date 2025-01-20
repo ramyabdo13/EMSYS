@@ -166,11 +166,5 @@ namespace EMSYS.Models
         public string EmailAddress { get; set; }
     }
 
-    public class ImportFromExcel
-    {
-        [Display(Name = "File", ResourceType = typeof(Resource))]
-        public IFormFile File { get; set; }
-        public List<ImportFromExcelError> ErrorList { get; set; }
-        public string UploadResult { get; set; }
-    }
+    
 }

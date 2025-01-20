@@ -1,6 +1,6 @@
 ﻿@model EMSYS.Models.UserProfileListing
 @using EMSYS.Models;
-@using EMSYS.CustomHelper;
+@using EMSYS.CustomHelper;f
 @{
     ViewBag.Title = Resource.UserManagement;
     Layout = "~/Views/Shared/_LayoutAfterLogin.cshtml";
@@ -22,8 +22,8 @@
         <div class="pb-2">
             <a class="btn form-btn btn-primary hover-boxshadow hover-moveup hover-bg-primarycolor" href="@Url.Action("edit")"><i class="fa-solid fa-plus pe-1"></i> @Resource.AddNewRecord</a>
             <a class="btn form-btn btn-secondary hover-boxshadow hover-moveup bg-tertiarycolor hover-bg-primarycolor" href="@Url.Action("import")"><i class="fa-solid fa-file-excel pe-1"></i> @Resource.ImportFromExcel</a>
-            <span onclick="exportToExcel('@ViewBag.TableIdPrefix', '@Resource.TableIsStillLoading')" data-bs-toggle="tooltip" data-bs-placement="right" title="@Resource.ExportToExcelNote" class="btn form-btn btn-secondary hover-boxshadow cursor-pointer hover-moveup"><i class="fa-solid fa-file-excel pe-1"></i> @Resource.ExporttoExcel</span>
-            <span onclick="exportToPdf('@ViewBag.TableIdPrefix', '@Resource.TableIsStillLoading')" data-bs-toggle="tooltip" data-bs-placement="right" title="@Resource.ExportToPDFNote" class="btn form-btn btn-secondary hover-boxshadow cursor-pointer hover-moveup"><i class="fa-solid fa-file-pdf pe-1"></i> @Resource.ExporttoPdf</span>
+           
+           
         </div>
         <div id="@ViewBag.PartialViewWrapper">
             <!-- display a dummy empty table while loading the data -->

@@ -385,11 +385,7 @@ namespace EMSYS.Controllers
             question.IsActive = model.IsActive == "Active" ? true : false;
         }
 
-        public IActionResult Import()
-        {
-            ImportFromExcel importFromExcel = new ImportFromExcel();
-            return View(importFromExcel);
-        }
+      
 
         public IActionResult DownloadImportTemplate()
         {
@@ -409,123 +405,7 @@ namespace EMSYS.Controllers
         }
 
         [HttpPost]
-        public IActionResult Import(ImportFromExcel model, IFormFile File)
-        {
-            try
-            {
-                List<string> errors = new List<string>();
-                List<ImportFromExcelError> errorsList = new List<ImportFromExcelError>();
-
-                QuestionViewModel questionViewModel = new QuestionViewModel();
-
-                int successCount = 0;
-                int dtRowsCount = 0;
-                List<string> columns = new List<string>();
-
-                using (var memoryStream = new MemoryStream())
-                {
-                    File.CopyTo(memoryStream);
-                    using (var reader = ExcelReaderFactory.CreateReader(memoryStream))
-                    {
-                        var ds = reader.AsDataSet(new ExcelDataSetConfiguration()
-                        {
-                            ConfigureDataTable = (_) => new ExcelDataTableConfiguration()
-                            {
-                                UseHeaderRow = true
-                            }
-                        });
-
-                        var dt = ds.Tables[0];
-
-                        foreach (var col in dt.Columns.Cast<DataColumn>())
-                        {
-                            col.ColumnName = col.ColumnName.Replace("*", "");
-                            columns.Add(col.ColumnName);
-                        }
-                        dtRowsCount = dt.Rows.Count;
-
-                        errors = util.ValidateColumns(columns, new List<string>
-                    {
-                        "Question Title","Subject",
-                        "Question Type","Status"
-                    });
-
-                        //if all columns validated
-                        if (errors.Count == 0)
-                        {
-                            for (int i = 0; i < dtRowsCount; i++)
-                            {
-                                try
-                                {
-                                    //decimal markValue = 0;
-                                    string questionTitle = dt.Rows[i].Field<string>("Question Title");
-                                    string subject = dt.Rows[i].Field<string>("Subject");
-                                    string questionType = dt.Rows[i].Field<string>("Question Type");
-                                    string status = dt.Rows[i].Field<string>("Status");
-
-                                    string subjectId = db.Subjects.Where(a => a.Name == subject).Select(a => a.Id).FirstOrDefault();
-                                    string questionTypeId = db.QuestionTypes.Where(a => a.Name == questionType).Select(a => a.Id).FirstOrDefault();
-
-                                    questionViewModel.QuestionTitle = questionTitle;
-                                    questionViewModel.SubjectId = subjectId;
-                                    questionViewModel.QuestionTypeId = questionTypeId;
-
-                                    errors = ValidateImportRow(questionViewModel);
-
-                                    if (errors.Count() > 0)
-                                    {
-                                        ImportFromExcelError importFromExcelError = new ImportFromExcelError();
-                                        importFromExcelError.Row = $"At Row {i + 2}";
-                                        importFromExcelError.Errors = errors;
-                                        errorsList.Add(importFromExcelError);
-                                        continue;
-                                    }
-
-                                    Question question = new Question();
-                                    question.Id = Guid.NewGuid().ToString();
-                                    question.QuestionTitle = questionTitle;
-                                    question.SubjectId = subjectId;
-                                    question.QuestionTypeId = questionTypeId;
-                                    question.IsActive = status == "Active" ? true : false;
-                                    question.CreatedBy = _userManager.GetUserId(User);
-                                    question.CreatedOn = util.GetSystemTimeZoneDateTimeNow();
-                                    question.IsoUtcCreatedOn = util.GetIsoUtcNow();
-                                    db.Questions.Add(question);
-                                    db.SaveChanges();
-                                    successCount++;
-                                    ModelState.Clear();
-                                }
-                                catch (Exception ex)
-                                {
-                                    errors.Add($"{ex.Message} - Row: {i + 2}");
-                                }
-                            }
-                        }
-                        else
-                        {
-                            ImportFromExcelError importFromExcelError = new ImportFromExcelError();
-                            importFromExcelError.Row = Resource.InvalidTemplate;
-                            importFromExcelError.Errors = errors;
-                            errorsList.Add(importFromExcelError);
-                        }
-                    }
-                }
-
-                if (errorsList.Count > 0)
-                {
-                    model.ErrorList = errorsList;
-                    model.UploadResult = $"{successCount} {Resource.outof} {dtRowsCount} {Resource.recordsuploaded}";
-                    return View("import", model);
-                }
-                TempData["NotifySuccess"] = Resource.RecordsImportedSuccessfully;
-            }
-            catch (Exception ex)
-            {
-                TempData["NotifyFailed"] = Resource.FailedExceptionError;
-                _logger.LogError(ex, $"{GetType().Name} Controller - {MethodBase.GetCurrentMethod().Name} Method");
-            }
-            return RedirectToAction("index");
-        }
+        
 
         public List<string> ValidateImportRow(QuestionViewModel model)
         {
