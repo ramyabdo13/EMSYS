@@ -1,7 +1,7 @@
 :root { 
   /* Override Bootstrap Setting */
-  --heading-font-family: "Poppins", serif;
-  --bs-body-font-family: "Poppins", sans-serif;
+  --heading-font-family: "Tajawal", serif;
+  --bs-body-font-family: "Tajawal", serif;
   --bs-body-font-size: 15px;
   --bs-body-font-weight: 400;
   --bs-body-line-height: 1.65;
@@ -40,6 +40,7 @@
   --sidebarscrollbar: #6d7278;
   --bs-success-darker: #2d6e54;
   --bs-danger-darker: #8b1205;
+  --bs-nav-link-font-size: 16px;
    
 }
 
@@ -72,16 +73,6 @@ a, a:active, a:focus, a:hover { text-decoration: none }
 .btn-primary { background-color: var(--secondarycolor) !important; color: white !important; border: none !important; }
 .btn-secondary { background-color: var(--tertiarycolor) !important; color: black !important; border: none !important; }
 .btn-primary:hover, .btn-secondary:hover { background-color: var(--primarycolor) !important; color: white !important; }
-
-/*--------------------------------------------------------------
-# Home page FAQ section
---------------------------------------------------------------*/
-.wavepattern-top { margin-bottom: -68px; }
-.wavepattern-bottom { margin-top: -68px; }
-.accordion-button:not(.collapsed) { background-color: var(--primarycolor) !important; color: white !important; }
-.accordion-button.bg-img-none::after { background-image: none !important; }
-.accordion-button.plusminus-icon::after { content: '+' !important; }
-.accordion-button.plusminus-icon:not(.collapsed)::after { content: '-' !important; }
 
 /*--------------------------------------------------------------
 # General
