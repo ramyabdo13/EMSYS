@@ -32,7 +32,7 @@ namespace EMSYS.Controllers
             string connection = Configuration.GetConnectionString("DefaultConnection");
             if (string.IsNullOrEmpty(connection))
             {
-                return View("ConfigurationError");
+                return View("Error");
             }
             try
             {
@@ -51,7 +51,7 @@ namespace EMSYS.Controllers
             }
             catch (Exception)
             {
-                return View("ConfigurationError");
+                return View("Error");
             }
 
             if (User.Identity.IsAuthenticated)

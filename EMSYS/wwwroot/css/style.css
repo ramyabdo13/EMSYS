@@ -1,45 +1,46 @@
 :root { 
-    /* Override Bootstrap Setting */
-    --heading-font-family: 'Poppins', serif;
-    --bs-body-font-family: 'Poppins', sans-serif;
-    --bs-body-font-size: 15px;
-    --bs-body-font-weight: 400;
-    --bs-body-line-height: 1.65;
-    --bs-body-bg: #fffcf9;
-    --bs-body-color: #000;
-    --body-afterlogin: #fbfaf7;
+  /* Override Bootstrap Setting */
+  --heading-font-family: "Poppins", serif;
+  --bs-body-font-family: "Poppins", sans-serif;
+  --bs-body-font-size: 15px;
+  --bs-body-font-weight: 400;
+  --bs-body-line-height: 1.65;
+  --bs-body-bg: #f7f4ef;
+  --bs-body-color: #1e1e1e;
+  --body-afterlogin: #f7f4ef;
 
-    --primarycolor: #52377a; /* navy blue color (used in buttons' on hover background color, and some text links' color) */
-    --secondarycolor: #fd7e50; /* orange color (used in add new button, save buttons' background color) */
-    --tertiarycolor: #cae2e9; /* import export buttons' background color */
-    --primarycolorgray: #eff1f8; /* light blue-gray used in footer bg */
-    --shadow: rgba(240, 237, 235,0.35);
-    --sidebar-bg: #fff;
-    --sidebar-navlink: #4e4e4e; /* grayish blue (the color of nav links at left sidebar after login) */
-    --edit: #615376; /* (the color of EDIT icon action button at the table) */
-    --delete: #615376; /* (the color of DELETE icon action button at the table) */
-    --attachment: #615376; /* (the color of ATTACHMENT icon action button at the table) */
-    --resetpassword: #615376; /* (the color of RESET PASSWORD icon action button at the table) */
-    --input-border: #ece6e0; /* color that used in all the form input borders */
-    --input-border-radiobutton: #d8c8b7; /* color for radio button border (A little darker than other input borders' color) */ /* Table row color (When hover on the table row) */
-    --bs-table-hover-color: #212529;
-    --bs-table-hover-bg: rgba(248,249,250, 0.8);
-    --locked-column-bg: #f8f9fa; 
+  --primarycolor: #c21807;
+  --secondarycolor: #419d78;
+  --tertiarycolor: #d9c1a1;
+  --primarycolorgray: #6d7278;
+  --shadow: rgba(109, 114, 120, 0.35);
+  --sidebar-bg: #f7f4ef;
+  --sidebar-navlink: #1e1e1e;
+  --edit: #7a306c;
+  --delete: #c21807;
+  --attachment: #419d78;
+  --resetpassword: #009c8a;
+  --input-border: #d9c1a1;
+  --input-border-radiobutton: #a45e5b;
+  --bs-table-hover-color: #1e1e1e;
+  --bs-table-hover-bg: rgba(247, 244, 239, 0.8);
+  --locked-column-bg: #f7f4ef;
 
-    /*Override bootstrap*/
-    --bs-primary: #4040AD;
-    --bs-success: #caeebf;
-    --bs-info: #396b99;
-    --bs-warning: #d08627;
-    --bs-danger: #dc7b77;
-    --bs-primary-rgb: 64, 64, 173;
-    --bs-success-rgb: 202, 238, 191;
-    --bs-info-rgb: 60, 126, 186;
-    --bs-warning-rgb: 208, 134, 39;
-    --bs-danger-rgb: 220, 123, 119;
-    --sidebarscrollbar: #ceced5;
-    --bs-success-darker: #70ba59;
-    --bs-danger-darker: #b24f4b;
+  /*Override bootstrap*/
+  --bs-primary: #c21807;
+  --bs-success: #419d78;
+  --bs-info: #009c8a;
+  --bs-warning: #c4a000;
+  --bs-danger: #c21807;
+  --bs-primary-rgb: 194, 24, 7;
+  --bs-success-rgb: 65, 157, 120;
+  --bs-info-rgb: 0, 156, 138;
+  --bs-warning-rgb: 196, 160, 0;
+  --bs-danger-rgb: 194, 24, 7;
+  --sidebarscrollbar: #6d7278;
+  --bs-success-darker: #2d6e54;
+  --bs-danger-darker: #8b1205;
+   
 }
 
 /*--------------------------------------------------------------

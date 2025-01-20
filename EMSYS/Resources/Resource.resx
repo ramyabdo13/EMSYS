@@ -246,9 +246,6 @@
   <data name="ColumnsCountMismatch" xml:space="preserve">
     <value>Columns count mismatch.</value>
   </data>
-  <data name="ConfigurationError" xml:space="preserve">
-    <value>Configuration Error</value>
-  </data>
   <data name="ConfirmEmail" xml:space="preserve">
     <value>Confirm Email</value>
   </data>
@@ -746,9 +743,6 @@
   </data>
   <data name="Pleasefillinthefollowing" xml:space="preserve">
     <value>Please fill in the following.</value>
-  </data>
-  <data name="PleaseInsertConnectionString" xml:space="preserve">
-    <value>Please go to Web.config and insert connectionString value to run this web application.</value>
   </data>
   <data name="PleaseSelect" xml:space="preserve">
     <value>Please Select...</value>

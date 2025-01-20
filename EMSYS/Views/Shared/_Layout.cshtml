@@ -10,7 +10,6 @@
     <title>@ViewBag.Title</title>
     <meta name="description" content="Write your web application description here">
     <meta name="keywords" content="Write some keywords here">
-    <meta name="author" content="auratheme">
     <link rel="icon" type="image/x-icon" href="~/favicon.ico">
     <!-- Google Fonts -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -61,9 +60,6 @@
                                         <li class="nav-item">
                                             <a class="nav-link ms-3 me-1 pe-0 hover-color-primarycolor" href="#features">@EMSYS.Resources.HomePageResource.Features</a>
                                         </li>
-                                        <li class="nav-item">
-                                            <a class="nav-link ms-3 me-1 pe-0 hover-color-primarycolor" href="#faq">@EMSYS.Resources.HomePageResource.FAQ</a>
-                                        </li>
                                     }
                                     else
                                     {
@@ -75,9 +71,6 @@
                                         </li>
                                         <li class="nav-item">
                                             <a class="nav-link ms-3 me-1 pe-0 hover-color-primarycolor" href="@Url.Action("index","home")#features">@EMSYS.Resources.HomePageResource.Features</a>
-                                        </li>
-                                        <li class="nav-item">
-                                            <a class="nav-link ms-3 me-1 pe-0 hover-color-primarycolor" href="@Url.Action("index","home")#faq">@EMSYS.Resources.HomePageResource.FAQ</a>
                                         </li>
                                     }
                                    
@@ -116,12 +109,12 @@
             <div>
                 <a class="nav-link hover-color-primarycolor @(ViewContext.RouteData.Values["Controller"].ToString() == "home" && ViewContext.RouteData.Values["Action"].ToString() == "index" ? "color-primarycolor" : "")" href="@Url.Action("index","home")">@EMSYS.Resources.HomePageResource.Home</a>
             </div>
-            @* <div class="btn-group nav-link">
+           <div class="btn-group nav-link">
                 <button type="button" class="btn bg-transparent hover-color-primarycolor border-0 dropdown-toggle ps-0" data-bs-toggle="dropdown" aria-expanded="false">@System.Threading.Thread.CurrentThread.CurrentCulture.ToString().ToUpper()</button>
                 <ul class="dropdown-menu">
                     @await Html.PartialAsync("~/Views/Shared/_LanguageChoices.cshtml")
                 </ul>
-            </div> *@
+            </div>
             <div>
                 <a class="nav-link hover-color-primarycolor @(ViewContext.RouteData.Values["Controller"].ToString() == "account" && ViewContext.RouteData.Values["Action"].ToString() == "login" ? "color-primarycolor" : "")" href="@Url.Action("login","account")">@EMSYS.Resources.HomePageResource.Login</a>
             </div>

@@ -117,256 +117,221 @@
   <resheader name="writer">
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
+ 
   <data name="AnAccount" xml:space="preserve">
     <value>حساب</value>
   </data>
   <data name="ASPNETMVCWebApplication" xml:space="preserve">
-    <value>تطبيق ويب .NET</value>
+      <value>تطبيق ويب .NET</value>
   </data>
   <data name="Benefits" xml:space="preserve">
-    <value>الفوائد</value>
+      <value>الفوائد</value>
   </data>
   <data name="BootstrapHTMLWebsiteTemplates" xml:space="preserve">
-    <value>قوالب HTML Bootstrap لمواقع الويب</value>
+      <value>قوالب مواقع HTML باستخدام Bootstrap</value>
   </data>
   <data name="Confirmpassword" xml:space="preserve">
-    <value>تأكيد كلمة المرور</value>
+      <value>تأكيد كلمة المرور</value>
   </data>
   <data name="DetailedDocumentation" xml:space="preserve">
-    <value>وثائق تفصيلية</value>
+      <value>وثائق مفصلة</value>
   </data>
   <data name="Email" xml:space="preserve">
-    <value>بريد إلكتروني</value>
+      <value>البريد الإلكتروني</value>
   </data>
   <data name="EmailAddress" xml:space="preserve">
-    <value>عنوان بريد إلكتروني</value>
+      <value>عنوان البريد الإلكتروني</value>
   </data>
   <data name="EnvatoPortfolio" xml:space="preserve">
-    <value>أعمال Envato</value>
-  </data>
-  <data name="FAQ" xml:space="preserve">
-    <value>أسئلة وأجوبة</value>
-  </data>
-  <data name="FAQFourAnswer" xml:space="preserve">
-    <value>نعم، هو في خططنا، لكن لا يمكننا التأكيد على وقت الإصدار.</value>
-  </data>
-  <data name="FAQFourQuestion" xml:space="preserve">
-    <value>هل يمكن إنشاء نسخة .NET Core MVC؟</value>
-  </data>
-  <data name="FAQOneAnswer" xml:space="preserve">
-    <value>نحن نقدم الدعم فقط لإصلاح الأخطاء الحالية في القوالب والإجابة على الأسئلة بخصوص الميزات الحالية. الإرشاد الخطوة بخطوة على كيفية القيام بتعديلاتك المخصصة، كيفية حل الأخطاء بعد التعديلات الخاصة بك والتثبيت المباشر ليست جزءً من الدعم الخاص بنا. شكراً جزيلاً لفهمك. سنقوم بتخصيص وقتنا لإنشاء قوالب أكثر رائعة لك.</value>
-  </data>
-  <data name="FAQOneQuestion" xml:space="preserve">
-    <value>كيف هو سياسة الدعم؟</value>
-  </data>
-  <data name="FAQThreeAnswer" xml:space="preserve">
-    <value>نعم، يمكنك. اذهب إلى "Views/Shared/_FooterBeforeLogin.cshtml" وابحث عن قسم التذييل لتحرير أو إزالة نص حقوق الطبع والنشر.</value>
-  </data>
-  <data name="FAQThreeQuestion" xml:space="preserve">
-    <value>هل يمكن تحرير أو إزالة نص حقوق الطبع والنشر في التذييل؟</value>
-  </data>
-  <data name="FAQTwoAnswerPartOne" xml:space="preserve">
-    <value>الإجابة هي: على الف</value>
-  </data>
-  <data name="FAQTwoAnswerPartTwo" xml:space="preserve">
-    <value>لمزيد من المعلومات ، يوجد قسم "تنزيل العناصر الخاصة بك" في نهاية هذه المقالة.</value>
-  </data>
-  <data name="FAQTwoQuestion" xml:space="preserve">
-    <value>متى يمكنني تنزيل الملف بعد شراء العنصر؟</value>
+      <value>محفظة Envato</value>
   </data>
   <data name="Feature1" xml:space="preserve">
-    <value>إدارةالمستخدم</value>
+      <value>إدارة المستخدم</value>
   </data>
   <data name="Feature10" xml:space="preserve">
-    <value>إعادة ترتيب تلقائي</value>
+      <value>إعادة التقييم التلقائي</value>
   </data>
   <data name="Feature10Description" xml:space="preserve">
-    <value>إذا اختار المعلم الإجابة الخاطئة على أنها الإجابة الصحيحة واكتشف ذلك بعد اجتياز الطلاب للامتحان ، فسيتم إعادة تقدير نتائجهم تلقائيًا إذا أرادوا تغيير الإجابة.</value>
+      <value>إذا اختار المعلم الإجابة الخاطئة كإجابة صحيحة واكتشف ذلك بعد أن أخذ الطلاب الامتحان، سيتم إعادة تقييم نتائجهم تلقائيًا إذا أراد تغيير الإجابة.</value>
   </data>
   <data name="Feature11" xml:space="preserve">
-    <value>تحليل الرسم البياني</value>
+      <value>تحليل الرسم البياني</value>
   </data>
   <data name="Feature11Description" xml:space="preserve">
-    <value>مخططات لتحليل النتائج والأسئلة التي أجاب عنها معظم الطلاب بشكل غير صحيح والمزيد.</value>
+      <value>رسوم بيانية لتحليل النتائج والأسئلة التي أجاب عليها معظم الطلاب بشكل غير صحيح، والمزيد.</value>
   </data>
   <data name="Feature12" xml:space="preserve">
-    <value>قواعد صارمة</value>
+      <value>قواعد صارمة</value>
   </data>
   <data name="Feature12Description" xml:space="preserve">
-    <value>لا يمكن تخطي الأسئلة. لا يمكن نسخ نص السؤال أثناء إجراء الاختبار.</value>
+      <value>لا يمكن تخطي الأسئلة. لا يمكن نسخ نص السؤال أثناء الامتحان.</value>
   </data>
   <data name="Feature1Description" xml:space="preserve">
-    <value>يمكن لمسؤول النظام إنشاء المستخدمين وتحديثهم وحذفهم. يمكن للطلاب والمعلمين تسجيل حساب بأنفسهم أيضًا.</value>
+      <value>يمكن لمسؤول النظام إنشاء وتحديث وحذف المستخدمين. يمكن للطلاب والمعلمين تسجيل حساب بأنفسهم أيضًا.</value>
   </data>
   <data name="Feature2" xml:space="preserve">
-    <value>تخزين بنك الأسئلة</value>
+      <value>تخزين بنك الأسئلة</value>
   </data>
   <data name="Feature2Description" xml:space="preserve">
-    <value>احفظ بنك الأسئلة الخاص بك وأعد استخدامه في اختبارات مختلفة بتوزيعات علامات مختلفة.</value>
+      <value>احفظ بنك الأسئلة الخاص بك وأعد استخدامه في امتحانات مختلفة مع توزيعات علامات مختلفة.</value>
   </data>
   <data name="Feature3" xml:space="preserve">
-    <value>حدد موعد الامتحان</value>
+      <value>جدولة الامتحان</value>
   </data>
   <data name="Feature3Description" xml:space="preserve">
-    <value>يمكنك حفظ الاختبار الآن وجدولته ليبدأ لاحقًا. بعد ذلك ، انشر الاختبار عندما يكون جاهزًا للإعلان للطلاب.</value>
+      <value>يمكنك حفظ الامتحان الآن وجدولته ليبدأ لاحقًا. ثم، نشر الامتحان عندما يكون جاهزًا للإعلان للطلاب.</value>
   </data>
   <data name="Feature4" xml:space="preserve">
-    <value>نتيجة الطلاب</value>
+      <value>نتائج الطلاب</value>
   </data>
   <data name="Feature4Description" xml:space="preserve">
-    <value>يمكن تصدير نتائج الطلاب إلى Excel أو PDF. يمكنك أيضًا فرز قائمة النتائج حسب درجة الطالب لمشاهدة أفضل الطلاب في الاختبار.</value>
+      <value>يمكن تصدير نتائج الطلاب إلى Excel أو PDF. يمكنك أيضًا فرز قائمة النتائج حسب درجة الطالب لرؤية أفضل الطلاب في الامتحان.</value>
   </data>
   <data name="Feature5" xml:space="preserve">
-    <value>أسئلة الاستيراد</value>
+      <value>استيراد الأسئلة</value>
   </data>
   <data name="Feature5Description" xml:space="preserve">
-    <value>يمكنك إنشاء أسئلة على دفعات عن طريق استيرادها من Excel.</value>
+      <value>يمكنك إنشاء الأسئلة بشكل جماعي عن طريق استيرادها من Excel.</value>
   </data>
   <data name="Feature6" xml:space="preserve">
-    <value>استيراد المستخدمين</value>
+      <value>استيراد المستخدمين</value>
   </data>
   <data name="Feature6Description" xml:space="preserve">
-    <value>يمكنك إنشاء حسابات مستخدمين على دفعات عن طريق استيرادها من Excel.</value>
+      <value>يمكنك إنشاء حسابات المستخدمين بشكل جماعي عن طريق استيرادها من Excel.</value>
   </data>
   <data name="Feature7" xml:space="preserve">
-    <value>عشوائيا السؤال</value>
+      <value>عشوائية الأسئلة</value>
   </data>
   <data name="Feature7Description" xml:space="preserve">
-    <value>يمكنك اختيار ترتيب الأسئلة في الاختبار عشوائيًا أو إلغاء ترتيبها عشوائيًا. يمكن أن تمنع الأسئلة العشوائية الغش لأن الطلاب لا يستطيعون مناقشة الإجابات لأنهم يتلقون أسئلة مختلفة في وقت واحد.</value>
+      <value>يمكنك اختيار عشوائية أو عدم عشوائية ترتيب الأسئلة في الامتحان. عشوائية الأسئلة يمكن أن تمنع الغش لأن الطلاب لا يمكنهم مناقشة الإجابات حيث يحصلون على أسئلة مختلفة في وقت واحد.</value>
   </data>
   <data name="Feature8" xml:space="preserve">
-    <value>اترك الجواب</value>
+      <value>إصدار الإجابة</value>
   </data>
   <data name="Feature8Description" xml:space="preserve">
-    <value>يمكنك اختيار طرح أو عدم الإفراج عن إجابات الأسئلة. قبل إصدار الإجابات ، سيحصل الطلاب على نتائجهم ولكن لن يتمكنوا من رؤية الإجابات الصحيحة. نوصي بإصدار الإجابة فقط بعد اجتياز جميع الطلاب للاختبار.</value>
+      <value>يمكنك اختيار إصدار أو عدم إصدار الإجابات على الأسئلة. قبل إصدار الإجابات، سيحصل الطلاب على نتائجهم ولكن لن يتمكنوا من رؤية الإجابات الصحيحة. نوصي بإصدار الإجابة فقط بعد أن يأخذ جميع الطلاب الامتحان.</value>
   </data>
   <data name="Feature9" xml:space="preserve">
-    <value>نتيجة التصدير</value>
+      <value>تصدير النتيجة</value>
   </data>
   <data name="Feature9Description" xml:space="preserve">
-    <value>يمكن تصدير نتائج الطلاب إلى ملف Excel أو pdf.</value>
+      <value>يمكن تصدير نتائج الطلاب إلى Excel أو PDF.</value>
   </data>
   <data name="Features" xml:space="preserve">
-    <value>سمات</value>
+      <value>الميزات</value>
   </data>
   <data name="Features1" xml:space="preserve">
-    <value>سمات</value>
+      <value>الميزات</value>
   </data>
   <data name="FeaturesDescription" xml:space="preserve">
-    <value>يحتوي EMSYS على الميزات الأساسية الكاملة لإجراء الاختبار.</value>
+      <value>يحتوي FGSSR EMSYS على جميع الميزات الأساسية لإجراء امتحان.</value>
   </data>
   <data name="Fillyourdetailstoregister" xml:space="preserve">
-    <value>املأ بياناتك للتسجيل.</value>
+      <value>املأ تفاصيلك للتسجيل.</value>
   </data>
   <data name="Fillyourusernameandpasswordtosignin" xml:space="preserve">
-    <value>املأ اسم المستخدم وكلمة المرور لتسجيل الدخول.</value>
+      <value>املأ اسم المستخدم وكلمة المرور لتسجيل الدخول.</value>
   </data>
   <data name="FollowUs" xml:space="preserve">
-    <value>تابعنا</value>
+      <value>تابعنا</value>
   </data>
   <data name="FollowUsDescription" xml:space="preserve">
-    <value>تابع وسائل التواصل الاجتماعي الخاصة بنا للحصول على التحديثات أو الأخبار حول المشاريع.</value>
+      <value>تابع وسائل التواصل الاجتماعي الخاصة بنا للحصول على التحديثات أو الأخبار حول المشاريع.</value>
   </data>
   <data name="Forgotyourpassword" xml:space="preserve">
-    <value>نسيت كلمة السر؟</value>
+      <value>هل نسيت كلمة المرور؟</value>
   </data>
   <data name="FrequentlyAskedQuestions" xml:space="preserve">
-    <value>أسئلة مكررة</value>
+      <value>الأسئلة الشائعة</value>
   </data>
   <data name="Home" xml:space="preserve">
-    <value>بيت</value>
+      <value>الصفحة الرئيسية</value>
   </data>
   <data name="HomeDescription" xml:space="preserve">
-    <value>EMSYS هو نظام اختبار عبر الإنترنت يوفر إدارة الاختبارات وإدارة بنك الأسئلة والتصنيف الآلي ولوحة القيادة التحليلية والمزيد.</value>
+      <value>FGSSR EMSYS هو نظام امتحانات عبر الإنترنت يقدم إدارة الامتحانات، إدارة بنك الأسئلة، التقييم الآلي، لوحة تحكم تحليلية، والمزيد.</value>
   </data>
   <data name="HomeTitleOne" xml:space="preserve">
-    <value>أحدث ثورة في طريقة تقييمك لطلابك</value>
+      <value>نظام امتحانات عبر الإنترنت</value>
   </data>
   <data name="HomeTitleTwo" xml:space="preserve">
-    <value />
+      <value />
   </data>
   <data name="ImportAndExport" xml:space="preserve">
-    <value>استيراد و تصدير</value>
+      <value>استيراد وتصدير</value>
   </data>
   <data name="Login" xml:space="preserve">
-    <value>تسجيل الدخول</value>
-  </data>
-  <data name="NetStarterFAQArticles" xml:space="preserve">
-    <value>مقالات الأسئلة الشائعة حول EMSYS</value>
-  </data>
-  <data name="OurProducts" xml:space="preserve">
-    <value>منتجاتنا</value>
+      <value>تسجيل الدخول</value>
   </data>
   <data name="Password" xml:space="preserve">
-    <value>كلمة المرور</value>
+      <value>كلمة المرور</value>
   </data>
   <data name="RegisterAndLogin" xml:space="preserve">
-    <value>تسجيل الدخول</value>
+      <value>التسجيل وتسجيل الدخول</value>
   </data>
   <data name="Rememberme" xml:space="preserve">
-    <value>تذكرنى؟</value>
+      <value>تذكرني؟</value>
   </data>
   <data name="RolePermission" xml:space="preserve">
-    <value>إذن الدور</value>
+      <value>ادارة الادوار </value>
   </data>
   <data name="SendingEmail" xml:space="preserve">
-    <value>إرسال البريد الإلكتروني</value>
+      <value>إرسال البريد الإلكتروني</value>
   </data>
   <data name="SignUp" xml:space="preserve">
-    <value>اشتراك</value>
+      <value>التسجيل</value>
   </data>
   <data name="Specifications" xml:space="preserve">
-    <value>تحديد</value>
+      <value>المواصفات</value>
   </data>
   <data name="Submit" xml:space="preserve">
-    <value>يُقدِّم</value>
+      <value>إرسال</value>
   </data>
   <data name="TheFollowingArticle" xml:space="preserve">
-    <value>المقال التالي</value>
+      <value>المقالة التالية</value>
   </data>
   <data name="ToNetStarter" xml:space="preserve">
-    <value>إلى EMSYS</value>
+      <value>إلى FGSSR EMSYS</value>
   </data>
   <data name="UploadFile" xml:space="preserve">
-    <value>رفع ملف</value>
+      <value>تحميل الملف</value>
   </data>
   <data name="UsefulLinks" xml:space="preserve">
-    <value>روابط مفيدة</value>
+      <value>روابط مفيدة</value>
   </data>
   <data name="Username" xml:space="preserve">
-    <value>اسم المستخدم</value>
+      <value>اسم المستخدم</value>
   </data>
   <data name="ViewMore" xml:space="preserve">
-    <value>عرض المزيد</value>
+      <value>عرض المزيد</value>
   </data>
   <data name="WebAppTitle" xml:space="preserve">
-    <value>EMSYS</value>
+      <value>FGSSR EMSYS</value>
   </data>
-  <data name="WhatyougetDescription" xml:space="preserve">
-    <value>بعد الشراء ، ستحصل على ملف مضغوط يحتوي على ما يلي</value>
+   <data name="WhatyougetDescription" xml:space="preserve">
+      <value>ميزات نظام امتحانات FGSSR EMSYS</value>
   </data>
   <data name="WhyUs1Description" xml:space="preserve">
-    <value>احفظ بنك الأسئلة الخاص بك وأعد استخدامه في اختبارات مختلفة بتوزيعات علامات مختلفة.</value>
+      <value>احفظ بنك الأسئلة الخاص بك وأعد استخدامه في امتحانات مختلفة مع توزيعات درجات مختلفة.</value>
   </data>
   <data name="WhyUs1Title" xml:space="preserve">
-    <value>أسئلة قابلة لإعادة الاستخدام</value>
+      <value>أسئلة قابلة لإعادة الاستخدام</value>
   </data>
   <data name="WhyUs2Description" xml:space="preserve">
-    <value>قل وداعًا لمتاعب الاختبارات الورقية ونظام الدرجات اليدوي الذي يستغرق وقتًا طويلاً.</value>
+      <value>قل وداعًا لمتاعب الامتحانات الورقية ونظام التقييم اليدوي المرهق.</value>
   </data>
   <data name="WhyUs2Title" xml:space="preserve">
-    <value>وفر وقتك</value>
+      <value>وفر وقتك</value>
   </data>
   <data name="WhyUs3Description" xml:space="preserve">
-    <value>تبسيط عملية الامتحان الخاصة بك. إنشاء اختبار ، وتحديد الأسئلة من بنك الأسئلة ، وتخصيص العلامات ، تم!</value>
+      <value>تبسيط عملية الامتحان الخاصة بك. إنشاء الامتحان، اختيار الأسئلة من بنك الأسئلة، تخصيص الدرجات، وفقط!</value>
   </data>
   <data name="WhyUs3Title" xml:space="preserve">
     <value>عملية بسيطة</value>
   </data>
   <data name="WhyUsDescription" xml:space="preserve">
-    <value>ترتيب الأسئلة عشوائيًا ، وجدولة تاريخ بدء الاختبار ووقته ، وتخزين بنك الأسئلة الخاص بك ، والمزيد.</value>
+    <value>عشوائية ترتيب الأسئلة، جدولة تاريخ ووقت بدء الامتحان، تخزين بنك الأسئلة، والمزيد.</value>
   </data>
   <data name="WhyUsTitle" xml:space="preserve">
-    <value>لماذا EMSYS</value>
+    <value>لماذا FGSSR EMSYS</value>
   </data>
 </root>
