@@ -125,7 +125,7 @@
       <value>تطبيق ويب .NET</value>
   </data>
   <data name="Benefits" xml:space="preserve">
-      <value>الفوائد</value>
+      <value>لماذا EMSYS</value>
   </data>
   <data name="BootstrapHTMLWebsiteTemplates" xml:space="preserve">
       <value>قوالب مواقع HTML باستخدام Bootstrap</value>
@@ -310,28 +310,32 @@
    <data name="WhatyougetDescription" xml:space="preserve">
       <value>ميزات نظام امتحانات FGSSR EMSYS</value>
   </data>
+  <data name="WhatyougetDescription" xml:space="preserve">
+    <value>ميزات نظام الامتحانات عبر الإنترنت FGSSR</value>
+  </data>
   <data name="WhyUs1Description" xml:space="preserve">
-      <value>احفظ بنك الأسئلة الخاص بك وأعد استخدامه في امتحانات مختلفة مع توزيعات درجات مختلفة.</value>
+    <value>تخزين وإدارة بنوك الأسئلة لإظهار كفاءة تنظيم البيانات وإمكانية إعادة استخدامها.</value>
   </data>
   <data name="WhyUs1Title" xml:space="preserve">
-      <value>أسئلة قابلة لإعادة الاستخدام</value>
+    <value>إدارة فعالة للأسئلة</value>
   </data>
   <data name="WhyUs2Description" xml:space="preserve">
-      <value>قل وداعًا لمتاعب الامتحانات الورقية ونظام التقييم اليدوي المرهق.</value>
+    <value>تقديم أمثلة على العمليات الامتحانية بدون أوراق مع تصحيح تلقائي لإبراز الاستخدامات العملية.</value>
   </data>
   <data name="WhyUs2Title" xml:space="preserve">
-      <value>وفر وقتك</value>
+    <value>أتمتة موضحة</value>
   </data>
   <data name="WhyUs3Description" xml:space="preserve">
-      <value>تبسيط عملية الامتحان الخاصة بك. إنشاء الامتحان، اختيار الأسئلة من بنك الأسئلة، تخصيص الدرجات، وفقط!</value>
+    <value>تسليط الضوء على سير العمل المبسط لإنشاء الامتحانات مع التركيز على البساطة والأثر التعليمي.</value>
   </data>
   <data name="WhyUs3Title" xml:space="preserve">
-    <value>عملية بسيطة</value>
+    <value>سير عمل مبسط</value>
   </data>
   <data name="WhyUsDescription" xml:space="preserve">
-    <value>عشوائية ترتيب الأسئلة، جدولة تاريخ ووقت بدء الامتحان، تخزين بنك الأسئلة، والمزيد.</value>
+    <value>إبراز ميزات مثل ترتيب الأسئلة بشكل عشوائي، جدولة الامتحانات، وإدارة بنوك الأسئلة لإظهار وظائف المشروع.</value>
   </data>
   <data name="WhyUsTitle" xml:space="preserve">
-    <value>لماذا FGSSR EMSYS</value>
+    <value>لماذا اخترنا نظام FGSSR للامتحانات كمشروع تخرج</value>
   </data>
+
 </root>

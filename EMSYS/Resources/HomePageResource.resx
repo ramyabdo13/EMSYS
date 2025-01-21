@@ -124,7 +124,7 @@
     <value>.NET Web Application</value>
   </data>
   <data name="Benefits" xml:space="preserve">
-    <value>Benefits</value>
+    <value>Why EMSYS</value>
   </data>
   <data name="BootstrapHTMLWebsiteTemplates" xml:space="preserve">
     <value>Bootstrap HTML Website Templates</value>
@@ -306,31 +306,33 @@
   <data name="WebAppTitle" xml:space="preserve">
     <value>FGSSR EMSYS</value>
   </data>
+
   <data name="WhatyougetDescription" xml:space="preserve">
-    <value>FGSSR Examination System Features</value>
+    <value>FGSSR EMSYS Features</value>
   </data>
   <data name="WhyUs1Description" xml:space="preserve">
-    <value>Save question banks to be re-used in different exams with different mark distributions.</value>
+    <value>Store and manage question banks to demonstrate efficient data organization and reusability.</value>
   </data>
   <data name="WhyUs1Title" xml:space="preserve">
-    <value>Reusable Questions</value>
+    <value>Efficient Question Management</value>
   </data>
   <data name="WhyUs2Description" xml:space="preserve">
-    <value>Hassle free paper-based exams and automatic grading system.</value>
+    <value>Provide examples of paperless examination processes with automatic grading to showcase practical use cases.</value>
   </data>
   <data name="WhyUs2Title" xml:space="preserve">
-    <value>Save Time</value>
+    <value>Demonstrated Automation</value>
   </data>
   <data name="WhyUs3Description" xml:space="preserve">
-    <value>Streamlined examination process. Create exam, select questions from question bank, allocate marks, done!</value>
+    <value>Highlight the streamlined workflow of exam creation, emphasizing simplicity and educational impact.</value>
   </data>
   <data name="WhyUs3Title" xml:space="preserve">
-    <value>Simple Process</value>
+    <value>Streamlined Workflow</value>
   </data>
   <data name="WhyUsDescription" xml:space="preserve">
-    <value>Randomizing Question Order, Scheduling Exam Start Date &amp; Time, Storing Your Question Bank, And More.</value>
+    <value>Showcase features like randomizing question order, scheduling exams, and managing question banks to demonstrate project functionality.</value>
   </data>
   <data name="WhyUsTitle" xml:space="preserve">
-    <value>Why FGSSR EMSYS</value>
+    <value>Why FGSSR EMSYS for Our Graduation Project</value>
   </data>
+
 </root>
