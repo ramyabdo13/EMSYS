@@ -93,6 +93,8 @@
                     @Html.ValidationMessageFor(model => model.ProfilePicture, "", new { @class = "invalid-message" })
                     @if (!string.IsNullOrEmpty(Model.ProfilePictureFileName))
                     {
+
+                      
                         <div class="small opacity-75 lh-sm mt-2">Current Profile Picture:</div>
                         <figure class="figure">
                             <a href="~/UploadedFiles/@Model.ProfilePictureFileName" target="_blank" data-bs-toggle="tooltip" data-bs-placement="right" title="Open Image in New Tab"><img src="~/UploadedFiles/@Model.ProfilePictureFileName" class="figure-img img-fluid rounded" alt="Profile picture image"></a>

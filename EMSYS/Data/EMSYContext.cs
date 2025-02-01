@@ -45,7 +45,7 @@ namespace EMSYS.Data
         public DbSet<StudentAnswerCloned> StudentAnswerCloneds { get; set; }
         public DbSet<StudentQuestionOrder> StudentQuestionOrders { get; set; }
         public DbSet<ErrorLog> ErrorLogs { get; set; }
-        //public DbSet<Country> Countries { get; set; }
+        public DbSet<Country> Countries { get; set; }
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
         {
             optionsBuilder.UseSqlServer(@"Data Source=SQL1001.site4now.net;Initial Catalog=db_ab0fe7_emsysdb;Persist Security Info=True;User ID=db_ab0fe7_emsysdb_admin;Password=Db@20241225;TrustServerCertificate=True");

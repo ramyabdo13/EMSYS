@@ -404,7 +404,20 @@ namespace EMSYS.Utils
             string id = db.GlobalOptionSets.Where(a => a.Code == code && a.Type == type && a.Status == "Active").Select(a => a.Id).FirstOrDefault();
             return id;
         }
-
+        public List<SelectListItem> GetCountryList(string selectedName)
+        {
+            List<SelectListItem> countryList = new List<SelectListItem>();
+            List<string> countries = db.Countries.Select(a => a.Name).ToList();
+            foreach (string country in countries)
+            {
+                SelectListItem selectListItem = new SelectListItem();
+                selectListItem.Text = country;
+                selectListItem.Value = country;
+                selectListItem.Selected = selectedName == country ? true : false;
+                countryList.Add(selectListItem);
+            }
+            return countryList.OrderBy(a => a.Text).ToList();
+        }
         public bool UsernameExists(string username, string currentRecordId)
         {
             bool usernameExist = false;

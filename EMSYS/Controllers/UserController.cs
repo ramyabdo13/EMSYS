@@ -155,7 +155,7 @@ namespace EMSYS.Controllers
             model.GenderSelectList = util.GetGlobalOptionSets("Gender", model.GenderId);
             model.UserStatusSelectList = util.GetGlobalOptionSets("UserStatus", model.UserStatusId);
             model.UserRoleSelectList = util.GetDataForDropDownList(model.UserRoleName, db.AspNetRoles, a => a.Name, a => a.Name);
-            //model.CountrySelectList = util.GetCountryList(model.CountryName);
+            model.CountrySelectList = util.GetCountryList(model.CountryName);
             model.ClassSelectList = util.GetDataForMultiSelect(model.ClassIdList, db.ClassHubs, a => a.Name, a => a.Id);
         }
 
@@ -223,7 +223,7 @@ namespace EMSYS.Controllers
 
      
 
-        [HttpPost]
+       
         
 
         public IActionResult Edit(string Id)

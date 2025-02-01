@@ -2,6 +2,7 @@
 @using Microsoft.Extensions.Configuration
 @inject IConfiguration Configuration;
 @model             LoginViewModel
+
 @{
     ViewBag.Title = Resource.Login;
 }
@@ -19,14 +20,7 @@
             <div class="col-lg-6 order-0 order-lg-1">
                 <h1 class="fw600 pb-2 title-lg"><span class="color-primarycolor">@Resource.Login</span> @Resource.ToNetStarter</h1>
                 <div class="pb-3">@Resource.FillInYourUsernameAndPasswordToSignIn</div>
-                @if (Configuration.GetValue<string>("environment") == "prod")
-                {
-                    <div class="border rounded p-2 mb-2">
-                        <div class="fs-11 text-edit">Demo Admin Username: <span class="fw600">nsadmin</span>, Password: <span class="fw600">Admin@123</span>&nbsp;&nbsp;<i id="copyAdminDemoBtn" class="ps-1 fs-12 fa-solid fa-copy cursor-pointer" data-bs-toggle="tooltip" data-bs-placement="top" title="Copy"></i></div>
-                        <div class="fs-11 text-edit">Demo Teacher Username: <span class="fw600">samantha</span>, Password: <span class="fw600">User@123</span>&nbsp;&nbsp;<i id="copyTeacherDemoBtn" class="ps-1 fs-12 fa-solid fa-copy cursor-pointer" data-bs-toggle="tooltip" data-bs-placement="top" title="Copy"></i></div>
-                        <div class="fs-11 text-edit">Demo Student Username: <span class="fw600">athena</span>, Password: <span class="fw600">User@123</span>&nbsp;&nbsp;<i id="copyStudentDemoBtn" class="ps-1 fs-12 fa-solid fa-copy cursor-pointer" data-bs-toggle="tooltip" data-bs-placement="top" title="Copy"></i></div>
-                    </div>
-                }
+                
                 @Html.ValidationSummary("", new { @class = "invalid-message" })
                 @using (Html.BeginForm("Login", "Account", new { ReturnUrl = ViewBag.ReturnUrl }, FormMethod.Post, null, new { @class = "form-horizontal", role = "form" }))
                 {
@@ -63,36 +57,3 @@
     </div>
 </section>
 
-@section Scripts{
-    <script>
-        var btn = document.querySelector("#copyAdminDemoBtn");
-        if(btn){
-        btn.addEventListener("click", function() {
-            var inputusername = document.querySelector("input#UserName");  
-            inputusername.value = "nsadmin";
-             var inputpw = document.querySelector("input#Password");  
-            inputpw.value = "Admin@123";
-        })
-        }
-        ;
-        var btnTeacher = document.querySelector("#copyTeacherDemoBtn");
-        if(btnTeacher){
-        btnTeacher.addEventListener("click", function () {
-            var inputusername = document.querySelector("input#UserName");
-            inputusername.value = "samantha";
-             var inputpw = document.querySelector("input#Password");  
-            inputpw.value = "User@123";
-        })
-        };
-        var btnStudent = document.querySelector("#copyStudentDemoBtn");
-        if (btnStudent)
-        {
-        btnStudent.addEventListener("click", function () {
-            var inputusername = document.querySelector("input#UserName");
-            inputusername.value = "athena";
-            var inputpw = document.querySelector("input#Password");
-            inputpw.value = "User@123";
-        })
-        };
-        </script>
-}
