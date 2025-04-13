@@ -1,4 +1,4 @@
-﻿using System.Security.Claims;
+using System.Security.Claims;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
@@ -162,7 +162,7 @@ namespace EMSYS.Controllers
         public void SetupSelectLists(UserProfileViewModel model)
         {
             model.GenderSelectList = util.GetGlobalOptionSets("Gender", model.GenderId);
-            //model.CountrySelectList = util.GetCountryList(model.CountryName);
+            model.GovernateSelectList = util.GetGovernateList(model.GovernateName);
         }
 
         [HttpPost]
@@ -231,7 +231,7 @@ namespace EMSYS.Controllers
             userProfile.PhoneNumber = model.PhoneNumber;
             userProfile.IDCardNumber = model.IDCardNumber;
             userProfile.GenderId = model.GenderId;
-            userProfile.CountryName = model.CountryName;
+            userProfile.GovernateName = model.GovernateName;
             userProfile.PostalCode = model.PostalCode;
             userProfile.Address = model.Address;
             userProfile.IntakeYear = model.IntakeYear;

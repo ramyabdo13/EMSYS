@@ -1,4 +1,4 @@
-﻿@model EMSYS.Models.UserProfileViewModel
+@model EMSYS.Models.UserProfileViewModel
 @using EMSYS.CustomHelper
 @using EMSYS.Models;
 <div class="bg-white rounded p-3 p-lg-4 p-xl-5 shadow">
@@ -115,9 +115,9 @@
         <div class="col-md-6">
             <div class="mb-3 text-break">
                 <div class="form-group">
-                    @Html.LabelFor(model => model.CountryName, htmlAttributes: new { @class = "form-label required fw600" })
-                    @CustomHelper.CustomSearchAndSelect("CountryName", "CountryName_Datalist", Model.CountrySelectList)
-                    @Html.ValidationMessageFor(model => model.CountryName, "", new { @class = "invalid-message" })
+                    @Html.LabelFor(model => model.GovernateName, htmlAttributes: new { @class = "form-label required fw600" })
+                    @CustomHelper.CustomSearchAndSelect("GovernateName", "GovernateName_Datalist", Model.GovernateSelectList)
+                    @Html.ValidationMessageFor(model => model.GovernateName, "", new { @class = "invalid-message" })
                 </div>
             </div>
         </div>

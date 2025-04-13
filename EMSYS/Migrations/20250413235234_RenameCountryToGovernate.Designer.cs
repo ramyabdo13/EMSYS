@@ -4,6 +4,7 @@ using EMSYS.Data;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 #nullable disable
@@ -11,9 +12,11 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace EMSYS.Migrations
 {
     [DbContext(typeof(EMSYSdbContext))]
-    partial class EMSYSdbContextModelSnapshot : ModelSnapshot
+    [Migration("20250413235234_RenameCountryToGovernate")]
+    partial class RenameCountryToGovernate
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        /// <inheritdoc />
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder

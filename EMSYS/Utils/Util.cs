@@ -1,4 +1,4 @@
-﻿using Microsoft.AspNetCore.Hosting;
+using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.Extensions.Configuration;
@@ -348,7 +348,7 @@ namespace EMSYS.Utils
                          EmailAddress = t2.Email,
                          UserStatusId = t1.UserStatusId,
                          GenderId = t1.GenderId,
-                         CountryName = t1.CountryName,
+                         GovernateName = t1.GovernateName,
                          IntakeYear = t1.IntakeYear,
                          Code = t1.Code,
                          CreatedBy = t1.CreatedBy,
@@ -404,19 +404,19 @@ namespace EMSYS.Utils
             string id = db.GlobalOptionSets.Where(a => a.Code == code && a.Type == type && a.Status == "Active").Select(a => a.Id).FirstOrDefault();
             return id;
         }
-        public List<SelectListItem> GetCountryList(string selectedName)
+        public List<SelectListItem> GetGovernateList(string selectedName)
         {
-            List<SelectListItem> countryList = new List<SelectListItem>();
-            List<string> countries = db.Countries.Select(a => a.Name).ToList();
-            foreach (string country in countries)
+            List<SelectListItem> governateList = new List<SelectListItem>();
+            List<string> governates = db.Governates.Select(a => a.Name).ToList();
+            foreach (string governate in governates)
             {
                 SelectListItem selectListItem = new SelectListItem();
-                selectListItem.Text = country;
-                selectListItem.Value = country;
-                selectListItem.Selected = selectedName == country ? true : false;
-                countryList.Add(selectListItem);
+                selectListItem.Text = governate;
+                selectListItem.Value = governate;
+                selectListItem.Selected = selectedName == governate ? true : false;
+                governateList.Add(selectListItem);
             }
-            return countryList.OrderBy(a => a.Text).ToList();
+            return governateList.OrderBy(a => a.Text).ToList();
         }
         public bool UsernameExists(string username, string currentRecordId)
         {

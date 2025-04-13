@@ -1,4 +1,4 @@
-﻿using ExcelDataReader;
+using ExcelDataReader;
 using EMSYS.Models;
 using System.Data;
 using System.Globalization;
@@ -91,7 +91,7 @@ namespace EMSYS.Controllers
                                UserStatusName = t3 == null ? "" : t3.DisplayName,
                                EmailAddress = t2.Email,
                                PhoneNumber = t1.PhoneNumber,
-                               CountryName = t1.CountryName,
+                               GovernateName = t1.GovernateName,
                                Address = t1.Address,
                                CreatedOn = t1.CreatedOn,
                                IsoUtcCreatedOn = t1.IsoUtcCreatedOn,
@@ -123,7 +123,7 @@ namespace EMSYS.Controllers
                          EmailAddress = t2.Email,
                          UserStatusId = t1.UserStatusId,
                          GenderId = t1.GenderId,
-                         CountryName = t1.CountryName,
+                         GovernateName = t1.GovernateName,
                          IntakeYear = t1.IntakeYear,
                          Code = t1.Code,
                          CreatedBy = t1.CreatedBy,
@@ -155,7 +155,7 @@ namespace EMSYS.Controllers
             model.GenderSelectList = util.GetGlobalOptionSets("Gender", model.GenderId);
             model.UserStatusSelectList = util.GetGlobalOptionSets("UserStatus", model.UserStatusId);
             model.UserRoleSelectList = util.GetDataForDropDownList(model.UserRoleName, db.AspNetRoles, a => a.Name, a => a.Name);
-            model.CountrySelectList = util.GetCountryList(model.CountryName);
+            model.GovernateSelectList = util.GetGovernateList(model.GovernateName);
             model.ClassSelectList = util.GetDataForMultiSelect(model.ClassIdList, db.ClassHubs, a => a.Name, a => a.Id);
         }
 
@@ -167,7 +167,7 @@ namespace EMSYS.Controllers
                 if (string.IsNullOrEmpty(model.Username) || string.IsNullOrEmpty(model.EmailAddress)
                     || string.IsNullOrEmpty(model.Password) || string.IsNullOrEmpty(model.ConfirmPassword)
                     || string.IsNullOrEmpty(model.FullName) || string.IsNullOrEmpty(model.PhoneNumber)
-                    || string.IsNullOrEmpty(model.CountryName) || string.IsNullOrEmpty(model.UserRoleName))
+                    || string.IsNullOrEmpty(model.GovernateName) || string.IsNullOrEmpty(model.UserRoleName))
                 {
                     errors.Add(Resource.SomeRequiredFieldsAreEmpty);
                 }
@@ -324,16 +324,16 @@ namespace EMSYS.Controllers
                         ModelState.AddModelError("ClassIdList", Resource.FieldIsRequired);
                     }
                 }
-                if (string.IsNullOrEmpty(model.CountryName))
+                if (string.IsNullOrEmpty(model.GovernateName))
                 {
-                    ModelState.AddModelError("CountryName", Resource.CountryRequired);
+                    ModelState.AddModelError("GovernateName", Resource.FieldIsRequired);
                 }
                 else
                 {
-                    //List<SelectListItem> countries = util.GetCountryList("");
-                    //if (countries.Where(a => a.Text == model.CountryName).Any() == false)
+                    //List<SelectListItem> governates = util.GetGovernateList("");
+                    //if (governates.Where(a => a.Text == model.GovernateName).Any() == false)
                     //{
-                    //    ModelState.AddModelError("CountryName", Resource.CountryNotFound);
+                    //    ModelState.AddModelError("GovernateName", Resource.GovernateNotFound);
                     //}
                 }
                 if (model.ProfilePicture != null)
@@ -361,7 +361,7 @@ namespace EMSYS.Controllers
             userProfile.PhoneNumber = model.PhoneNumber;
             userProfile.IDCardNumber = model.IDCardNumber;
             userProfile.GenderId = model.GenderId;
-            userProfile.CountryName = model.CountryName;
+            userProfile.GovernateName = model.GovernateName;
             userProfile.PostalCode = model.PostalCode;
             userProfile.Address = model.Address;
             userProfile.UserStatusId = model.UserStatusId;

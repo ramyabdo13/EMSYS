@@ -530,7 +530,7 @@ namespace EMSYS.Utils
                 nameof(UserProfileViewModel.UserStatusName),
                 nameof(UserProfileViewModel.UserRoleName),
                 nameof(UserProfileViewModel.PhoneNumber),
-                nameof(UserProfileViewModel.CountryName),
+                nameof(UserProfileViewModel.GovernateName),
                 nameof(UserProfileViewModel.Address),
                 nameof(UserProfileViewModel.CreatedOn),
                 nameof(UserProfileViewModel.Actions)
@@ -544,7 +544,7 @@ namespace EMSYS.Utils
             {
                 //perform search (Date-Time fields are not able to be searched because of different time zones for every user. We will need a date time picker in view.cshtml for searching Date Time fields; this feature will be added in a future update.)
                 list = list.Where(s => s.Username.Contains(search) || s.FullName.Contains(search) || s.UserStatusName.Contains(search)
-                || s.UserRoleName.Contains(search) || s.PhoneNumber.Contains(search) || s.CountryName.Contains(search) || s.Address.Contains(search));
+                || s.UserRoleName.Contains(search) || s.PhoneNumber.Contains(search) || s.GovernateName.Contains(search) || s.Address.Contains(search));
             }
             return list;
         }
