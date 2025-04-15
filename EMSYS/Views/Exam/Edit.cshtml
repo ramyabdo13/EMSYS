@@ -1,4 +1,4 @@
-﻿@model EMSYS.Models.ExamViewModel
+@model EMSYS.Models.ExamViewModel
 @using EMSYS.CustomHelper
 @{
     if (string.IsNullOrEmpty(Model.Id))
@@ -19,7 +19,7 @@
                 <li class="breadcrumb-item fw-normal"><a class="color-primarycolor opacity-50" href="@Url.Action("index")">@Resource.ExamManagement</a></li>
                 @if (!string.IsNullOrEmpty(Model.Id))
                 {
-                    <li class="breadcrumb-item fw-normal"><a class="color-primarycolor opacity-50" href="@Url.Action("viewrecord", new { id = Model.Id})">@Resource.View @Resource.Exam</a></li>
+                    <li class="breadcrumb-item fw-normal"><a class="color-primarycolor opacity-50" href="@Url.Action("viewrecord", new { id = Model.Id })">@Resource.View @Resource.Exam</a></li>
                 }
                 <li class="breadcrumb-item fw-normal active">@ViewBag.Title</li>
             </ol>
@@ -92,7 +92,7 @@
                     <div class="mb-3 text-break">
                         <div class="form-group">
                             @Html.LabelFor(model => model.Duration, htmlAttributes: new { @class = "form-label required fw600" }) <i class="fa-solid fa-circle-info text-info" data-bs-toggle="tooltip" data-bs-placement="right" title="@Resource.ExamDurationInfo"></i>
-                            @Html.EditorFor(model => model.Duration, new { htmlAttributes = new { @class = "form-control" } })
+                            @Html.EditorFor(model => model.Duration, new { htmlAttributes = new { @class = "form-control", @type = "number", @min = "30" } })
                             @Html.ValidationMessageFor(model => model.Duration, "", new { @class = "invalid-message" })
                         </div>
                     </div>
@@ -182,14 +182,25 @@
         document.addEventListener("DOMContentLoaded", function () {
             startdateInput.value = convertToLocalDatetimeIsoString(startDateUtcInput.value);
             enddateInput.value = convertToLocalDatetimeIsoString(endDateUtcInput.value);
+            calculateDurationOrEndDate();
         });
 
         startdateInput.addEventListener("change", function () {
             setStartDateValue();
+            calculateDurationOrEndDate();
         });
 
         enddateInput.addEventListener("change", function () {
             setEndDateValue();
+            calculateDurationOrEndDate();
+        });
+        
+        const durationInput = document.getElementById("Duration");
+        durationInput.addEventListener("input", function() {
+            calculateEndDateFromDuration();
+        });
+        durationInput.addEventListener("change", function() {
+            calculateEndDateFromDuration();
         });
 
         const saveBtn = document.getElementById("saveBtn");
@@ -216,6 +227,54 @@
                 const date = new Date(dateTimeString);
                 const utcIsoString = date.toISOString().substring(0, 16);
                 endDateUtcInput.value = utcIsoString;
+            }
+        }
+        
+        // Function to calculate duration when start and end dates are provided
+        function calculateDurationOrEndDate() {
+            const durationInput = document.getElementById("Duration");
+            
+            if (startdateInput.value && enddateInput.value) {
+                const startDate = new Date(startdateInput.value);
+                const endDate = new Date(enddateInput.value);
+                
+                if (startDate && endDate && !isNaN(startDate) && !isNaN(endDate)) {
+                    // Calculate duration in minutes
+                    const durationInMinutes = Math.round((endDate - startDate) / (1000 * 60));
+                    
+                    if (durationInMinutes > 0) {
+                        durationInput.value = durationInMinutes;
+                    } else {
+                        // If end date is before start date, don't update duration
+                        console.log("End date must be after start date");
+                    }
+                }
+            }
+        }
+        
+        // Function to calculate end date when start date and duration are provided
+        function calculateEndDateFromDuration() {
+            if (startdateInput.value && durationInput.value) {
+                const startDate = new Date(startdateInput.value);
+                const durationInMinutes = parseInt(durationInput.value);
+                
+                if (startDate && !isNaN(startDate) && !isNaN(durationInMinutes) && durationInMinutes > 0) {
+                    // Calculate end date by adding duration to start date
+                    const endDate = new Date(startDate.getTime() + durationInMinutes * 60000);
+                    
+                    // Format the date for the datetime-local input
+                    const year = endDate.getFullYear();
+                    const month = String(endDate.getMonth() + 1).padStart(2, '0');
+                    const day = String(endDate.getDate()).padStart(2, '0');
+                    const hours = String(endDate.getHours()).padStart(2, '0');
+                    const minutes = String(endDate.getMinutes()).padStart(2, '0');
+                    
+                    const formattedDate = `${year}-${month}-${day}T${hours}:${minutes}`;
+                    enddateInput.value = formattedDate;
+                    
+                    // Update the UTC value
+                    setEndDateValue();
+                }
             }
         }
 
