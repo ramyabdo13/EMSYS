@@ -1,4 +1,4 @@
-﻿using Microsoft.AspNetCore.Http;
+using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc.Rendering;
 using EMSYS.Resources;
 using System;
@@ -22,7 +22,7 @@ namespace EMSYS.Models
         public DateTime? DateOfBirth { get; set; }
         [MaxLength(128)]
         public string GenderId { get; set; }
-        public string CountryName { get; set; }
+        public string GovernateName { get; set; }
         public string Address { get; set; }
         public string PostalCode { get; set; }
         public string PhoneNumber { get; set; }
@@ -79,10 +79,12 @@ namespace EMSYS.Models
         [Display(Name = "Gender", ResourceType = typeof(Resource))]
         public List<SelectListItem> GenderSelectList { get; set; }
         [Required]
-        [Display(Name = "Country", ResourceType = typeof(Resource))]
-        public string CountryName { get; set; }
-        [Display(Name = "Country", ResourceType = typeof(Resource))]
-        public List<SelectListItem> CountrySelectList { get; set; }
+        public int GovernateId { get; set; }
+
+        public string GovernateName { get; set; }
+
+        [Required]
+        public List<SelectListItem> GovernateSelectList { get; set; }
         [Display(Name = "FullAddress", ResourceType = typeof(Resource))]
         public string Address { get; set; }
         [Display(Name = "PostalCode", ResourceType = typeof(Resource))]

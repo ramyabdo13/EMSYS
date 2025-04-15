@@ -1,4 +1,4 @@
-﻿@model PaginatedList<EMSYS.Models.UserProfileViewModel>
+@model PaginatedList<EMSYS.Models.UserProfileViewModel>
 @{
     string sort = ViewData["CurrentSort"].ToString();
     int calculatedTo = (Model.PageIndex - 1) * Model.PageSize + Model.PageSize;
@@ -62,7 +62,7 @@
                         <td>@item.UserStatusName</td>
                         <td>@item.UserRoleName</td>
                         <td>@item.PhoneNumber</td>
-                        <td>@item.CountryName</td>
+                        <td>@item.GovernateName</td>
                         <td>@item.Address</td>
                         <td class="datetimetext">@item.IsoUtcCreatedOn</td>
                         <td>
