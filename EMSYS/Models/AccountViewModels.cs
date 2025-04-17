@@ -33,7 +33,7 @@ namespace EMSYS.Models
         [Required]
         [Display(Name = "Username", ResourceType = typeof(Resource))]
         [MaxLength(256, ErrorMessageResourceName = "MaxLength256", ErrorMessageResourceType = typeof(Resource))]
-        [RegularExpression("^[A-Za-z]\\w{3,29}$", ErrorMessageResourceName = "InvalidUsername", ErrorMessageResourceType = typeof(Resource))]
+        [RegularExpression(@"^[a-zA-Z0-9_-]+$", ErrorMessageResourceName = "InvalidUsername", ErrorMessageResourceType = typeof(Resource))]
         public string UserName { get; set; }
 
         [Required]
