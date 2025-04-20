@@ -81,21 +81,21 @@ namespace EMSYS.Controllers
                            let t2 = db.AspNetUsers.Where(u => u.Id == t1.AspNetUserId).SingleOrDefault()
                            let t3 = db.GlobalOptionSets.Where(g => g.Id == t1.UserStatusId).SingleOrDefault()
                            let t5 = db.AspNetUserRoles.Where(ur => ur.UserId == t1.AspNetUserId).SingleOrDefault()
-                           let t6 = db.AspNetRoles.Where(r => r.Id == t5.RoleId).SingleOrDefault()
+                           let t6 = t5 != null ? db.AspNetRoles.Where(r => r.Id == t5.RoleId).SingleOrDefault() : null
                            select new UserProfileViewModel
                            {
                                Id = t1.Id,
                                FullName = t1.FullName,
-                               Username = t2.UserName,
+                               Username = t2 != null ? t2.UserName : "",
                                AspNetUserId = t1.AspNetUserId,
-                               UserStatusName = t3 == null ? "" : t3.DisplayName,
-                               EmailAddress = t2.Email,
+                               UserStatusName = t3 != null ? t3.DisplayName : "",
+                               EmailAddress = t2 != null ? t2.Email : "",
                                PhoneNumber = t1.PhoneNumber,
                                GovernateName = t1.GovernateName,
                                Address = t1.Address,
                                CreatedOn = t1.CreatedOn,
                                IsoUtcCreatedOn = t1.IsoUtcCreatedOn,
-                               UserRoleName = t6 == null ? "" : t6.Name
+                               UserRoleName = t6 != null ? t6.Name : ""
                            };
             return userList;
         }
