@@ -82,11 +82,11 @@
                                             <span class="hover-boxshadow border-0 bg-light color-black hover-bg-primarycolor px-4 py-2 rounded shadow">@EMSYS.Resources.HomePageResource.Login</span>
                                         </a>
                                     </li>
-                                    <li class="nav-item">
+                                    @* <li class="nav-item">
                                         <a class="nav-link ms-2 pe-0 hover-moveup" href="@Url.Action("register","account")">
                                             <span class="hover-boxshadow border-0 bg-secondarycolor hover-bg-primarycolor color-white px-4 py-2 shadow rounded">@EMSYS.Resources.HomePageResource.SignUp</span>
                                         </a>
-                                    </li>
+                                    </li> *@
                                 </ul>
                             </div>
                         </div>
@@ -121,9 +121,9 @@
             <div>
                 <a class="nav-link hover-color-primarycolor @(ViewContext.RouteData.Values["Controller"].ToString() == "account" && ViewContext.RouteData.Values["Action"].ToString() == "login" ? "color-primarycolor" : "")" href="@Url.Action("login","account")">@EMSYS.Resources.HomePageResource.Login</a>
             </div>
-            <div>
+            @* <div>
                 <a class="nav-link hover-color-primarycolor @(ViewContext.RouteData.Values["Controller"].ToString() == "account" && ViewContext.RouteData.Values["Action"].ToString() == "register" ? "color-primarycolor" : "")" href="@Url.Action("register","account")">@EMSYS.Resources.HomePageResource.SignUp</a>
-            </div>
+            </div> *@
         </div>
     </div>
 
