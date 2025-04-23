@@ -275,115 +275,115 @@ namespace EMSYS.Controllers
 
         //
         // GET: /Account/Register
-        [AllowAnonymous]
-        public IActionResult Register()
-        {
-            RegisterViewModel model = new RegisterViewModel();
-            string id = db.AspNetUsers.Select(a => a.Id).FirstOrDefault();
-            model.NoUserYet = string.IsNullOrEmpty(id) ? true : false;
-            model.RoleNameSelectList = db.AspNetRoles.Select(a => new SelectListItem { Text = a.Name, Value = a.Name }).ToList();
-            return View(model);
-        }
+        //[AllowAnonymous]
+        //public IActionResult Register()
+        //{
+        //    RegisterViewModel model = new RegisterViewModel();
+        //    string id = db.AspNetUsers.Select(a => a.Id).FirstOrDefault();
+        //    model.NoUserYet = string.IsNullOrEmpty(id) ? true : false;
+        //    model.RoleNameSelectList = db.AspNetRoles.Select(a => new SelectListItem { Text = a.Name, Value = a.Name }).ToList();
+        //    return View(model);
+        //}
 
         //
         // POST: /Account/Register
-        [HttpPost]
-        [AllowAnonymous]
-        [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Register(RegisterViewModel model)
-        {
-            try
-            {
-                bool usernameExist = util.UsernameExists(model.UserName, null);
-                bool emailExist = util.EmailExists(model.Email, null);
-                if (usernameExist)
-                {
-                    ModelState.AddModelError("UserName", Resource.UsernameTaken);
-                }
-                if (emailExist)
-                {
-                    ModelState.AddModelError("Email", Resource.EmailAddressTaken);
-                }
-                bool haveUsersInSystem = db.AspNetUsers.Select(a => a.Id).Any();
-                if (!haveUsersInSystem)
-                {
-                    ModelState.Remove("RoleName");
-                }
-                if (ModelState.IsValid)
-                {
-                    var user = new AspNetUsers { UserName = model.UserName, Email = model.Email };
+        //[HttpPost]
+        //[AllowAnonymous]
+        //[ValidateAntiForgeryToken]
+        //public async Task<IActionResult> Register(RegisterViewModel model)
+        //{
+        //    try
+        //    {
+        //        bool usernameExist = util.UsernameExists(model.UserName, null);
+        //        bool emailExist = util.EmailExists(model.Email, null);
+        //        if (usernameExist)
+        //        {
+        //            ModelState.AddModelError("UserName", Resource.UsernameTaken);
+        //        }
+        //        if (emailExist)
+        //        {
+        //            ModelState.AddModelError("Email", Resource.EmailAddressTaken);
+        //        }
+        //        bool haveUsersInSystem = db.AspNetUsers.Select(a => a.Id).Any();
+        //        if (!haveUsersInSystem)
+        //        {
+        //            ModelState.Remove("RoleName");
+        //        }
+        //        if (ModelState.IsValid)
+        //        {
+        //            var user = new AspNetUsers { UserName = model.UserName, Email = model.Email };
 
-                    var result = await _userManager.CreateAsync(user, model.Password); //create user and save in db
-                    if (result.Succeeded)
-                    {
-                        //create user profile
-                        RegisterUserProfile(user.Id);
+        //            var result = await _userManager.CreateAsync(user, model.Password); //create user and save in db
+        //            if (result.Succeeded)
+        //            {
+        //                //create user profile
+        //                RegisterUserProfile(user.Id);
 
-                        //if don't have any user yet in the system, this is the first registered user, assign system admin to this user
-                        //assumming the first user who access the system is the system admin
-                        if (haveUsersInSystem == false)
-                        {
-                            var assignSystemAdminRole = await _userManager.AddToRoleAsync(user, "System Admin");
-                        }
-                        else
-                        {
-                            if (!string.IsNullOrEmpty(model.RoleName))
-                            {
-                                var assignNormalUserRole = await _userManager.AddToRoleAsync(user, model.RoleName);
-                            }
-                        }
+        //                //if don't have any user yet in the system, this is the first registered user, assign system admin to this user
+        //                //assumming the first user who access the system is the system admin
+        //                if (haveUsersInSystem == false)
+        //                {
+        //                    var assignSystemAdminRole = await _userManager.AddToRoleAsync(user, "System Admin");
+        //                }
+        //                else
+        //                {
+        //                    if (!string.IsNullOrEmpty(model.RoleName))
+        //                    {
+        //                        var assignNormalUserRole = await _userManager.AddToRoleAsync(user, model.RoleName);
+        //                    }
+        //                }
 
-                        // For more information on how to enable account confirmation and password reset please visit https://go.microsoft.com/fwlink/?LinkID=320771
-                        // Send an email with this link
-                        if (util.GetAppSettingsValue("confirmEmailToLogin") == "true")
-                        {
-                            string code = await _userManager.GenerateEmailConfirmationTokenAsync(user);
-                            var callbackUrl = Url.Action("ConfirmEmail", "Account", new { userId = user.Id, code = code }, protocol: Request.Scheme);
-                            EmailTemplate emailTemplate = util.EmailTemplateForConfirmEmail(user.UserName, callbackUrl);
-                            util.SendEmail(user.Email, emailTemplate.Subject, emailTemplate.Body);
-                        }
+        //                // For more information on how to enable account confirmation and password reset please visit https://go.microsoft.com/fwlink/?LinkID=320771
+        //                // Send an email with this link
+        //                if (util.GetAppSettingsValue("confirmEmailToLogin") == "true")
+        //                {
+        //                    string code = await _userManager.GenerateEmailConfirmationTokenAsync(user);
+        //                    var callbackUrl = Url.Action("ConfirmEmail", "Account", new { userId = user.Id, code = code }, protocol: Request.Scheme);
+        //                    EmailTemplate emailTemplate = util.EmailTemplateForConfirmEmail(user.UserName, callbackUrl);
+        //                    util.SendEmail(user.Email, emailTemplate.Subject, emailTemplate.Body);
+        //                }
 
-                        ModelState.Clear();
-                        TempData["NotifySuccess"] = Resource.RegisterSuccessLoginNow;
-                        return RedirectToAction("login", "account");
-                    }
+        //                ModelState.Clear();
+        //                TempData["NotifySuccess"] = Resource.RegisterSuccessLoginNow;
+        //                return RedirectToAction("login", "account");
+        //            }
 
-                    string errorMessage = "";
-                    if (result.Errors != null)
-                    {
-                        foreach (var message in result.Errors)
-                        {
-                            if (message.Description.Contains("Email"))
-                            {
-                                ModelState.AddModelError("Email", message.Description);
-                            }
-                            if (message.Description.Contains("UserName"))
-                            {
-                                ModelState.AddModelError("UserName", message.Description);
-                            }
-                            if (message.Description.Contains("Password"))
-                            {
-                                ModelState.AddModelError("Password", message.Description);
-                            }
-                            if (message.Description.Contains("ConfirmPassword"))
-                            {
-                                ModelState.AddModelError("ConfirmPassword", message.Description);
-                            }
-                            errorMessage += message + "\n";
-                        }
-                    }
-                    AddErrors(result);
-                }
-                model.NoUserYet = haveUsersInSystem ? false : true;
-                return View(model);
-            }
-            catch (Exception ex)
-            {
-                TempData["NotifyFailed"] = Resource.FailedExceptionError;
-                _logger.LogError(ex, $"{GetType().Name} Controller - {MethodBase.GetCurrentMethod().Name} Method");
-                return RedirectToAction("register");
-            }
-        }
+        //            string errorMessage = "";
+        //            if (result.Errors != null)
+        //            {
+        //                foreach (var message in result.Errors)
+        //                {
+        //                    if (message.Description.Contains("Email"))
+        //                    {
+        //                        ModelState.AddModelError("Email", message.Description);
+        //                    }
+        //                    if (message.Description.Contains("UserName"))
+        //                    {
+        //                        ModelState.AddModelError("UserName", message.Description);
+        //                    }
+        //                    if (message.Description.Contains("Password"))
+        //                    {
+        //                        ModelState.AddModelError("Password", message.Description);
+        //                    }
+        //                    if (message.Description.Contains("ConfirmPassword"))
+        //                    {
+        //                        ModelState.AddModelError("ConfirmPassword", message.Description);
+        //                    }
+        //                    errorMessage += message + "\n";
+        //                }
+        //            }
+        //            AddErrors(result);
+        //        }
+        //        model.NoUserYet = haveUsersInSystem ? false : true;
+        //        return View(model);
+        //    }
+        //    catch (Exception ex)
+        //    {
+        //        TempData["NotifyFailed"] = Resource.FailedExceptionError;
+        //        _logger.LogError(ex, $"{GetType().Name} Controller - {MethodBase.GetCurrentMethod().Name} Method");
+        //        return RedirectToAction("register");
+        //    }
+        //}
 
         public void RegisterUserProfile(string userId)
         {
