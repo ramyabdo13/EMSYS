@@ -5,6 +5,8 @@ using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
 using System.Reflection;
+using CsvHelper;
+using System.Globalization;
 
 namespace EMSYS.Controllers
 {
@@ -275,6 +277,42 @@ namespace EMSYS.Controllers
             model.ClassName = model.ClassIdList.Count > 0 ? String.Join(",", model.ClassIdList) : "";
             return View(model);
         }
+
+
+        //Export Exam Results to Csv
+
+        [Authorize(Roles = "System Admin, Instructor")]
+        public IActionResult ExportResultsToCsv(string examId)
+        {
+            try
+            {
+                var results = ReadResultsByExamId(examId).ToList();
+
+                using var memoryStream = new MemoryStream();
+                using (var writer = new StreamWriter(memoryStream, leaveOpen: true))
+                using (var csv = new CsvWriter(writer, CultureInfo.InvariantCulture))
+                {
+                    // Optional: configure columns
+                    csv.WriteRecords(results);
+                }
+
+                memoryStream.Position = 0;
+                var fileName = $"ExamResults_{examId}_{DateTime.UtcNow:yyyyMMddHHmmss}.csv";
+                return File(memoryStream.ToArray(), "text/csv", fileName);
+            }
+            catch (Exception ex)
+            {
+                _logger.LogError(ex, $"{GetType().Name} Controller - ExportResultsToCsv Method");
+                return RedirectToAction("StudentResult", new { Id = examId });
+            }
+        }
+
+
+
+
+
+
+
 
         [Authorize(Roles = "System Admin, Instructor")]
         public async Task<IActionResult> GetPartialViewStudentResultListing(string Id, string sort, string search, int? pg, int? size)
