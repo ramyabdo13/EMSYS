@@ -428,7 +428,7 @@ namespace EMSYS.Utils
             else
             {
                 //user is editing record, need to add one more filter "a.Id != currentRecordId"
-                usernameExist = db.AspNetUsers.Where(a => a.UserName == username && a.Id != currentRecordId).Any();
+                usernameExist = db.AspNetUsers.Where(a => a.UserName == username && a.Id == currentRecordId).Any();
             }
             return usernameExist;
         }
@@ -443,7 +443,7 @@ namespace EMSYS.Utils
             else
             {
                 //user is editing his/her own record, need to add one more filter "a.Id != currentRecordId"
-                emailExist = db.AspNetUsers.Where(a => a.Email == email && a.Id != currentRecordId).Any();
+                emailExist = db.AspNetUsers.Where(a => a.Email == email && a.Id == currentRecordId).Any();
             }
             return emailExist;
         }

@@ -39,12 +39,13 @@
 
 
 
-                    <div class="form-group" id="PassWord-field">
-                        @Html.LabelFor(model => model.Password, htmlAttributes: new { @class = "form-label required fw600" })
-                        @Html.TextBoxFor(model => model.Password, new { @class = "form-control", @type = "password", @id = "Password" })
-                        @Html.ValidationMessageFor(model => model.Password, "", new { @class = "invalid-message" })
-                        <i class="far fa-eye-slash" id="Show_Hide"></i>
+                    <div class="form-group position-relative">
+                        <label class="form-label required fw600" for="Password">Password</label>
+                        @Html.EditorFor(model => model.Password, new { htmlAttributes = new { @class = "form-control", @id = "TPassword" } })
+                        <i id="Show_Hide" class="fa-solid fa-eye-slash position-absolute"
+                           style="right: 15px; top: 80%; transform: translateY(-50%); cursor: pointer;"></i>
                     </div>
+
 
 
 
@@ -72,8 +73,36 @@
 
 
 
-    <script src="~/js/password_showhide.js"></script>
+    
 </section>
+
+@section styles {
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" />
+}
+
+@section scripts {
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <script>
+        $(document).ready(function () {
+            console.log("jQuery ready");
+
+            $("#Show_Hide").on("click", function () {
+                console.log("Icon clicked");
+
+                const input = $("#TPassword");
+                const type = input.attr("type");
+
+                if (type === "password") {
+                    input.attr("type", "text");
+                    $(this).removeClass("fa-eye-slash").addClass("fa-eye");
+                } else {
+                    input.attr("type", "password");
+                    $(this).removeClass("fa-eye").addClass("fa-eye-slash");
+                }
+            });
+        });
+    </script>
+}
 
 
 

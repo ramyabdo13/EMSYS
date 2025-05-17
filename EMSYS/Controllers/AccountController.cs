@@ -181,11 +181,11 @@ namespace EMSYS.Controllers
                     ModelState.Remove("Password");
                 }
 
-                if (!ModelState.IsValid)
-                {
-                    SetupSelectLists(model);
-                    return View(model);
-                }
+                //if (!ModelState.IsValid)
+                //{
+                //    SetupSelectLists(model);
+                //    return View(model);
+                //}
 
                 bool result = SaveMyProfile(model);
                 if (result == false)
