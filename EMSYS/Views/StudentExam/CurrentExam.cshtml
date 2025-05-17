@@ -93,7 +93,14 @@
                     if (!response.ok) {
                         throw new Error('Network response was not ok');
                     }
-                    return response.text();
+                  //  return response.text();
+                     //  return response.text();
+                 // Solve bug No#38 by Samy
+                  $(`#${partialview}`).html(`
+                 <div class="alert alert-info text-center mt-4">
+                        <strong>No Exams Available at the Moment.</strong>
+                    </div>
+                    `);
                 })
                 .then(data => {
                     $(`#${partialview}`).html(data);

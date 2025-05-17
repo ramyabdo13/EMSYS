@@ -9,6 +9,7 @@ using System.Reflection;
 using EMSYS.Data;
 using EMSYS.Models;
 
+
 namespace EMSYS.Controllers
 {
     [Authorize(Roles = "System Admin, Instructor")]
@@ -240,7 +241,19 @@ namespace EMSYS.Controllers
             }
         }
 
-        protected override void Dispose(bool disposing)
+
+
+
+
+
+        
+
+
+
+
+
+
+    protected override void Dispose(bool disposing)
         {
             if (disposing)
             {
