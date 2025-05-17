@@ -75,6 +75,12 @@ namespace EMSYS.Controllers
         public IQueryable<ExamViewModel> ReadStudentExams(string status)
         {
             string currentUserId = _userManager.GetUserId(User);
+            if (string.IsNullOrEmpty(currentUserId))
+                //
+            {
+                return Enumerable.Empty<ExamViewModel>().AsQueryable();
+            }
+            //
             List<string> studentClass = db.StudentClasses.Where(a => a.StudentId == currentUserId).Select(a => a.ClassId).ToList();
             string publishedId = db.GlobalOptionSets.Where(a => a.Code == ExamStatus.Published.ToString()).Select(a => a.Id).FirstOrDefault();
 
@@ -111,7 +117,8 @@ namespace EMSYS.Controllers
                         join t3 in db.StudentExams on t1.Id equals t3.ExamId into g1
                         from t4 in g1.DefaultIfEmpty()
                         let totalQuestion = db.ExamQuestions.Where(a => a.ExamId == t1.Id).Count()
-                        where (t1.StartDate <= now && t1.EndDate <= now) || t4.StudentId == currentUserId
+                        // where (t1.StartDate <= now && t1.EndDate <= now) || t4.StudentId == currentUserId
+                        where t1.StartDate <= now && t1.EndDate <= now && t4.StudentId == currentUserId
                         select new ExamViewModel
                         {
                             Id = t1.Id,
