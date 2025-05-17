@@ -375,12 +375,26 @@ namespace EMSYS.Controllers
                     AddErrors(result);
                 }
                 model.NoUserYet = haveUsersInSystem ? false : true;
+
+                // Solve the problem of list disappear after error - Samy
+                model.RoleNameSelectList = db.AspNetRoles
+                //  .OrderBy(a => a.Name)
+               .Select(a => new SelectListItem
+               {
+                Text = a.Name,
+                Value = a.Name,
+                Selected = (a.Name == model.RoleName)
+                })
+                .ToList();
+                // End Of Code
+
                 return View(model);
             }
             catch (Exception ex)
             {
                 TempData["NotifyFailed"] = Resource.FailedExceptionError;
                 _logger.LogError(ex, $"{GetType().Name} Controller - {MethodBase.GetCurrentMethod().Name} Method");
+               
                 return RedirectToAction("register");
             }
         }
