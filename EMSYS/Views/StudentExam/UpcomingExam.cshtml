@@ -89,25 +89,39 @@
         }
 
         function loadData(url) {
+            $(".spinner-container").removeClass("d-none");
+            
             fetch(url)
                 .then(response => {
                     if (!response.ok) {
-                        throw new Error('Network response was not ok');
+                        throw new Error(`Server responded with status: ${response.status}`);
                     }
-                 //  return response.text();
-                 // Solve bug No#38 by Samy
-                  $(`#${partialview}`).html(`
-                 <div class="alert alert-info text-center mt-4">
-                        <strong>No Upcoming Exams Available at the Moment.</strong>
-                    </div>
-                    `);
+                    return response.text();
                 })
                 .then(data => {
-                    $(`#${partialview}`).html(data);
-                    formatDateTimeText();
+                    if (data && data.trim() !== '') {
+                        $(`#${partialview}`).html(data);
+                        formatDateTimeText();
+                    } else {
+                        $(`#${partialview}`).html(`
+                            <div class="alert alert-info text-center mt-4">
+                                <strong>No Upcoming Exams Available at the Moment.</strong>
+                            </div>
+                        `);
+                    }
                 })
                 .catch(error => {
-                    console.error('There was a problem with the fetch operation:', error);
+                    console.error('Exam data fetch error:', error);
+                    $(`#${partialview}`).html(`
+                        <div class="alert alert-danger text-center mt-4">
+                            <strong>Error loading exam data. Please try again.</strong>
+                            <div class="mt-2">
+                                <button onclick="resetTable()" class="btn btn-sm btn-outline-danger">
+                                    <i class="fa-solid fa-rotate"></i> Try Again
+                                </button>
+                            </div>
+                        </div>
+                    `);
                 })
                 .finally(() => {
                     $(".spinner-container").addClass("d-none");
