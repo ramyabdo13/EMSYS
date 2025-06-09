@@ -1,10 +1,7 @@
-﻿@model EMSYS.Models.ExamListing
-@using EMSYS.Models;
+﻿@model List<EMSYS.Models.ExamViewModel>
 @{
     ViewBag.Title = Resource.UpcomingExams;
     Layout = "~/Views/Shared/_LayoutAfterLogin.cshtml";
-    ViewBag.TableIdPrefix = "exam";
-    ViewBag.PartialViewWrapper = "exam-partialview";
 }
 
 <div class="row">
@@ -17,33 +14,50 @@
 
 <section class="section dashboard mt-3">
     <div class="bg-white rounded p-3 shadow position-relative h-100 w-100">
-        <div class="pb-2">
-          
-           
-        </div>
-        <div class="spinner-container d-none">
-            <div class="spinner d-flex justify-content-center align-items-center text-center color-primarycolor py-5">
-                <div class="py-3">
-                    <div class="spinner-border ml-auto" role="status" aria-hidden="true"></div><strong> &nbsp; @Resource.Loading </strong>
-                </div>
+        @if (Model == null || !Model.Any())
+        {
+            <div class="alert alert-info text-center mt-4">
+                <strong>No Upcoming Exams Available at the Moment.</strong>
             </div>
-        </div>
-        <div id="@ViewBag.PartialViewWrapper">
-            <!-- display a dummy empty table while loading the data -->
-            <div class="table-responsive mb-5">
-                <table class="table table-hover align-middle mb-0">
-                    <thead class="table-light">
-                        <tr><th class="thead"></th></tr>
+        }
+        else
+        {
+            <div class="table-responsive">
+                <table class="table table-striped">
+                    <thead class="thead-dark">
+                        <tr>
+                            <th>Exam Name</th>
+                            <th>Start Date</th>
+                            <th>End Date</th>
+                            <th>Duration (min)</th>
+                            <th>Questions</th>
+                            <th>Created On</th>
+                            <th>Modified On</th>
+                            <th>Actions</th>
+                        </tr>
                     </thead>
-                    <tbody></tbody>
+                    <tbody>
+                        @foreach (var exam in Model)
+                        {
+                            <tr>
+                                <td>@exam.Name</td>
+                                <td>@exam.StartDate</td>
+                                <td>@exam.EndDate</td>
+                                <td>@exam.Duration</td>
+                                <td>@exam.TotalQuestions</td>
+                                <td>@exam.CreatedOn?.ToString("yyyy-MM-dd HH:mm")</td>
+                                <td>@exam.ModifiedOn?.ToString("yyyy-MM-dd HH:mm")</td>
+                                <td>
+                                    <a href="@Url.Action("ConfirmTakeExam", "StudentExam", new { eId = exam.Id })" class="btn btn-primary btn-sm">
+                                        <i class="fas fa-edit"></i> Take Exam
+                                    </a>
+                                </td>
+                            </tr>
+                        }
+                    </tbody>
                 </table>
             </div>
-            <div class="py-4"></div>
-            <div class="dummyfooter row justify-content-between mt-5">
-                <div class="col-md-6">@Resource.Showing0Entries</div>
-                <div class="col-md-6 text-end">@Resource.Page0OfPage0</div>
-            </div>
-        </div>
+        }
     </div>
 </section>
 

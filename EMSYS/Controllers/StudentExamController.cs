@@ -87,13 +87,110 @@ namespace EMSYS.Controllers
 
             return View(results);
         }
+        [HttpGet]
         public IActionResult UpcomingExam()
         {
-            return View();
+            string currentUserId = _userManager.GetUserId(User);
+            if (string.IsNullOrEmpty(currentUserId))
+            {
+                return View(new List<ExamViewModel>());
+            }
+
+            List<string> studentClasses = db.StudentClasses
+                .Where(a => a.StudentId == currentUserId)
+                .Select(a => a.ClassId)
+                .ToList();
+
+            if (!studentClasses.Any())
+            {
+                return View(new List<ExamViewModel>());
+            }
+
+            DateTime? now = util.GetSystemTimeZoneDateTimeNow();
+            var allExams = db.Exams.AsNoTracking().ToList();
+            var examClassConnections = db.ExamClassHubs.AsNoTracking().ToList();
+
+            var results = new List<ExamViewModel>();
+
+            foreach (var exam in allExams)
+            {
+                if (exam.IsPublished == true && exam.StartDate > now)
+                {
+                    foreach (var connection in examClassConnections)
+                    {
+                        if (connection.ExamId == exam.Id && studentClasses.Contains(connection.ClassHubId))
+                        {
+                            int totalQuestion = db.ExamQuestions.Count(q => q.ExamId == exam.Id);
+
+                            results.Add(new ExamViewModel
+                            {
+                                Id = exam.Id,
+                                Name = exam.Name,
+                                Duration = exam.Duration,
+                                StartDate = exam.StartDate,
+                                EndDate = exam.EndDate,
+                                TotalQuestions = totalQuestion,
+                                CreatedOn = exam.CreatedOn,
+                                ModifiedOn = exam.ModifiedOn
+                            });
+                            break;
+                        }
+                    }
+                }
+            }
+
+            return View(results);
         }
+        [HttpGet]
         public IActionResult PastExam()
         {
-            return View();
+            string currentUserId = _userManager.GetUserId(User);
+            if (string.IsNullOrEmpty(currentUserId))
+            {
+                return View(new List<ExamViewModel>());
+            }
+
+            List<string> studentClasses = db.StudentClasses
+                .Where(a => a.StudentId == currentUserId)
+                .Select(a => a.ClassId)
+                .ToList();
+
+            if (!studentClasses.Any())
+            {
+                return View(new List<ExamViewModel>());
+            }
+
+            DateTime? now = util.GetSystemTimeZoneDateTimeNow();
+            var studentExams = db.StudentExams
+                .Where(se => se.StudentId == currentUserId && se.EndedOn != null)
+                .ToList();
+
+            var results = new List<ExamViewModel>();
+
+            foreach (var studentExam in studentExams)
+            {
+                var exam = db.Exams.AsNoTracking().FirstOrDefault(e => e.Id == studentExam.ExamId);
+                if (exam != null)
+                {
+                    int totalQuestion = db.ExamQuestions.Count(q => q.ExamId == exam.Id);
+
+                    results.Add(new ExamViewModel
+                    {
+                        Id = exam.Id,
+                        Name = exam.Name,
+                        Duration = exam.Duration,
+                        StartDate = studentExam.StartedOn ?? exam.StartDate,
+                        EndDate = studentExam.EndedOn ?? exam.EndDate,
+                        TotalQuestions = totalQuestion,
+                        Result = studentExam.Result,
+                        CreatedOn = exam.CreatedOn,
+                        ModifiedOn = exam.ModifiedOn,
+                        StudentId = currentUserId
+                    });
+                }
+            }
+
+            return View(results);
         }
 
         public async Task<IActionResult> GetPartialViewListing(string status, string sort, string search, int? pg, int? size)
