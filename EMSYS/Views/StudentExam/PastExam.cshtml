@@ -1,4 +1,4 @@
-﻿@model EMSYS.Models.ExamListing
+﻿@model List<EMSYS.Models.ExamViewModel>
 @using EMSYS.Models;
 @{
     ViewBag.Title = Resource.PastExams;
@@ -17,95 +17,51 @@
 
 <section class="section dashboard mt-3">
     <div class="bg-white rounded p-3 shadow position-relative h-100 w-100">
-        <div class="pb-2">
-            
-           
-        </div>
-        <div class="spinner-container d-none">
-            <div class="spinner d-flex justify-content-center align-items-center text-center color-primarycolor py-5">
-                <div class="py-3">
-                    <div class="spinner-border ml-auto" role="status" aria-hidden="true"></div><strong> &nbsp; @Resource.Loading </strong>
-                </div>
+        @if (Model == null || !Model.Any())
+        {
+            <div class="alert alert-info text-center mt-4">
+                <strong>No Past Exams Available at the Moment.</strong>
             </div>
-        </div>
-        <div id="@ViewBag.PartialViewWrapper">
-            <!-- display a dummy empty table while loading the data -->
-            <div class="table-responsive mb-5">
-                <table class="table table-hover align-middle mb-0">
-                    <thead class="table-light">
-                        <tr><th class="thead"></th></tr>
+        }
+        else
+        {
+            <div class="table-responsive">
+                <table class="table table-striped">
+                    <thead class="thead-dark">
+                        <tr>
+                            <th>Exam Name</th>
+                            <th>Start Date</th>
+                            <th>End Date</th>
+                            <th>Duration (min)</th>
+                            <th>Questions</th>
+                            <th>Result</th>
+                            <th>Created On</th>
+                            <th>Modified On</th>
+                            <th>Actions</th>
+                        </tr>
                     </thead>
-                    <tbody></tbody>
+                    <tbody>
+                        @foreach (var exam in Model)
+                        {
+                            <tr>
+                                <td>@exam.Name</td>
+                                <td>@exam.StartDate</td>
+                                <td>@exam.EndDate</td>
+                                <td>@exam.Duration</td>
+                                <td>@exam.TotalQuestions</td>
+                                <td>@exam.Result</td>
+                                <td>@exam.CreatedOn?.ToString("yyyy-MM-dd HH:mm")</td>
+                                <td>@exam.ModifiedOn?.ToString("yyyy-MM-dd HH:mm")</td>
+                                <td>
+                                    <a href="@Url.Action("GetResultViewModel", "StudentExam", new { eId = exam.Id, sId = exam.StudentId })" class="btn btn-primary btn-sm">
+                                        <i class="fas fa-eye"></i> View Result
+                                    </a>
+                                </td>
+                            </tr>
+                        }
+                    </tbody>
                 </table>
             </div>
-            <div class="py-4"></div>
-            <div class="dummyfooter row justify-content-between mt-5">
-                <div class="col-md-6">@Resource.Showing0Entries</div>
-                <div class="col-md-6 text-end">@Resource.Page0OfPage0</div>
-            </div>
-        </div>
+        }
     </div>
 </section>
-
-@section scripts{
-    <script>
-        var tableIdPrefix = "@ViewBag.TableIdPrefix";
-        var fileName = "@Resource.Exam"; //the file name for excel and pdf file (Export to excel, pdf feature)
-        var partialview = "@ViewBag.PartialViewWrapper";
-        var loadTableUrl = "@Url.Action("GetPartialViewListing", "StudentExam")";
-        resetTable();
-
-        function refreshTable(sort, search, pg, size) {
-            if (sort == "undefined" || sort == undefined || sort == null) {
-                sort = "";
-            }
-            if (pg == "undefined" || pg == undefined || pg == null) {
-                pg = 1;
-            }
-            if (size == "undefined" || size == undefined || size == null) {
-                size = "";
-            }
-            if (search == "undefined" || search == undefined || search == null) {
-                let searchinput = document.querySelector('input[name="search"]');
-                if (searchinput != null) {
-                    if (searchinput.value == null || searchinput.value == "") {
-                        search = "";
-                    } else {
-                        search = searchinput.value;
-                    }
-                } else {
-                    search = "";
-                }
-            }
-            $(".spinner-container").removeClass("d-none");
-            var url = `${loadTableUrl}?status=past&sort=${sort}&search=${search}&pg=${pg}&size=${size}`;
-            loadData(url);
-        }
-
-        function resetTable() {
-            $(".spinner-container").removeClass("d-none");
-            var url = `${loadTableUrl}?status=past`;
-            loadData(url);
-        }
-
-        function loadData(url) {
-            fetch(url)
-                .then(response => {
-                    if (!response.ok) {
-                        throw new Error('Network response was not ok');
-                    }
-                    return response.text();
-                })
-                .then(data => {
-                    $(`#${partialview}`).html(data);
-                    formatDateTimeText();
-                })
-                .catch(error => {
-                    console.error('There was a problem with the fetch operation:', error);
-                })
-                .finally(() => {
-                    $(".spinner-container").addClass("d-none");
-                });
-        }
-    </script>
-}
