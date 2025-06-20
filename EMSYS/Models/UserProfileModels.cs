@@ -83,7 +83,7 @@ namespace EMSYS.Models
 
         public string GovernateName { get; set; }
 
-        [Required]
+        //[Required]
         public List<SelectListItem> GovernateSelectList { get; set; }
         [Display(Name = "FullAddress", ResourceType = typeof(Resource))]
         public string Address { get; set; }

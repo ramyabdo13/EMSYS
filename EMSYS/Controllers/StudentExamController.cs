@@ -94,8 +94,13 @@ namespace EMSYS.Controllers
                 list = (from t1 in db.Exams
                         join t2 in db.ExamClassHubs on t1.Id equals t2.ExamId
                         let totalQuestion = db.ExamQuestions.Where(a => a.ExamId == t1.Id).Count()
-                        where t1.IsPublished == true && t1.StartDate <= now && t1.EndDate >= now &&
-                        studentTakenExams.Contains(t1.Id) == false && studentClass.Contains(t2.ClassHubId)
+                        where t1.IsPublished == true && t1.StartDate <= now && t1.EndDate >= now
+                        && !db.StudentExams.Any(se => 
+                       se.ExamId == t1.Id &&
+                       se.StudentId == currentUserId &&
+                       se.EndedOn != null)  
+                        && db.StudentClasses.Any(sc =>sc.ClassId == t2.ClassHubId &&
+                       sc.StudentId == currentUserId)
                         select new ExamViewModel
                         {
                             Id = t1.Id,
@@ -138,8 +143,8 @@ namespace EMSYS.Controllers
                 //upcoming
                 list = (from t1 in db.Exams.AsNoTracking()
                         join t2 in db.ExamClassHubs.AsNoTracking() on t1.Id equals t2.ExamId
-                        let totalQuestion = db.ExamQuestions.Where(a => a.ExamId == t1.Id).Count()
-                        where t1.StartDate >= now && t1.IsPublished == true && studentClass.Contains(t2.ClassHubId)
+                        
+                        where t1.StartDate >= now && t1.IsPublished == true 
                         select new ExamViewModel
                         {
                             Id = t1.Id,
@@ -150,7 +155,7 @@ namespace EMSYS.Controllers
                             EndDate = t1.EndDate,
                             EndDateIsoUtc = t1.IsoUtcEndDate,
                             StudentExamStatus = "Upcoming",
-                            TotalQuestions = totalQuestion
+                            TotalQuestions = 5
                         }).Distinct();
             }
 

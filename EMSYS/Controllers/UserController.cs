@@ -330,11 +330,11 @@ namespace EMSYS.Controllers
                 }
                 else
                 {
-                    //List<SelectListItem> governates = util.GetGovernateList("");
-                    //if (governates.Where(a => a.Text == model.GovernateName).Any() == false)
-                    //{
-                    //    ModelState.AddModelError("GovernateName", Resource.GovernateNotFound);
-                    //}
+                    List<SelectListItem> governates = util.GetGovernateList("");
+                    if (governates.Where(a => a.Text == model.GovernateName).Any() == false)
+                    {
+                        ModelState.AddModelError("GovernateName", Resource.GovernateNotFound);
+                    }
                 }
                 if (model.ProfilePicture != null)
                 {

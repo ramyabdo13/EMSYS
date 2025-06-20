@@ -504,27 +504,30 @@ namespace EMSYS.Resources {
         /// <summary>
         ///   Looks up a localized string similar to Country.
         /// </summary>
-        public static string Country {
+        public static string Governate
+        {
             get {
-                return ResourceManager.GetString("Country", resourceCulture);
+                return ResourceManager.GetString("Governate", resourceCulture);
             }
         }
         
         /// <summary>
         ///   Looks up a localized string similar to Country not found..
         /// </summary>
-        public static string CountryNotFound {
+        public static string GovernateNotFound
+        {
             get {
-                return ResourceManager.GetString("CountryNotFound", resourceCulture);
+                return ResourceManager.GetString("GovernateNotFound", resourceCulture);
             }
         }
         
         /// <summary>
         ///   Looks up a localized string similar to The Country field is required..
         /// </summary>
-        public static string CountryRequired {
+        public static string GovernateRequired
+        {
             get {
-                return ResourceManager.GetString("CountryRequired", resourceCulture);
+                return ResourceManager.GetString("GovernateRequired", resourceCulture);
             }
         }
         
